@@ -1,0 +1,1 @@
+import{al as u,b as g,aZ as o,h as a,ar as _,as as p,aC as l,ah as i,ag as n,an as m}from"./DIw3_JLS.js";function E(r,d){let t=null,f=a;var s;if(a){t=m;for(var e=_(document.head);e!==null&&(e.nodeType!==p||e.data!==r);)e=l(e);if(e===null)i(!1);else{var y=l(e);e.remove(),n(y)}}a||(s=document.head.appendChild(u()));try{g(()=>d(s),o)}finally{f&&(i(!0),n(t))}}export{E as h};
