@@ -1,0 +1,1 @@
+import{_ as u,z as _,an as g,H as t,a4 as o,a5 as p,ag as i,V as l,U as n,a0 as m}from"./b48Gwylo.js";function E(d,r){let a=null,f=t;var s;if(t){a=m;for(var e=o(document.head);e!==null&&(e.nodeType!==p||e.data!==d);)e=i(e);if(e===null)l(!1);else{var y=i(e);e.remove(),n(y)}}t||(s=document.head.appendChild(u()));try{_(()=>r(s),g)}finally{f&&(l(!0),n(a))}}export{E as h};
