@@ -1,1 +1,0 @@
-import{H as u,k as o,ai as _,K as t,M as g,V as p,a9 as i,T as l,J as d,U as m}from"./BuleGQh7.js";function E(n,r){let a=null,f=t;var s;if(t){a=m;for(var e=g(document.head);e!==null&&(e.nodeType!==p||e.data!==n);)e=i(e);if(e===null)l(!1);else{var y=i(e);e.remove(),d(y)}}t||(s=document.head.appendChild(u()));try{o(()=>r(s),_)}finally{f&&(l(!0),d(a))}}export{E as h};
