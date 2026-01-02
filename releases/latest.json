@@ -1,23 +1,23 @@
 {
-  "version": "0.1.0",
-  "notes": "Release v0.1.0",
-  "pub_date": "2026-01-02T05:25:53Z",
+  "version": "0.1.1",
+  "notes": "Release v0.1.1",
+  "pub_date": "2026-01-02T05:59:58Z",
   "platforms": {
     "linux-x86_64": {
-      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_0.1.0_amd64.AppImage",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDNGMTBJK210bTd3b2REME9BSG1hNHRtcncwWGJXV0NYZFFTUEk0WEYxUEJQM3FscG9RNXoyTEg4Z0VZdjR3RkYyOFYzcXREQ0hHVUpqWHFJdTJtd3dnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMxMjg2CWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfYW1kNjQuQXBwSW1hZ2UKam1jNEM0RDkxTDNJem5lck01NW5Sd2tEcHV5YnhvM2Q4QzZQYUllU3FCMDFtNGdrT3A2bk5UQjNlL3phRjBYaWcyYzBreU9IbjlnT2MyaUNrTmExQXc9PQo="
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.1/Asset.Hoard_0.1.0_amd64.AppImage",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDFlcjcreGE1cmFtT3oyNndWT0VGankwM09QaU5temFoZFRPRlNrNEI5UXo5MEdtS1VDZXVDQ1hqbWpxZHAwTFdvK3pnK2dqOWM0K3NtM1llUU5HOHcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMyODMxCWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfYW1kNjQuQXBwSW1hZ2UKWTlmaVBLUWZGL0FUZWMvNlU1RFIxbVpNVVVPaHU2b0hjRGh1L2ZENEdGRU1yM2FYOVpHMzJaZTJRVm16T3l5WlMySUd6WXdUYkpWMGVPaG1KTnpKQ1E9PQo="
     },
     "windows-x86_64": {
-      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_0.1.0_x64-setup.exe",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDUwejFNb2lxK3FxVHI4ek9QZ3hBSHRWdC9IemMzUldtWjQrM3puYThOTGpMNURUYUkxWjFmYlpnUVR0MXZtZ0JzUnZidDBjazhRb0NETWNGNzIwclE0PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMxNTE0CWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfeDY0LXNldHVwLmV4ZQpjbDBkZVFCbU1mVmtYRE1LbDVkSnBQRDVYb3BWNWd3VkxOTFcraVlsRUYwSTIzbSs1a1YzcVhtT2ZUd2t0NGFqdnZiakQycDBRMHlJeVMvSWRkeTlDZz09Cg=="
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.1/Asset.Hoard_0.1.0_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDRJZDhGRTFYUnZDcUFoQ1lGcHh2TExYS0lBN0ttakVtdXJaS1plbFIybUtOREw2QUJ2WldvSitRd2FueitPRFBWSVpUU0NBb0FSempzaCt6QlViNFFvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMzMzQ1CWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfeDY0LXNldHVwLmV4ZQoyczVFdU4rTnFHY3VJLzRBcXhqVEw1ZmRQeWhWK2dlcFQwRjBaQ2sraXZmVnNGNnlnZ1BEOXVqd1VUWCs0NUpBOGJlRnVLajI2bjQxK0ZIVjNvUU1BZz09Cg=="
     },
     "darwin-aarch64": {
-      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_aarch64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDRZMEhtOUlwM2FaV2diemVqc3VhZE1xTmJkYUlIQUk4djlxM2Z0aUtzNElFZXlxUmduQ0hwNWdPWllWaC9HTGc3TTg2enFkYXJiWmY5NVpWVHFNVmdzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMxMjk5CWZpbGU6QXNzZXQgSG9hcmQuYXBwLnRhci5negpKeEhqMmFLYlgyelMzak9ZTnFzRVNiSlNKVVN4akx4d055VzdOSzR6UklUd21UZmNCWG42TlRuRWpjOTM0OWg4TzdsMkllbUYweWtXYVhjRlVDOW1Edz09Cg=="
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.1/Asset.Hoard_aarch64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMHd5aEM1T1ZNd2hLejViY1Q0RUMzczhaRXdWbTdSQ2RkZG5OUHZQS3FlWlQ0cjlWTk04MElteE1HbVEwZkJFTW15MTA2aFgrbGVTVXdhV1gwN2c0SEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMyNDY0CWZpbGU6QXNzZXQgSG9hcmQuYXBwLnRhci5negpuSXhocXR6ZHJ2Rnl4ZHZsVkRKYkZuRUdEbHBqNWhXbm9yTmcrRnNVelBTaHZtaWZ2VktOTEtsUGxRUm9ObmlLTWo2TmEyRm5kKzNWOEFBOWRrenhCQT09Cg=="
     },
     "darwin-x86_64": {
-      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_x64.app.tar.gz",
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMC9lbHhpcVZKQmcyREsrd2g1Q2Fva0lnNG5Sb1FNYlJOSWFKaHRJbnRzUTExN1BzdGhWMzA0R1JtMDJ6SWkvYTA3Wk9iTmpGU0l1b1pETUdOUU1rendBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMxMTIyCWZpbGU6QXNzZXQgSG9hcmQuYXBwLnRhci5negpuMFViZGxrSEJxdE1jS1Z1SE1aNjRzMUg4WHZsZko1Yzd5d3VPTEJ4djM0ZGpsZUF4cXNqalhZWHRzaXIvYS9sTkZYZE4wTGo1V3EvS1B2aWVBN0pCZz09Cg=="
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.1/Asset.Hoard_x64.app.tar.gz",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDlvcEdwcWs0K0tzTm9ZTm1lTENHcW11aVVmbWxkRGcvYW83YUFFQjQ3QUhZenlWNVU3YWxKKzFabGc3TndxeS9zU0dZcFFuUlVtNkhPRm9LVlBNVUFRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzMyNDM3CWZpbGU6QXNzZXQgSG9hcmQuYXBwLnRhci5negpldWdIcXRMWWdsU3c1eUdjZEhpZXdHSCtoSDVEKzBPVkprczVFSkZncSs4dU5rbWkvNE5haFhTeUlEZFZZRTNOR2duU3laUlY1TC9Cbm5ZZ2MzQ01CUT09Cg=="
     }
   }
 }
