@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "notes": "Release v0.1.0",
+  "pub_date": "2026-01-02T04:27:22Z",
+  "platforms": {
+    "linux-x86_64": {
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_0.1.0_amd64.AppImage",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDd6ZGl6MzlHMkt0Z3hUdk15aVdLVnVXc25nRzc5MmFEczB6NlIyU2NsQmZJazM4UjNIMUxnVjZadVVOUkdlVXZOU2xTMXZGWnVraDhJNmo5RW5aRFFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzI3OTE4CWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfYW1kNjQuQXBwSW1hZ2UKTVl5NmlWMlh6aklmbjMvaXN0WUlBZSt0ZDlNclhjNkVHODRNaSt1bFR1clJxTzc1Z0hSMUV3NHZUdXhZbEdQS0hsS2RWWnhKU3pWczNnQVpZWC9XQUE9PQo="
+    },
+    "windows-x86_64": {
+      "url": "https://github.com/Asset-Hoard/assethoard.com/releases/download/v0.1.0/Asset.Hoard_0.1.0_x64-setup.exe",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSSXFyTGRQMW5zMDhnTUxaQW15eE95bE5nM0VBZkt6TmlxY2xvY2xxbVZzN2lJS044NDRKYmdIZUZTRDRQQS9sd0dQbHJCVWFCa2tqRlNrOVk2OUtDOUVnRmY5NWJtUncwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzY3MzI4MDA2CWZpbGU6QXNzZXQgSG9hcmRfMC4xLjBfeDY0LXNldHVwLmV4ZQptMjRZUjBucnRKV2lTMFVSdUpWSFdsUEUyVUxTQ1M5ZlNaL0RXdHdQSVpvVFZuWWYrQTBYSUh3OFNBUkpGaXhrSzYwQUk0clA0OGFIUVFQOWhNTDFCZz09Cg=="
+    }
+  }
+}
