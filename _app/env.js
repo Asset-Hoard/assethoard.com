@@ -1,1 +1,1 @@
-export const env={}
+export const env={"PUBLIC_COMING_SOON":"true"}
