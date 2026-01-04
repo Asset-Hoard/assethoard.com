@@ -56,15 +56,15 @@
 		</script>
 
 		
-		<link rel="modulepreload" href="/_app/immutable/entry/start.VJo_7qAH.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/LqXvBVeO.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/start.DPqhVVJN.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/Bk5gOqlg.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/CpyEfTIG.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/B9Tyw0D8.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/CYgJF_JY.js">
-		<link rel="modulepreload" href="/_app/immutable/chunks/C2CzeBoZ.js">
+		<link rel="modulepreload" href="/_app/immutable/chunks/0Gzx09Wb.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/B17Q6ahh.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/DmzLRBee.js">
-		<link rel="modulepreload" href="/_app/immutable/entry/app.BzSojSlJ.js">
+		<link rel="modulepreload" href="/_app/immutable/entry/app.mdLNewIs.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/CQ9-JlIX.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/DEnwuVLI.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/BMbN4J1H.js">
@@ -72,22 +72,28 @@
 		<link rel="modulepreload" href="/_app/immutable/chunks/CQ2WHJRn.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/CO13WQe3.js">
 		<link rel="modulepreload" href="/_app/immutable/chunks/BcCsAxay.js">
+		<link rel="modulepreload" href="/_app/env.js">
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">
 			<script>
 				{
-					__sveltekit_dnbf6a = {
-						base: ""
+					__sveltekit_3bg3kq = {
+						base: "",
+						env: null
 					};
 
 					const element = document.currentScript.parentElement;
 
-					Promise.all([
-						import("/_app/immutable/entry/start.VJo_7qAH.js"),
-						import("/_app/immutable/entry/app.BzSojSlJ.js")
-					]).then(([kit, app]) => {
-						kit.start(app, element);
+					import("/_app/env.js").then(({ env }) => {
+						__sveltekit_3bg3kq.env = env;
+
+						Promise.all([
+							import("/_app/immutable/entry/start.DPqhVVJN.js"),
+							import("/_app/immutable/entry/app.mdLNewIs.js")
+						]).then(([kit, app]) => {
+							kit.start(app, element);
+						});
 					});
 				}
 			</script>
