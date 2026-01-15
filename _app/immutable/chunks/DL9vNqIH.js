@@ -1,1 +1,0 @@
-import{Y as y,j as u,ao as p,k as t,w as _,C as g,p as i,a1 as l,v as d,o as v}from"./Cb4ExTCd.js";function E(n,r){let a=null,f=t;var s;if(t){a=v;for(var e=_(document.head);e!==null&&(e.nodeType!==g||e.data!==n);)e=i(e);if(e===null)l(!1);else{var o=i(e);e.remove(),d(o)}}t||(s=document.head.appendChild(y()));try{u(()=>r(s),p)}finally{f&&(l(!0),d(a))}}export{E as h};
