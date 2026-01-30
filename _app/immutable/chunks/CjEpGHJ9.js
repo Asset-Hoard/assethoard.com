@@ -1,1 +1,0 @@
-import{b as o,h as _,a as c,E as b,U as d,V as E,W as T,s as p,X as f}from"./DSVG8HdD.js";import{B as y}from"./Clzcf_cV.js";function v(t,i,h=!1){_&&c();var e=new y(t),u=h?b:0;function n(a,s){if(_){const l=d(t)===E;if(a===l){var r=T();p(r),e.anchor=r,f(!1),e.ensure(a,s),f(!0);return}}e.ensure(a,s)}o(()=>{var a=!1;i((s,r=!0)=>{a=!0,n(r,s)}),a||n(!1,null)},u)}export{v as i};

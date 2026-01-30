@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="theme-color" content="#1a1a2e" />
+
+		<link rel="icon" href="/favicon.png" type="image/png" />
+		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-3E2E3JF689');
+		</script>
+
+		<!-- Rollbar error tracking -->
+		<script>
+			var _rollbarConfig = {
+				accessToken: "76f2886182904e9d91d687a80d1e843f399be8f82aa7896d080e8721bea886bd75b2ac5ed16a4c15d76f409533aa7310",
+				captureUncaught: true,
+				captureUnhandledRejections: true,
+				payload: {
+					environment: (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "development" : "production",
+					client: {
+						javascript: {
+							code_version: "1.0.0"
+						}
+					}
+				}
+			};
+			!function(r){var e={};function o(n){if(e[n])return e[n].exports;var t=e[n]={i:n,l:!1,exports:{}};return r[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=e,o.d=function(r,e,n){o.o(r,e)||Object.defineProperty(r,e,{enumerable:!0,get:n})},o.r=function(r){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(r,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(r,"__esModule",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var t in r)o.d(n,t,function(e){return r[e]}.bind(null,t));return n},o.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return o.d(e,"a",e),e},o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},o.p="",o(o.s=0)}([function(r,e,o){"use strict";var n=o(1),t=o(5);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdn.rollbar.com/rollbarjs/refs/tags/v2.26.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";var n=o(2),t=o(3);function a(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}var l=0;function i(r,e){this.options=r,this._rollbarOldOnError=null;var o=l++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}var s=o(4),c=function(r,e){return new i(r,e)},u=function(r){return new s(c,r)};function p(r){return a((function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)}))}i.prototype.loadFull=function(r,e,o,n,t){var l=!1,i=e.createElement("script"),s=e.getElementsByTagName("script")[0],c=s.parentNode;i.crossOrigin="",i.src=n.rollbarJsUrl,o||(i.async=!0),i.onload=i.onreadystatechange=a((function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){i.onload=i.onreadystatechange=null;try{c.removeChild(i)}catch(r){}l=!0,function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(a=n.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(e);break}}"function"==typeof t&&t(e)}()}})),c.insertBefore(i,s)},i.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var d="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<d.length;++f)i.prototype[d[f]]=p(d[f]);r.exports={setupShim:function(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var l=new u(e);return a((function(){e.captureUncaught&&(l._rollbarOldOnError=r.onerror,n.captureUncaughtExceptions(r,l,!0),e.wrapGlobalEventHandlers&&t(r,l,!0)),e.captureUnhandledRejections&&n.captureUnhandledRejections(r,l,!0);var a=e.autoInstrument;return!1!==e.enabled&&(void 0===a||!0===a||"object"==typeof a&&a.network)&&r.addEventListener&&(r.addEventListener("load",l.captureLoad.bind(l)),r.addEventListener("DOMContentLoaded",l.captureDomContentLoaded.bind(l))),r[o]=l,l}))()}},Rollbar:u}},function(r,e,o){"use strict";function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=e.handleUncaughtException.apply(e,n);o&&o.apply(r,n),"anonymous"===t&&(e.anonymousErrorsPending+=1)}r.exports={captureUncaughtExceptions:function(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}e.handleAnonymousErrors();var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}},captureUnhandledRejections:function(r,e,o){if(r){"function"==typeof r._rollbarURH&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n._rollbarOldOnUnhandledRejection=r.onunhandledrejection,r.onunhandledrejection=n,o&&(r._rollbarURH=n,r.addEventListener("unhandledrejection",n))}}}},function(r,e,o){"use strict";function n(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function t(r,e,o){return function(n){return a(r,e,o,n)}}function a(r,e,o,n){try{(o||l)(r,n,e)}catch(r){}}function l(r,e,o){if(e&&e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n,t,a;(n=e.addEventListener)&&!n._rollbarOldAdd;)t=l.bind(null,r),a=o,e.addEventListener=function(e,o,n){try{o&&"function"==typeof o.handleEvent&&("EventListener"in window?o.handleEvent=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}):(o.handleEvent._rollbar||(o.handleEvent._rollbar=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}})),o.handleEvent=o.handleEvent._rollbar))}catch(r){}var l=Array.prototype.slice.call(arguments,0);return l[1]=r.wrap(o,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}),a?t(n,this,l):n.apply(this,l)},e.addEventListener._rollbarOldAdd=n;for(var i,s,c;(i=e.removeEventListener)&&!i._rollbarOldRemove;)s=r,c=o,e.removeEventListener=function(r,e,o){if(e&&e._rollbar)try{var n=Array.prototype.slice.call(arguments,0);return n[1]=e._rollbar,c?t(n,this,s):s.apply(this,n)}catch(r){}return i.apply(this,arguments)},e.removeEventListener._rollbarOldRemove=i}}r.exports=n},function(r,e,o){"use strict";function n(r,e){this.impl=r(e,this),this.options=e,function(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}(n.prototype)}n.prototype._swapAndProcessMessages=function(r,e){var o,n,t;for(this.impl=r(this.options);o=e.shift();)n=o.method,t=o.args,this.impl[n]&&"function"==typeof this.impl[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this.impl[n].apply(this.impl,[t[0],o.ts]):this.impl[n].apply(this.impl,t));return this},r.exports=n},function(r,e,o){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){for(var o,n,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
+		</script>
+
+		
+		<link href="../_app/immutable/assets/0.DSYpHaqA.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/21.BbB5zlrI.css" rel="stylesheet">
+		<link rel="modulepreload" href="../_app/immutable/entry/start.QojNvhjH.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/3I4AtWv3.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/b3wqaaIu.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DqPfpGiw.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CYgJF_JY.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/B_14GtHt.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/B17Q6ahh.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CYLs7yF3.js">
+		<link rel="modulepreload" href="../_app/immutable/entry/app.BvF6mtJu.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Bq8l8pkY.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/D5yhQ_OQ.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CSD5LckJ.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/C7lBtwtf.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CvbXgk3Y.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/mxS90d0W.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CVSqayX-.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/0.BxopNrzr.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/FrIYJozV.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CEGkSOJz.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/BPnKsLfD.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/Ckfp1Tw9.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DnyALBSr.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/CfhWCajt.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/DfiMljaR.js">
+		<link rel="modulepreload" href="../_app/immutable/nodes/21.MSqaob1x.js">
+		<link rel="modulepreload" href="../_app/immutable/chunks/1jzVQHkC.js">
+		<link rel="modulepreload" href="../_app/env.js"><!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/><!----><!--7p7ahg--><meta name="description" content="Drag-and-drop anywhere, smarter image handling, and watched folders that remember your preferences."/> <meta property="og:type" content="article"/> <meta property="og:title" content="v0.1.2 - Smoother workflows"/> <meta property="og:description" content="Drag-and-drop anywhere, smarter image handling, and watched folders that remember your preferences."/> <meta property="og:url" content="https://assethoard.com/releases/0.1.2"/> <!--[--><meta property="og:image" content="https://assethoard.com/releases/assethoard-v0.1.2.png"/><!--]--> <meta property="article:published_time" content="2026-01-26T00:00:00.000Z"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="v0.1.2 - Smoother workflows"/> <meta name="twitter:description" content="Drag-and-drop anywhere, smarter image handling, and watched folders that remember your preferences."/> <!--[--><meta name="twitter:image" content="https://assethoard.com/releases/assethoard-v0.1.2.png"/><!--]--> <link rel="canonical" href="https://assethoard.com/releases/0.1.2"/><!----><title>v0.1.2 - AssetHoard Release Notes</title>
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[--><!----><div class="app svelte-12qhfyh"><nav class="nav svelte-1h32yp1"><div class="nav-container svelte-1h32yp1"><a href="/" class="logo svelte-1h32yp1"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-1h32yp1"/> <span class="logo-text svelte-1h32yp1">AssetHoard</span></a> <button class="mobile-menu-btn svelte-1h32yp1" aria-label="Toggle menu"><span class="hamburger svelte-1h32yp1"></span></button> <div class="nav-links svelte-1h32yp1"><!--[--><a href="/roadmap" class="nav-link svelte-1h32yp1">Roadmap</a><a href="/releases" class="nav-link svelte-1h32yp1 active">Releases</a><a href="/blog" class="nav-link svelte-1h32yp1">Blog</a><a href="/docs" class="nav-link svelte-1h32yp1">Docs</a><a href="/downloads" class="nav-link svelte-1h32yp1">Download</a><!--]--></div></div></nav><!----> <main class="main-content svelte-12qhfyh"><!--[!--><!----><div class="page-header svelte-7p7ahg"><div class="container svelte-7p7ahg"><a href="/releases" class="back-link svelte-7p7ahg">← All Releases</a> <div class="release-meta svelte-7p7ahg"><span class="release-version svelte-7p7ahg">v0.1.2</span> <span class="release-date svelte-7p7ahg">January 26, 2026</span></div> <h1 class="svelte-7p7ahg">Smoother workflows</h1></div></div> <section class="section svelte-7p7ahg"><div class="container svelte-7p7ahg"><div class="release-content svelte-7p7ahg"><!----><h1>Asset Hoard v0.1.2 Release Notes</h1>
+<h2>Smoother workflows</h2>
+<p>This release focuses on quality-of-life improvements that make organising your assets feel more natural and responsive.</p>
+<hr>
+<h3>✨ New Features</h3>
+<ul>
+<li><strong>Notes field for assets and bundles</strong> — Added ability to add notes to assets and bundles with UI for editing and saving</li>
+<li><strong>Enhanced search</strong> — Search now includes notes and license fields for more comprehensive results</li>
+<li><strong>Drop assets anywhere</strong> — The main view now accepts drag-and-drop, so you can add assets without needing to target a specific area</li>
+<li><strong>Bundle auto-select</strong> — Creating a new bundle now selects it and scrolls it into view, so you can start adding assets immediately</li>
+<li><strong>Automatic daily backups</strong> — Your AssetHoard database is now backed up automatically every day. Note: this backs up your AssetHoard data only, not the asset files themselves</li>
+<li><strong>Link support in license</strong> — URLs in text are now clickable links</li>
+<li><strong>Opening folders in windows</strong> -- will now use the default window manager, and not force explorer</li>
+<li><strong>Updated Settings -&gt; about page</strong> -- Added link to documentation</li>
+</ul>
+<hr>
+<h3>📁 Watched Folder Improvements</h3>
+<ul>
+<li><strong>Default categories, tags, and licenses</strong> — Set defaults for watched folders. New assets imported from these folders will automatically inherit your preferences</li>
+<li><strong>Restore soft-deleted folders</strong> — Soft-deleted folders are now restored automatically</li>
+<li><strong>Background import processing</strong> — Imports now run in the background for a snappier experience</li>
+<li><strong>Improved cancellation handling</strong> — Better handling when cancelling imports</li>
+<li><strong>Better subdirectory handling</strong> — Watched folders can now maintain the original directory structure when importing</li>
+<li><strong>Thumbnail generation</strong> — Watched folders now generate thumbnails for imported assets</li>
+<li><strong>License detection</strong> — Watched folders now read license data from directories automatically</li>
+</ul>
+<hr>
+<h3>🎮 Unity Package Improvements</h3>
+<ul>
+<li><strong>Improved Unity package support</strong> — Unity packages are now imported via the folder import system</li>
+<li><strong>Discover Unity packages</strong> — AssetHoard can now find your installed Unity packages and provide import options in the settings menu</li>
+<li><strong>Open Unity folder</strong> — Right-click context menu now includes an option to open the Unity directory/folder directly</li>
+<li><strong>Unity asset search</strong> — Search for Unity asset packages from the context menu (since we can&#39;t determine the exact URL, we open a search)</li>
+</ul>
+<hr>
+<h3>🐛 Bug Fixes</h3>
+<ul>
+<li><strong>Large image handling</strong> — Large images are now optimised on import, preventing memory issues. Thumbnail generation has been moved to the background for a snappier experience</li>
+<li><strong>Project sidebar sort order</strong> — Sort order is no longer case sensitive</li>
+<li><strong>Reveal in File Manager</strong> — Renamed &quot;Show in Folder&quot; to &quot;Reveal in File Manager&quot; for consistency</li>
+<li><strong>Importer refactor</strong> — Major refactor of the import system for better reliability and performance. <a href="/blog/when-120000-files-meet-tauri">Read the full story</a></li>
+</ul>
+<hr>
+<p><em>May your assets be organised and your bundles be nested.</em></p>
+<p><strong>Happy hoarding!</strong></p>
+<!----></div> <nav class="release-nav svelte-7p7ahg"><!--[--><a href="/releases/0.1.1" class="nav-link prev svelte-7p7ahg"><span class="nav-label svelte-7p7ahg">Previous</span> <span class="nav-version svelte-7p7ahg">v0.1.1</span></a><!--]--> <!--[!--><!--]--></nav></div></section><!----><!--]--><!----></main> <footer class="footer svelte-jz8lnl"><div class="footer-container svelte-jz8lnl"><div class="footer-main svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-jz8lnl"/> <span class="logo-text svelte-jz8lnl">AssetHoard</span></div> <p class="tagline svelte-jz8lnl">The asset manager for indie game devs and artists</p></div> <div class="footer-links svelte-jz8lnl"><div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Product</p> <a href="/docs" class="svelte-jz8lnl">Documentation</a> <a href="/docs/getting-started" class="svelte-jz8lnl">Quick Start Guide</a> <a href="/roadmap" class="svelte-jz8lnl">Roadmap</a> <a href="/releases" class="svelte-jz8lnl">Release Notes</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Community</p> <a href="https://discord.gg/e6MW7hDSAp" target="_blank" rel="noopener" class="svelte-jz8lnl">Discord</a> <a href="/docs?tab=newsletter" class="svelte-jz8lnl">Subscribe to updates</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Company</p> <a href="/contact" class="svelte-jz8lnl">Contact</a> <a href="/careers" class="svelte-jz8lnl">Careers</a> <a href="/privacy" class="svelte-jz8lnl">Privacy Policy</a></div></div></div> <div class="footer-bottom svelte-jz8lnl"><p class="copyright svelte-jz8lnl">© 2026 AssetHoard. All rights reserved. <span class="made-in svelte-jz8lnl">Made in Melbourne 🇦🇺</span></p></div></div></footer><!----></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_14nuqc3 = {
+						base: new URL("..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					import("../_app/env.js").then(({ env }) => {
+						__sveltekit_14nuqc3.env = env;
+
+						Promise.all([
+							import("../_app/immutable/entry/start.QojNvhjH.js"),
+							import("../_app/immutable/entry/app.BvF6mtJu.js")
+						]).then(([kit, app]) => {
+							kit.start(app, element, {
+									node_ids: [0, 21],
+									data: [null,{type:"data",data:{release:{version:"0.1.2",date:"2026-01-26T00:00:00.000Z",title:"Smoother workflows",teaser:"Drag-and-drop anywhere, smarter image handling, and watched folders that remember your preferences.",image:"/releases/assethoard-v0.1.2.png",content:"\u003Ch1>Asset Hoard v0.1.2 Release Notes\u003C/h1>\n\u003Ch2>Smoother workflows\u003C/h2>\n\u003Cp>This release focuses on quality-of-life improvements that make organising your assets feel more natural and responsive.\u003C/p>\n\u003Chr>\n\u003Ch3>✨ New Features\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Notes field for assets and bundles\u003C/strong> — Added ability to add notes to assets and bundles with UI for editing and saving\u003C/li>\n\u003Cli>\u003Cstrong>Enhanced search\u003C/strong> — Search now includes notes and license fields for more comprehensive results\u003C/li>\n\u003Cli>\u003Cstrong>Drop assets anywhere\u003C/strong> — The main view now accepts drag-and-drop, so you can add assets without needing to target a specific area\u003C/li>\n\u003Cli>\u003Cstrong>Bundle auto-select\u003C/strong> — Creating a new bundle now selects it and scrolls it into view, so you can start adding assets immediately\u003C/li>\n\u003Cli>\u003Cstrong>Automatic daily backups\u003C/strong> — Your AssetHoard database is now backed up automatically every day. Note: this backs up your AssetHoard data only, not the asset files themselves\u003C/li>\n\u003Cli>\u003Cstrong>Link support in license\u003C/strong> — URLs in text are now clickable links\u003C/li>\n\u003Cli>\u003Cstrong>Opening folders in windows\u003C/strong> -- will now use the default window manager, and not force explorer\u003C/li>\n\u003Cli>\u003Cstrong>Updated Settings -&gt; about page\u003C/strong> -- Added link to documentation\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Ch3>📁 Watched Folder Improvements\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Default categories, tags, and licenses\u003C/strong> — Set defaults for watched folders. New assets imported from these folders will automatically inherit your preferences\u003C/li>\n\u003Cli>\u003Cstrong>Restore soft-deleted folders\u003C/strong> — Soft-deleted folders are now restored automatically\u003C/li>\n\u003Cli>\u003Cstrong>Background import processing\u003C/strong> — Imports now run in the background for a snappier experience\u003C/li>\n\u003Cli>\u003Cstrong>Improved cancellation handling\u003C/strong> — Better handling when cancelling imports\u003C/li>\n\u003Cli>\u003Cstrong>Better subdirectory handling\u003C/strong> — Watched folders can now maintain the original directory structure when importing\u003C/li>\n\u003Cli>\u003Cstrong>Thumbnail generation\u003C/strong> — Watched folders now generate thumbnails for imported assets\u003C/li>\n\u003Cli>\u003Cstrong>License detection\u003C/strong> — Watched folders now read license data from directories automatically\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Ch3>🎮 Unity Package Improvements\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Improved Unity package support\u003C/strong> — Unity packages are now imported via the folder import system\u003C/li>\n\u003Cli>\u003Cstrong>Discover Unity packages\u003C/strong> — AssetHoard can now find your installed Unity packages and provide import options in the settings menu\u003C/li>\n\u003Cli>\u003Cstrong>Open Unity folder\u003C/strong> — Right-click context menu now includes an option to open the Unity directory/folder directly\u003C/li>\n\u003Cli>\u003Cstrong>Unity asset search\u003C/strong> — Search for Unity asset packages from the context menu (since we can&#39;t determine the exact URL, we open a search)\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Ch3>🐛 Bug Fixes\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Large image handling\u003C/strong> — Large images are now optimised on import, preventing memory issues. Thumbnail generation has been moved to the background for a snappier experience\u003C/li>\n\u003Cli>\u003Cstrong>Project sidebar sort order\u003C/strong> — Sort order is no longer case sensitive\u003C/li>\n\u003Cli>\u003Cstrong>Reveal in File Manager\u003C/strong> — Renamed &quot;Show in Folder&quot; to &quot;Reveal in File Manager&quot; for consistency\u003C/li>\n\u003Cli>\u003Cstrong>Importer refactor\u003C/strong> — Major refactor of the import system for better reliability and performance. \u003Ca href=\"/blog/when-120000-files-meet-tauri\">Read the full story\u003C/a>\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Cp>\u003Cem>May your assets be organised and your bundles be nested.\u003C/em>\u003C/p>\n\u003Cp>\u003Cstrong>Happy hoarding!\u003C/strong>\u003C/p>\n",slug:"0.1.2"},prev:{version:"0.1.1",date:"2026-01-23T00:00:00.000Z",title:"Linux has landed!",teaser:"Linux builds are here! Debian and RPM packages ready to go, with AUR support on the way.",image:"/releases/assethoard-v0.1.1.png",content:"\u003Ch1>Asset Hoard v0.1.1 Release Notes\u003C/h1>\n\u003Ch2>Linux has landed!\u003C/h2>\n\u003Cp>We&#39;ve been hard at work bringing Asset Hoard to our Linux friends. This release includes ready-to-use Debian (\u003Ccode>.deb\u003C/code>) and RPM packages. AUR support is still in progress — stay tuned!\u003C/p>\n\u003Chr>\n\u003Ch3>🐧 Linux Support\u003C/h3>\n\u003Cp>Full Linux builds are now available:\u003C/p>\n\u003Cul>\n\u003Cli>\u003Cstrong>Debian\u003C/strong> (\u003Ccode>.deb\u003C/code>) — Ready for Ubuntu, Debian, and derivatives\u003C/li>\n\u003Cli>\u003Cstrong>RPM\u003C/strong> — Ready for Fedora, RHEL, and derivatives\u003C/li>\n\u003Cli>\u003Cstrong>AUR\u003C/strong> — Coming soon!\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Ch3>🐛 Bug Fixes\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>File path resolution\u003C/strong> — Resolved file paths incorrectly resolving on Linux\u003C/li>\n\u003Cli>\u003Cstrong>Audio playback\u003C/strong> — Fixed audio playback issues\u003C/li>\n\u003Cli>\u003Cstrong>File system permissions\u003C/strong> — Streamlined permissions with scoped access\u003C/li>\n\u003Cli>\u003Cstrong>Bundle search context\u003C/strong> — Fixed search context not resetting when navigating away from a bundle\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Ch3>✨ Improvements\u003C/h3>\n\u003Cul>\n\u003Cli>\u003Cstrong>Watched folders\u003C/strong> — Updated subfolder checkbox label to be more user-friendly\u003C/li>\n\u003C/ul>\n\u003Chr>\n\u003Cp>\u003Cem>May your assets be organised and your bundles be nested.\u003C/em>\u003C/p>\n\u003Cp>\u003Cstrong>Happy hoarding! 🐉\u003C/strong>\u003C/p>\n",slug:"0.1.1"},next:null},uses:{params:["version"]}}],
+									form: null,
+									error: null
+								});
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
