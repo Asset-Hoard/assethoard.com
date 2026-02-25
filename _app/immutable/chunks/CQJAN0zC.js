@@ -1,0 +1,1 @@
+import{V as y,b as _,ap as u,aq as g,h as t,C as o,g as l,_ as i,s as d,f as p,l as m}from"./BikhPojd.js";function C(n,r){let s=null,f=t;var a;if(t){s=p;for(var e=m(document.head);e!==null&&(e.nodeType!==o||e.data!==n);)e=l(e);if(e===null)i(!1);else{var E=l(e);e.remove(),d(E)}}t||(a=document.head.appendChild(y()));try{_(()=>r(a),u|g)}finally{f&&(i(!0),d(s))}}export{C as h};
