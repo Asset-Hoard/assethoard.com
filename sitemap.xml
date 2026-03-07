@@ -25,6 +25,9 @@
 		<loc>https://assethoard.com/docs/filetype-support</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/linux</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/keyboard</loc>
 	</url>
 	<url>
@@ -69,6 +72,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.1.6</loc>
+		<lastmod>2026-03-06</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.1.5</loc>
