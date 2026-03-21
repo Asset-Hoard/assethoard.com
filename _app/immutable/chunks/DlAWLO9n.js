@@ -1,1 +1,0 @@
-import{V as y,b as _,aq as u,ar as g,h as t,C as o,j as i,_ as l,s as r,i as p,g as m}from"./DvEg-28s.js";function C(d,n){let s=null,E=t;var a;if(t){s=p;for(var e=m(document.head);e!==null&&(e.nodeType!==o||e.data!==d);)e=i(e);if(e===null)l(!1);else{var f=i(e);e.remove(),r(f)}}t||(a=document.head.appendChild(y()));try{_(()=>n(a),u|g)}finally{E&&(l(!0),r(s))}}export{C as h};
