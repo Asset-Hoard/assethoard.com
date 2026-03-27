@@ -1,0 +1,1 @@
+function n(e){typeof window<"u"&&window.gtag&&window.gtag("event","buy_click",{event_label:e})}function t(e){typeof window<"u"&&window.gtag&&window.gtag("event","begin_checkout",{event_label:e})}function i(){typeof window<"u"&&window.gtag&&window.gtag("event","purchase")}export{i as a,n as b,t};
