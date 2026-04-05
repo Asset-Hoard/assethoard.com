@@ -61,6 +61,16 @@
 		<loc>https://assethoard.com/forgot-license</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/unity-asset-manager</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/godot-asset-manager</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/blog/how-i-manage-100000-game-assets</loc>
+		<lastmod>2026-03-29</lastmod>
+	</url>
+	<url>
 		<loc>https://assethoard.com/blog/artist-spotlight-tesseract-assets</loc>
 		<lastmod>2026-02-17</lastmod>
 	</url>
@@ -75,6 +85,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.1.10</loc>
+		<lastmod>2026-04-05</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.1.9</loc>
