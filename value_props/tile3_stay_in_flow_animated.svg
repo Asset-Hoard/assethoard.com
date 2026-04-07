@@ -1,0 +1,63 @@
+<svg width="270" height="200" viewBox="0 0 270 200" xmlns="http://www.w3.org/2000/svg">
+<style>
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes trail-draw {
+    0%   { stroke-dashoffset: 160; opacity: 0; }
+    5%   { opacity: 1; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+  @keyframes slide-across {
+    0%   { transform: translateX(-100px); opacity: 0; }
+    15%  { opacity: 1; }
+    75%  { transform: translateX(76px); opacity: 1; }
+    90%  { transform: translateX(76px); opacity: 0; }
+    100% { transform: translateX(76px); opacity: 0; }
+  }
+  @keyframes source-pulse {
+    0%,100% { opacity: 0.3; }
+    50%      { opacity: 0.7; }
+  }
+  @keyframes target-light {
+    0%,65%  { fill: #1e1e2e; stroke: #2a2a35; }
+    80%,95% { fill: #fbbf24; stroke: #fbbf24; }
+    100%    { fill: #1e1e2e; stroke: #2a2a35; }
+  }
+  @keyframes check-draw {
+    0%,70% { stroke-dashoffset: 30; opacity: 0; }
+    85%    { stroke-dashoffset: 0; opacity: 1; }
+    95%    { opacity: 1; }
+    100%   { opacity: 0; }
+  }
+
+  .source      { animation: source-pulse 3s ease-in-out 0.3s infinite; }
+  .trail       { stroke-dasharray: 160; stroke-dashoffset: 160; animation: trail-draw 0.5s ease 0.4s forwards; }
+  .shape       { animation: slide-across 3s cubic-bezier(0.4,0,0.2,1) 0.6s infinite; }
+  .target-rect { animation: target-light 3s ease 0.6s infinite; }
+  .check       { stroke-dasharray: 30; stroke-dashoffset: 30; animation: check-draw 3s ease 0.6s infinite; }
+</style>
+
+  <rect x="0" y="0" width="270" height="200" rx="12" fill="#13131a"/>
+
+  <!-- Source block -->
+  <rect x="22" y="76" width="56" height="48" rx="7" fill="#1e1e2e" stroke="#fbbf24" stroke-width="1" class="source"/>
+  <rect x="30" y="88" width="40" height="5" rx="2" fill="#fbbf24" opacity="0.3"/>
+  <rect x="30" y="97" width="30" height="5" rx="2" fill="#fbbf24" opacity="0.2"/>
+  <rect x="30" y="106" width="36" height="5" rx="2" fill="#fbbf24" opacity="0.15"/>
+
+  <!-- Trail -->
+  <line class="trail" x1="78" y1="100" x2="192" y2="100" stroke="#2a2a35" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Moving diamond -->
+  <g class="shape" style="transform-origin: 78px 100px;">
+    <polygon points="78,100 96,82 114,100 96,118" fill="#fbbf24" opacity="0.9" stroke="#fbbf24" stroke-width="0.5"/>
+  </g>
+
+  <!-- Target block -->
+  <rect x="192" y="76" width="56" height="48" rx="7" class="target-rect" opacity="0.15"/>
+  <rect x="200" y="88" width="40" height="5" rx="2" fill="#fbbf24" opacity="0.2"/>
+  <rect x="200" y="97" width="30" height="5" rx="2" fill="#fbbf24" opacity="0.13"/>
+  <rect x="200" y="106" width="36" height="5" rx="2" fill="#fbbf24" opacity="0.1"/>
+
+  <!-- Checkmark -->
+  <polyline class="check" points="208,98 217,108 242,82" fill="none" stroke="#13131a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
