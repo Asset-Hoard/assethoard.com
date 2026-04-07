@@ -1,1 +1,0 @@
-import{d as y,f as o,ac as u,ad as _,h as t,C as g,W as i,n as l,s as d,o as p,g as m}from"./C4COPOsK.js";function C(n,r){let s=null,f=t;var a;if(t){s=p;for(var e=m(document.head);e!==null&&(e.nodeType!==g||e.data!==n);)e=i(e);if(e===null)l(!1);else{var E=i(e);e.remove(),d(E)}}t||(a=document.head.appendChild(y()));try{o(()=>r(a),u|_)}finally{f&&(l(!0),d(s))}}export{C as h};
