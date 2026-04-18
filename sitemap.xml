@@ -19,6 +19,9 @@
 		<loc>https://assethoard.com/docs/materials</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/choose-a-renderer</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/unity</loc>
 	</url>
 	<url>
@@ -65,6 +68,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/semantic-search</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/2d-artists</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/pbr-vs-orm-explained</loc>
