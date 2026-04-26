@@ -1,1 +1,0 @@
-import{N as y,k as o,O as u,Q as _,l as t,R as p,T as l,p as i,o as d,q as g,U as m}from"./C1Gu0-cH.js";function T(n,r){let s=null,E=t;var a;if(t){s=g;for(var e=m(document.head);e!==null&&(e.nodeType!==p||e.data!==n);)e=l(e);if(e===null)i(!1);else{var f=l(e);e.remove(),d(f)}}t||(a=document.head.appendChild(y()));try{o(()=>r(a),u|_)}finally{E&&(i(!0),d(s))}}export{T as h};
