@@ -1,1 +1,1 @@
-export const env={"PUBLIC_STRIPE_PAYMENT_LINK":"https://buy.stripe.com/5kQfZj0Hl6RCacAfBzcV200","PUBLIC_PRICE_DISPLAY":"$29","PUBLIC_COMING_SOON":"false"}
+export const env={PUBLIC_STRIPE_PAYMENT_LINK:"https://buy.stripe.com/5kQfZj0Hl6RCacAfBzcV200",PUBLIC_PRICE_DISPLAY:"$29",PUBLIC_COMING_SOON:"false"}
