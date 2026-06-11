@@ -16,6 +16,9 @@
 		<loc>https://assethoard.com/docs/license</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/variants</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/materials</loc>
 	</url>
 	<url>
@@ -71,6 +74,12 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/semantic-search</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/local-first</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/variants</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/2d-artists</loc>
