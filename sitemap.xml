@@ -46,10 +46,10 @@
 		<loc>https://assethoard.com/purchase</loc>
 	</url>
 	<url>
-		<loc>https://assethoard.com/contact</loc>
+		<loc>https://assethoard.com/about</loc>
 	</url>
 	<url>
-		<loc>https://assethoard.com/careers</loc>
+		<loc>https://assethoard.com/contact</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/press-kit</loc>
@@ -134,6 +134,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.1.17</loc>
+		<lastmod>2026-06-19</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.1.16</loc>
