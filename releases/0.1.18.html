@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#1a1a2e" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+		<link rel="icon" href="/favicon.ico" sizes="256x256" />
+		<link rel="icon" href="/favicon.png" type="image/png" />
+		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-3E2E3JF689');
+		</script>
+
+		<!-- Ahrefs Analytics -->
+		<script src="https://analytics.ahrefs.com/analytics.js" data-key="RmCYWnuBmbXJpxQp+yaLQA" async></script>
+
+		<!-- Rollbar error tracking -->
+		<script>
+			var _rollbarConfig = {
+				accessToken: "76f2886182904e9d91d687a80d1e843f399be8f82aa7896d080e8721bea886bd75b2ac5ed16a4c15d76f409533aa7310",
+				captureUncaught: true,
+				captureUnhandledRejections: true,
+				payload: {
+					environment: (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "development" : "production",
+					client: {
+						javascript: {
+							code_version: "1.0.0"
+						}
+					}
+				}
+			};
+			!function(r){var e={};function o(n){if(e[n])return e[n].exports;var t=e[n]={i:n,l:!1,exports:{}};return r[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=e,o.d=function(r,e,n){o.o(r,e)||Object.defineProperty(r,e,{enumerable:!0,get:n})},o.r=function(r){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(r,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(r,"__esModule",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var t in r)o.d(n,t,function(e){return r[e]}.bind(null,t));return n},o.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return o.d(e,"a",e),e},o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},o.p="",o(o.s=0)}([function(r,e,o){"use strict";var n=o(1),t=o(5);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdn.rollbar.com/rollbarjs/refs/tags/v2.26.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";var n=o(2),t=o(3);function a(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}var l=0;function i(r,e){this.options=r,this._rollbarOldOnError=null;var o=l++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}var s=o(4),c=function(r,e){return new i(r,e)},u=function(r){return new s(c,r)};function p(r){return a((function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)}))}i.prototype.loadFull=function(r,e,o,n,t){var l=!1,i=e.createElement("script"),s=e.getElementsByTagName("script")[0],c=s.parentNode;i.crossOrigin="",i.src=n.rollbarJsUrl,o||(i.async=!0),i.onload=i.onreadystatechange=a((function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){i.onload=i.onreadystatechange=null;try{c.removeChild(i)}catch(r){}l=!0,function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(a=n.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(e);break}}"function"==typeof t&&t(e)}()}})),c.insertBefore(i,s)},i.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var d="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<d.length;++f)i.prototype[d[f]]=p(d[f]);r.exports={setupShim:function(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var l=new u(e);return a((function(){e.captureUncaught&&(l._rollbarOldOnError=r.onerror,n.captureUncaughtExceptions(r,l,!0),e.wrapGlobalEventHandlers&&t(r,l,!0)),e.captureUnhandledRejections&&n.captureUnhandledRejections(r,l,!0);var a=e.autoInstrument;return!1!==e.enabled&&(void 0===a||!0===a||"object"==typeof a&&a.network)&&r.addEventListener&&(r.addEventListener("load",l.captureLoad.bind(l)),r.addEventListener("DOMContentLoaded",l.captureDomContentLoaded.bind(l))),r[o]=l,l}))()}},Rollbar:u}},function(r,e,o){"use strict";function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=e.handleUncaughtException.apply(e,n);o&&o.apply(r,n),"anonymous"===t&&(e.anonymousErrorsPending+=1)}r.exports={captureUncaughtExceptions:function(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}e.handleAnonymousErrors();var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}},captureUnhandledRejections:function(r,e,o){if(r){"function"==typeof r._rollbarURH&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n._rollbarOldOnUnhandledRejection=r.onunhandledrejection,r.onunhandledrejection=n,o&&(r._rollbarURH=n,r.addEventListener("unhandledrejection",n))}}}},function(r,e,o){"use strict";function n(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function t(r,e,o){return function(n){return a(r,e,o,n)}}function a(r,e,o,n){try{(o||l)(r,n,e)}catch(r){}}function l(r,e,o){if(e&&e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n,t,a;(n=e.addEventListener)&&!n._rollbarOldAdd;)t=l.bind(null,r),a=o,e.addEventListener=function(e,o,n){try{o&&"function"==typeof o.handleEvent&&("EventListener"in window?o.handleEvent=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}):(o.handleEvent._rollbar||(o.handleEvent._rollbar=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}})),o.handleEvent=o.handleEvent._rollbar))}catch(r){}var l=Array.prototype.slice.call(arguments,0);return l[1]=r.wrap(o,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}),a?t(n,this,l):n.apply(this,l)},e.addEventListener._rollbarOldAdd=n;for(var i,s,c;(i=e.removeEventListener)&&!i._rollbarOldRemove;)s=r,c=o,e.removeEventListener=function(r,e,o){if(e&&e._rollbar)try{var n=Array.prototype.slice.call(arguments,0);return n[1]=e._rollbar,c?t(n,this,s):s.apply(this,n)}catch(r){}return i.apply(this,arguments)},e.removeEventListener._rollbarOldRemove=i}}r.exports=n},function(r,e,o){"use strict";function n(r,e){this.impl=r(e,this),this.options=e,function(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}(n.prototype)}n.prototype._swapAndProcessMessages=function(r,e){var o,n,t;for(this.impl=r(this.options);o=e.shift();)n=o.method,t=o.args,this.impl[n]&&"function"==typeof this.impl[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this.impl[n].apply(this.impl,[t[0],o.ts]):this.impl[n].apply(this.impl,t));return this},r.exports=n},function(r,e,o){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){for(var o,n,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
+		</script>
+
+		<link href="../_app/immutable/entry/start.DjYAjq3p.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DjPUFVDx.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B3LcwKpv.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/jX6vEefC.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/-UyI9lYi.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/xJ4p_EGW.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DF9RxmZN.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B0XwC4Ot.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.CFmrlULn.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CsEf-tGf.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CZ9Najhr.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BlBvd-YB.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BVb9TCTi.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/B7FnnfeO.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BZq3YVrU.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/Cwn7AhV1.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.BsecidxV.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BXbX0Q3w.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DYfyTMKw.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/nG6GyDhf.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/8Ov3jMY5.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CDZN9uA3.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CrBe7x9j.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/uM7OIvzg.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/D1hxHnSi.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/36.PbcVfODw.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CVcOqO_V.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/BUKMgw0s.js" rel="modulepreload">
+		<link href="../_app/env.js" rel="modulepreload">
+		<!--12qhfyh--><meta property="og:site_name" content="Asset Hoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/><!----><!--7p7ahg--><meta name="description" content="A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P palette to jump anywhere in an instant. Plus smarter image search, bulk tidy-ups for tags and categories, animated variant groups, TIFF support, and calmer imports."/> <meta name="author" content="The AssetHoard Team"/> <!--[0--><meta name="keywords" content="AssetHoard, Asset Hoard 0.1.18, release notes, quick palette, Ctrl+P command palette, collapsible sidebar, image search indexing, SVG indexing, merge tags categories, animated variant groups, TIFF support, concurrent imports, local-first asset manager, game development tools"/><!--]--> <meta property="og:type" content="article"/> <meta property="og:site_name" content="AssetHoard"/> <meta property="og:title" content="Asset Hoard v0.1.18: A tidier window, a quick palette, and animated variants"/> <meta property="og:description" content="A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P palette to jump anywhere in an instant. Plus smarter image search, bulk tidy-ups for tags and categories, animated variant groups, TIFF support, and calmer imports."/> <meta property="og:url" content="https://assethoard.com/releases/0.1.18"/> <!--[0--><meta property="og:image" content="https://assethoard.com/releases/assethoard-v0.1.18.png"/><!--]--> <meta property="article:published_time" content="2026-07-03T00:00:00.000Z"/> <meta property="article:author" content="The AssetHoard Team"/> <meta property="article:publisher" content="https://assethoard.com"/> <meta property="article:section" content="Release Notes"/> <!--[0--><!--[--><meta property="article:tag" content="AssetHoard"/><meta property="article:tag" content="Asset Hoard 0.1.18"/><meta property="article:tag" content="release notes"/><meta property="article:tag" content="quick palette"/><meta property="article:tag" content="Ctrl+P command palette"/><meta property="article:tag" content="collapsible sidebar"/><meta property="article:tag" content="image search indexing"/><meta property="article:tag" content="SVG indexing"/><meta property="article:tag" content="merge tags categories"/><meta property="article:tag" content="animated variant groups"/><meta property="article:tag" content="TIFF support"/><meta property="article:tag" content="concurrent imports"/><meta property="article:tag" content="local-first asset manager"/><meta property="article:tag" content="game development tools"/><!--]--><!--]--> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="Asset Hoard v0.1.18: A tidier window, a quick palette, and animated variants"/> <meta name="twitter:description" content="A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P palette to jump anywhere in an instant. Plus smarter image search, bulk tidy-ups for tags and categories, animated variant groups, TIFF support, and calmer imports."/> <!--[0--><meta name="twitter:image" content="https://assethoard.com/releases/assethoard-v0.1.18.png"/><!--]--> <meta name="fediverse:creator" content="@assethoard@mastodon.gamedev.place"/> <link rel="canonical" href="https://assethoard.com/releases/0.1.18"/> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Asset Hoard v0.1.18: A tidier window, a quick palette, and animated variants","description":"A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P palette to jump anywhere in an instant. Plus smarter image search, bulk tidy-ups for tags and categories, animated variant groups, TIFF support, and calmer imports.","mainEntityOfPage":{"@type":"WebPage","@id":"https://assethoard.com/releases/0.1.18"},"datePublished":"2026-07-03T00:00:00.000Z","dateModified":"2026-07-03T00:00:00.000Z","articleSection":"Release Notes","author":{"@type":"Person","name":"The AssetHoard Team","url":"https://assethoard.com"},"publisher":{"@type":"Organization","name":"AssetHoard","logo":{"@type":"ImageObject","url":"https://assethoard.com/favicon.png"}},"about":{"@type":"SoftwareApplication","name":"AssetHoard","applicationCategory":"DesignApplication","operatingSystem":"Windows 10+, macOS 11+, Ubuntu 20.04+","softwareVersion":"0.1.18"},"image":"https://assethoard.com/releases/assethoard-v0.1.18.png","keywords":"AssetHoard, Asset Hoard 0.1.18, release notes, quick palette, Ctrl+P command palette, collapsible sidebar, image search indexing, SVG indexing, merge tags categories, animated variant groups, TIFF support, concurrent imports, local-first asset manager, game development tools"}</script><!----><!----><title>Asset Hoard v0.1.18: A tidier window, a quick palette, and animated variants</title>
+		<link href="../_app/immutable/assets/0.Bs9DfqAx.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/Button.DL6mrgYb.css" rel="stylesheet">
+		<link href="../_app/immutable/assets/36.B-7Oeytl.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[0--><!--[--><div class="app svelte-12qhfyh"><nav class="nav svelte-1h32yp1"><div class="nav-container svelte-1h32yp1"><a href="/" class="logo svelte-1h32yp1" title="AssetHoard home"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-1h32yp1"/> <span class="logo-text svelte-1h32yp1">AssetHoard</span></a> <button class="mobile-menu-btn svelte-1h32yp1" aria-label="Toggle menu"><span class="hamburger svelte-1h32yp1"></span></button> <div class="nav-links svelte-1h32yp1"><!--[--><a href="/roadmap" title="Roadmap" class="nav-link svelte-1h32yp1">Roadmap</a><a href="/releases" title="Releases" class="nav-link svelte-1h32yp1 active">Releases</a><a href="/blog" title="Blog" class="nav-link svelte-1h32yp1">Blog</a><a href="/docs" title="Docs" class="nav-link svelte-1h32yp1">Docs</a><a href="/downloads" title="Download" class="nav-link svelte-1h32yp1">Download</a><a href="/purchase" title="Buy" class="nav-download-btn svelte-1h32yp1">Buy</a><!--]--></div></div></nav><!----> <main class="main-content svelte-12qhfyh"><!--[-1--><!--[--><div class="page-header svelte-7p7ahg"><div class="container svelte-7p7ahg"><a href="/releases" title="All releases" class="back-link svelte-7p7ahg">← All Releases</a> <div class="release-meta svelte-7p7ahg"><span class="release-version svelte-7p7ahg">v0.1.18</span> <span class="release-date svelte-7p7ahg">July 3, 2026</span></div> <h1 class="svelte-7p7ahg">A tidier window, a quick palette, and animated variants</h1></div></div> <section class="section svelte-7p7ahg"><div class="container svelte-7p7ahg"><div class="release-content svelte-7p7ahg" role="presentation"><!----><p><a href="/releases/assethoard-v0.1.18.png" target="_blank" rel="noopener noreferrer"><img src="/releases/assethoard-v0.1.18.png" alt="AssetHoard v0.1.18 release artwork" title="AssetHoard v0.1.18 release artwork"></a></p>
+<p>A cleaner window, a faster way to get around, and image search that reaches more of your library. Plus bulk edits for tags and categories, animated variant groups, and calmer imports.</p>
+<h2>🪟 Redesigned header &amp; toolbar</h2>
+<ul>
+<li>We&#39;ve retired the old title bar in favour of a <strong>streamlined toolbar</strong>, with sort and view options now sitting together in the search header.</li>
+<li>The import button has moved somewhere more sensible, and everything lines up better.</li>
+<li>On <strong>Linux</strong>, you can now choose how window controls appear: all buttons, close only, or your OS defaults.</li>
+<li><strong>Mac</strong> window buttons now sit where they should.</li>
+</ul>
+<h2>↔️ Collapse the sidebar</h2>
+<ul>
+<li>Need more room? You can now <strong>collapse the left sidebar</strong> to give your assets centre stage.</li>
+</ul>
+<h2>⌨️ Jump anywhere with Ctrl+P</h2>
+<ul>
+<li>A new <strong>quick palette</strong> lets you press <strong>Ctrl+P</strong> and jump straight to any bundle, asset, project or command, with no more hunting through menus.</li>
+</ul>
+<h2>🔍 Smarter image search</h2>
+<ul>
+<li>Improved image indexing means more of your images turn up in <a href="/semantic-search">semantic search</a>.</li>
+<li>A single corrupt or mislabelled image no longer stops the whole indexing run.</li>
+<li>Broken images are quietly set aside instead of nagging you as &quot;still pending&quot; forever.</li>
+</ul>
+<h2>🗂 Bulk tidy-ups for tags and categories</h2>
+<ul>
+<li>Select multiple <strong>tags</strong> or <strong>categories</strong> to merge or remove them in one go, right from settings.</li>
+<li>Changed your mind? It&#39;s all <strong>undoable</strong>.</li>
+</ul>
+<h2>🎞 Animated variant groups</h2>
+<ul>
+<li><a href="/variants">Variant groups</a> can now <strong>play their frames in sequence</strong> as an animation.</li>
+<li><strong>Drag frames</strong> to set the order.</li>
+</ul>
+<h2>📥 Faster, calmer imports</h2>
+<ul>
+<li>Set <strong>how many imports run at once</strong> to match your machine.</li>
+<li>When you remove items from a bundle, we&#39;ll now tell you <strong>which projects are affected</strong> first.</li>
+</ul>
+<h2>📦 More formats and finer control</h2>
+<ul>
+<li><strong>TIFF</strong> files are now supported.</li>
+<li>A new setting lets you choose how thumbnails fit their frame, <strong>Fit</strong> or <strong>Fill</strong>.</li>
+<li>Your <strong>sort order</strong> is now remembered between restarts.</li>
+</ul>
+<h2>🐛 Polish and fixes</h2>
+<ul>
+<li>Tidier keyboard-shortcuts and import screens.</li>
+<li>No more theme flash when using Ctrl+P history.</li>
+<li>A handful of behind-the-scenes stability improvements.</li>
+</ul>
+<p><strong>Happy hoarding.</strong></p>
+<!----></div> <div class="release-footer-cta svelte-7p7ahg"><!--[0--><a href="/downloads" title="Download AssetHoard" class="btn btn-primary btn-lg  svelte-18sv61c"><!---->Download<!----></a><!--]--><!----></div> <nav class="release-nav svelte-7p7ahg"><!--[-1--><div class="nav-link placeholder svelte-7p7ahg"></div><!--]--> <!--[-1--><!--]--></nav></div></section> <!--[-1--><!--]--><!--]--><!--]--><!----></main> <footer class="footer svelte-jz8lnl"><div class="footer-container svelte-jz8lnl"><div class="footer-main svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-jz8lnl"/> <span class="logo-text svelte-jz8lnl">AssetHoard</span></div> <p class="tagline svelte-jz8lnl">The asset manager for indie game devs and artists</p></div> <div class="footer-links svelte-jz8lnl"><div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Product</p> <a href="/purchase" title="Buy AssetHoard" class="svelte-jz8lnl">Buy AssetHoard</a> <a href="/local-first" title="Local-first and offline" class="svelte-jz8lnl">Local-first</a> <a href="/docs" title="Documentation" class="svelte-jz8lnl">Documentation</a> <a href="/docs/getting-started" title="Quick Start Guide" class="svelte-jz8lnl">Quick Start Guide</a> <a href="/roadmap" title="Roadmap" class="svelte-jz8lnl">Roadmap</a> <a href="/releases" title="Release Notes" class="svelte-jz8lnl">Release Notes</a> <a href="/forgot-license" title="Forgot License?" class="svelte-jz8lnl">Forgot License?</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Platforms</p> <a href="/unity-asset-manager" title="Unity asset manager" class="svelte-jz8lnl">Unity</a> <a href="/godot-asset-manager" title="Godot asset manager" class="svelte-jz8lnl">Godot</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Community</p> <a href="https://assethoard.com/discord" target="_blank" rel="noopener" title="Join our Discord server" class="svelte-jz8lnl">Discord</a> <a rel="me" href="https://mastodon.gamedev.place/@assethoard" target="_blank" title="Follow us on Mastodon" class="svelte-jz8lnl">Mastodon</a> <a href="https://bsky.app/profile/assethoard.bsky.social" target="_blank" rel="noopener" title="Follow us on Bluesky" class="svelte-jz8lnl">Bluesky</a> <a href="/docs#newsletter" title="Subscribe to updates" class="svelte-jz8lnl">Subscribe to updates</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Company</p> <a href="/about" title="About" class="svelte-jz8lnl">About</a> <a href="/contact" title="Contact" class="svelte-jz8lnl">Contact</a> <a href="/press-kit" title="Press Kit" class="svelte-jz8lnl">Press Kit</a> <a href="/privacy" title="Privacy Policy" class="svelte-jz8lnl">Privacy Policy</a></div></div></div> <div class="footer-bottom svelte-jz8lnl"><p class="copyright svelte-jz8lnl">© 2026 AssetHoard. All rights reserved. <span class="made-in svelte-jz8lnl">Made in Melbourne 🇦🇺</span></p></div></div></footer><!----></div><!--]--><!--]--> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_16n1kwu = {
+						base: new URL("..", location).pathname.slice(0, -1),
+						env: null
+					};
+
+					const element = document.currentScript.parentElement;
+
+					import("../_app/env.js").then(({ env }) => {
+						__sveltekit_16n1kwu.env = env;
+
+						Promise.all([
+							import("../_app/immutable/entry/start.DjYAjq3p.js"),
+							import("../_app/immutable/entry/app.CFmrlULn.js")
+						]).then(([kit, app]) => {
+							kit.start(app, element, {
+									node_ids: [0, 36],
+									data: [null,{type:"data",data:{release:{version:"0.1.18",date:"2026-07-03T00:00:00.000Z",title:"A tidier window, a quick palette, and animated variants",teaser:"A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P palette to jump anywhere in an instant. Plus smarter image search, bulk tidy-ups for tags and categories, animated variant groups, TIFF support, and calmer imports.",image:"/releases/assethoard-v0.1.18.png",draft:true,author:"The AssetHoard Team",authorUrl:"https://assethoard.com",keywords:["AssetHoard","Asset Hoard 0.1.18","release notes","quick palette","Ctrl+P command palette","collapsible sidebar","image search indexing","SVG indexing","merge tags categories","animated variant groups","TIFF support","concurrent imports","local-first asset manager","game development tools"],content:"\u003Cp>\u003Ca href=\"/releases/assethoard-v0.1.18.png\" target=\"_blank\" rel=\"noopener noreferrer\">\u003Cimg src=\"/releases/assethoard-v0.1.18.png\" alt=\"AssetHoard v0.1.18 release artwork\" title=\"AssetHoard v0.1.18 release artwork\">\u003C/a>\u003C/p>\n\u003Cp>A cleaner window, a faster way to get around, and image search that reaches more of your library. Plus bulk edits for tags and categories, animated variant groups, and calmer imports.\u003C/p>\n\u003Ch2>🪟 Redesigned header &amp; toolbar\u003C/h2>\n\u003Cul>\n\u003Cli>We&#39;ve retired the old title bar in favour of a \u003Cstrong>streamlined toolbar\u003C/strong>, with sort and view options now sitting together in the search header.\u003C/li>\n\u003Cli>The import button has moved somewhere more sensible, and everything lines up better.\u003C/li>\n\u003Cli>On \u003Cstrong>Linux\u003C/strong>, you can now choose how window controls appear: all buttons, close only, or your OS defaults.\u003C/li>\n\u003Cli>\u003Cstrong>Mac\u003C/strong> window buttons now sit where they should.\u003C/li>\n\u003C/ul>\n\u003Ch2>↔️ Collapse the sidebar\u003C/h2>\n\u003Cul>\n\u003Cli>Need more room? You can now \u003Cstrong>collapse the left sidebar\u003C/strong> to give your assets centre stage.\u003C/li>\n\u003C/ul>\n\u003Ch2>⌨️ Jump anywhere with Ctrl+P\u003C/h2>\n\u003Cul>\n\u003Cli>A new \u003Cstrong>quick palette\u003C/strong> lets you press \u003Cstrong>Ctrl+P\u003C/strong> and jump straight to any bundle, asset, project or command, with no more hunting through menus.\u003C/li>\n\u003C/ul>\n\u003Ch2>🔍 Smarter image search\u003C/h2>\n\u003Cul>\n\u003Cli>Improved image indexing means more of your images turn up in \u003Ca href=\"/semantic-search\">semantic search\u003C/a>.\u003C/li>\n\u003Cli>A single corrupt or mislabelled image no longer stops the whole indexing run.\u003C/li>\n\u003Cli>Broken images are quietly set aside instead of nagging you as &quot;still pending&quot; forever.\u003C/li>\n\u003C/ul>\n\u003Ch2>🗂 Bulk tidy-ups for tags and categories\u003C/h2>\n\u003Cul>\n\u003Cli>Select multiple \u003Cstrong>tags\u003C/strong> or \u003Cstrong>categories\u003C/strong> to merge or remove them in one go, right from settings.\u003C/li>\n\u003Cli>Changed your mind? It&#39;s all \u003Cstrong>undoable\u003C/strong>.\u003C/li>\n\u003C/ul>\n\u003Ch2>🎞 Animated variant groups\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Ca href=\"/variants\">Variant groups\u003C/a> can now \u003Cstrong>play their frames in sequence\u003C/strong> as an animation.\u003C/li>\n\u003Cli>\u003Cstrong>Drag frames\u003C/strong> to set the order.\u003C/li>\n\u003C/ul>\n\u003Ch2>📥 Faster, calmer imports\u003C/h2>\n\u003Cul>\n\u003Cli>Set \u003Cstrong>how many imports run at once\u003C/strong> to match your machine.\u003C/li>\n\u003Cli>When you remove items from a bundle, we&#39;ll now tell you \u003Cstrong>which projects are affected\u003C/strong> first.\u003C/li>\n\u003C/ul>\n\u003Ch2>📦 More formats and finer control\u003C/h2>\n\u003Cul>\n\u003Cli>\u003Cstrong>TIFF\u003C/strong> files are now supported.\u003C/li>\n\u003Cli>A new setting lets you choose how thumbnails fit their frame, \u003Cstrong>Fit\u003C/strong> or \u003Cstrong>Fill\u003C/strong>.\u003C/li>\n\u003Cli>Your \u003Cstrong>sort order\u003C/strong> is now remembered between restarts.\u003C/li>\n\u003C/ul>\n\u003Ch2>🐛 Polish and fixes\u003C/h2>\n\u003Cul>\n\u003Cli>Tidier keyboard-shortcuts and import screens.\u003C/li>\n\u003Cli>No more theme flash when using Ctrl+P history.\u003C/li>\n\u003Cli>A handful of behind-the-scenes stability improvements.\u003C/li>\n\u003C/ul>\n\u003Cp>\u003Cstrong>Happy hoarding.\u003C/strong>\u003C/p>\n",slug:"0.1.18"},prev:null,next:null},uses:{params:["version"]}}],
+									form: null,
+									error: null
+								});
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>
