@@ -26,4 +26,4 @@ sudo dnf install asset-hoard</code></pre> <h3 class="svelte-14kbgwb">Arch (AUR)<
   | gpg --import</code></pre> <p>Then install with any AUR helper:</p> <pre class="svelte-14kbgwb"><code class="svelte-14kbgwb">yay -S asset-hoard-bin
 # or:
 paru -S asset-hoard-bin</code></pre> <p>Or build it manually, without a helper:</p> <pre class="svelte-14kbgwb"><code class="svelte-14kbgwb">git clone https://aur.archlinux.org/asset-hoard-bin.git
-cd asset-hoard-bin && makepkg -si</code></pre></section></div></div>`);function v(t){var a=n();c("14kbgwb",l=>{var o=i();d(2),r(()=>{b.title="Linux - AssetHoard Documentation"}),e(l,o)}),e(t,a)}export{v as component};
+cd asset-hoard-bin && makepkg -si</code></pre></section></div></div>`);function v(t){var a=n();c("14kbgwb",l=>{var o=i();d(2),r(()=>{b.title="Linux install and glibc requirements - AssetHoard Documentation"}),e(l,o)}),e(t,a)}export{v as component};
