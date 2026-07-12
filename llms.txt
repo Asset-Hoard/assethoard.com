@@ -1,0 +1,76 @@
+# AssetHoard
+
+> AssetHoard is a local-first desktop asset manager for indie game developers and artists. It organises, previews, and searches your entire library across 80+ file formats, including Unity packages, Aseprite sprites, FBX, glTF, audio, fonts, and PBR materials. It runs offline with no account and no cloud sync, and is a one-time purchase with no subscription. Available for Windows 10+, macOS 11+, and Linux (tested on Ubuntu 20.04+).
+
+## Optional
+- [Sitemap](https://assethoard.com/sitemap.xml): Full list of pages, posts, and releases.
+- [Privacy policy](https://assethoard.com/privacy): How AssetHoard handles your data (it stays on your machine).
+
+## Product
+- [Home](https://assethoard.com/): Overview of AssetHoard, the local-first game asset manager.
+- [/local-first](https://assethoard.com/local-first): Why AssetHoard keeps your library entirely on your machine, with no server or account.
+- [/semantic-search](https://assethoard.com/semantic-search): Find assets by meaning, not just filename, across your whole library.
+- [/variants](https://assethoard.com/variants): Group alternate versions of an asset together as variants.
+- [/archive](https://assethoard.com/archive): Archive assets you are not using without deleting them from your library.
+- [/unity-asset-manager](https://assethoard.com/unity-asset-manager): Import and browse Unity Asset Store .unitypackage files.
+- [/godot-asset-manager](https://assethoard.com/godot-asset-manager): Manage Godot resources (.tres, .tscn, .res) alongside the rest of your assets.
+- [/2d-artists](https://assethoard.com/2d-artists): AssetHoard for 2D artists working with sprites, textures, and tilesets.
+- [/3d-gamedev-and-artists](https://assethoard.com/3d-gamedev-and-artists): AssetHoard for 3D game developers and artists working with models and materials.
+- [/downloads](https://assethoard.com/downloads): Download the AssetHoard beta for Windows, macOS, and Linux.
+- [/purchase](https://assethoard.com/purchase): Buy AssetHoard with a one-time purchase, no subscription.
+- [/press-kit](https://assethoard.com/press-kit): Logos, screenshots, and brand assets for press and reviewers.
+- [/about](https://assethoard.com/about): About AssetHoard and the people building it.
+- [/contact](https://assethoard.com/contact): Get in touch with the AssetHoard team.
+
+## Documentation
+- [/docs](https://assethoard.com/docs): Documentation home.
+- [/docs/getting-started](https://assethoard.com/docs/getting-started): Install AssetHoard and import your first library.
+- [/docs/filetype-support](https://assethoard.com/docs/filetype-support): Every file format AssetHoard can index and preview.
+- [/docs/3d](https://assethoard.com/docs/3d): Working with 3D models such as FBX, OBJ, and glTF.
+- [/docs/materials](https://assethoard.com/docs/materials): Importing and previewing materials and texture sets.
+- [/docs/choose-a-renderer](https://assethoard.com/docs/choose-a-renderer): Choosing a renderer for 3D and material previews.
+- [/docs/variants](https://assethoard.com/docs/variants): How asset variants work.
+- [/docs/archives](https://assethoard.com/docs/archives): Working with archived assets.
+- [/docs/unity](https://assethoard.com/docs/unity): Importing Unity Asset Store packages.
+- [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
+- [/docs/keyboard](https://assethoard.com/docs/keyboard): Keyboard shortcuts.
+- [/docs/license](https://assethoard.com/docs/license): Licence handling and per-asset licence tracking.
+- [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
+
+## Blog
+- [/blog/game-developer-without-artistic-skills](https://assethoard.com/blog/game-developer-without-artistic-skills): You don't need to be an artist to ship a good-looking game. Here's how to build one with asset packs, a few texture swaps, some lighting, and a genre that plays to your strengths.
+- [/blog/windows-protected-your-pc-indie-game](https://assethoard.com/blog/windows-protected-your-pc-indie-game): Ship your game on itch.io or by direct download and players hit the blue 'Windows protected your PC' warning. Why it happens, why Steam games avoid it, and how to fix it.
+- [/blog/you-dont-own-anything-anymore](https://assethoard.com/blog/you-dont-own-anything-anymore): Every app is now a subscription and your files live on someone else's server. Here's the case for local-first, one-time purchase software you actually own.
+- [/blog/paint-net-pdn-support](https://assethoard.com/blog/paint-net-pdn-support): How we added thumbnails and metadata for .pdn files using a trick the Windows shell extension already relies on, and what we deliberately left on the table.
+- [/blog/game-asset-licences-explained](https://assethoard.com/blog/game-asset-licences-explained): A plain guide to the licences attached to game assets, what each one actually requires, and how to keep track of attribution before it becomes a problem.
+- [/blog/parsing-godot-tres-files](https://assethoard.com/blog/parsing-godot-tres-files): How Asset Hoard parses Godot resource files, resolves cross-references, and reconstructs the res:// folder layout on drag-out so materials work the moment they land in your project.
+- [/blog/best-offline-asset-manager-indie-developers](https://assethoard.com/blog/best-offline-asset-manager-indie-developers): A look at offline asset managers for game developers, and how to pick one that handles engine-specific formats.
+- [/blog/why-your-pixel-art-looks-blurry](https://assethoard.com/blog/why-your-pixel-art-looks-blurry): Most asset tools blur pixel art by default. Here is why it happens, what proper pixel rendering looks like, and how to stop fighting your tools.
+- [/blog/pbr-vs-orm-explained](https://assethoard.com/blog/pbr-vs-orm-explained): One is a lighting model. The other is how you pack some of its textures. Here is what that means across Unity, Unreal, Godot and Blender.
+- [/blog/eagle-alternative-game-developers](https://assethoard.com/blog/eagle-alternative-game-developers): Eagle is a great visual organiser, but it wasn't built for game assets. Here's what to look for if you're a game developer.
+- [/blog/how-i-manage-100000-game-assets](https://assethoard.com/blog/how-i-manage-100000-game-assets): Humble Bundle packs, asset store purchases, and indie artist downloads pile up fast. Here is how I stopped drowning in folders and started actually finding what I need.
+- [/blog/artist-spotlight-tesseract-assets](https://assethoard.com/blog/artist-spotlight-tesseract-assets): We chat with Shaoul from Tesseract Assets about 3D props, weapons, stylised environments, and the invisible work that makes game assets actually work in-engine.
+- [/blog/when-120000-files-meet-tauri](https://assethoard.com/blog/when-120000-files-meet-tauri): How we optimised AssetHoard to handle massive asset libraries without freezing your entire computer.
+- [/blog/where-to-find-free-game-assets-2026](https://assethoard.com/blog/where-to-find-free-game-assets-2026): Hand-picked HD game asset sites for 2026. 2D sprites, 3D models, PBR textures, audio. Mostly CC0, no sign-up, free for commercial use.
+- [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
+
+## Releases
+- [/releases/0.1.18](https://assethoard.com/releases/0.1.18): A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P command palette to jump anywhere instantly. Plus smarter image search and animated variants.
+- [/releases/0.1.17](https://assethoard.com/releases/0.1.17): Group alternate versions of an asset under a single entry, get a gentle nudge to update, and enjoy a search that stays out of your way until you want it. Plus new file types, sturdier 3D models, hardened archive handling, and code-signed Windows installers.
+- [/releases/0.1.16](https://assethoard.com/releases/0.1.16): See what your 3D models and materials depend on, flatten and organise bundles more freely, and reclaim around 450 MB by turning search off. Plus new file types, separate audio channels, and a steadier importer.
+- [/releases/0.1.15](https://assethoard.com/releases/0.1.15): Recent searches come back with one click, render profiles finally cascade through the whole library, and the importer gets faster, calmer and far more honest about what it's doing.
+- [/releases/0.1.14](https://assethoard.com/releases/0.1.14): A small release with long sprite sheet support, procedural Godot textures, smarter licence matching during import, and fixes for audio loading, import notes and Godot watched folders.
+- [/releases/0.1.13](https://assethoard.com/releases/0.1.13): Asset Hoard now treats Godot resource files as first-class citizens, with materials, SpriteFrames and TileSets ready to search, preview and drag straight into a project. Multi-select also gets a thorough polish pass across mixed asset and bundle selections.
+- [/releases/0.1.12](https://assethoard.com/releases/0.1.12): A new Pixel Renderer keeps sprites crisp on import across PNG, GIF, TGA, Photoshop, Krita, and more. Alongside it, the Workbench arrives as a scratchpad for gathering assets before dropping them into a project.
+- [/releases/0.1.11](https://assethoard.com/releases/0.1.11): Semantic search gains proper filter support, the importer hardens against edge cases, and audio waveforms move to crisp SVGs.
+- [/releases/0.1.10](https://assethoard.com/releases/0.1.10): Customise your workspace with new themes, pick up interrupted imports where you left off, and macOS code signing and notarisation.
+- [/releases/0.1.9](https://assethoard.com/releases/0.1.9): Faster startup and post-import performance, reliable undo, a new Play All option for 3D model animations, and sort assets by file creation date.
+- [/releases/0.1.8](https://assethoard.com/releases/0.1.8): Find assets by describing what you're looking for with natural language semantic search, resize grid cards on the fly, and enjoy faster bundle loading and smoother imports.
+- [/releases/0.1.7](https://assethoard.com/releases/0.1.7): A rewritten watched folders system, database stability fixes, snappier thumbnails and waveforms, and the first steps of a UI refresh.
+- [/releases/0.1.6](https://assethoard.com/releases/0.1.6): GIF and .mat file support, license management, faster app startup with lazy loading, non-blocking 3D thumbnails, and smarter import scanning.
+- [/releases/0.1.5](https://assethoard.com/releases/0.1.5): Font support, Unity package importing, move-to-bundle picker, back/forward navigation, cover cropping, and orphaned asset cleanup.
+- [/releases/0.1.4](https://assethoard.com/releases/0.1.4): Performance improvements and preview modal
+- [/releases/0.1.3](https://assethoard.com/releases/0.1.3): A rebuilt import system, Blender integration, PDF and document support, and a 40% speed boost.
+- [/releases/0.1.2](https://assethoard.com/releases/0.1.2): Drag-and-drop anywhere, smarter image handling, and watched folders that remember your preferences.
+- [/releases/0.1.1](https://assethoard.com/releases/0.1.1): Linux builds are here! Debian and RPM packages ready to go, with AUR support on the way.
+- [/releases/0.1.0b](https://assethoard.com/releases/0.1.0b): After 193 commits of caffeine-fuelled development, we're thrilled to unleash Asset Hoard to closed beta

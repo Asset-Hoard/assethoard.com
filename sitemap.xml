@@ -31,6 +31,9 @@
 		<loc>https://assethoard.com/docs/filetype-support</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/archives</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/linux</loc>
 	</url>
 	<url>
@@ -80,6 +83,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/variants</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/archive</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/2d-artists</loc>
