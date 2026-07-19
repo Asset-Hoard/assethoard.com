@@ -38,6 +38,7 @@
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog
+- [/blog/dam-for-game-developers](https://assethoard.com/blog/dam-for-game-developers): Digital asset management (DAM) keeps every game asset findable in one place. Here's what that means for game devs, and what to look for in one.
 - [/blog/browse-inside-archives-without-extracting](https://assethoard.com/blog/browse-inside-archives-without-extracting): The next release lets you open zip, rar, and tgz files right in your library and preview what's inside, without unpacking a thing.
 - [/blog/game-developer-without-artistic-skills](https://assethoard.com/blog/game-developer-without-artistic-skills): You don't need to be an artist to ship a good-looking game. Here's how to build one with asset packs, a few texture swaps, some lighting, and a genre that plays to your strengths.
 - [/blog/windows-protected-your-pc-indie-game](https://assethoard.com/blog/windows-protected-your-pc-indie-game): Ship your game on itch.io or by direct download and players hit the blue 'Windows protected your PC' warning. Why it happens, why Steam games avoid it, and how to fix it.
