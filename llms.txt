@@ -38,6 +38,7 @@
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog
+- [/blog/how-to-organise-unity-asset-store-downloads](https://assethoard.com/blog/how-to-organise-unity-asset-store-downloads): A practical guide to managing your growing Unity Asset Store library, from folder structure to dedicated tools.
 - [/blog/dam-for-game-developers](https://assethoard.com/blog/dam-for-game-developers): Digital asset management (DAM) keeps every game asset findable in one place. Here's what that means for game devs, and what to look for in one.
 - [/blog/browse-inside-archives-without-extracting](https://assethoard.com/blog/browse-inside-archives-without-extracting): The next release lets you open zip, rar, and tgz files right in your library and preview what's inside, without unpacking a thing.
 - [/blog/game-developer-without-artistic-skills](https://assethoard.com/blog/game-developer-without-artistic-skills): You don't need to be an artist to ship a good-looking game. Here's how to build one with asset packs, a few texture swaps, some lighting, and a genre that plays to your strengths.
