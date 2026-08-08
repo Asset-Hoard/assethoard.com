@@ -34,7 +34,8 @@
 - [/docs/unity](https://assethoard.com/docs/unity): Importing Unity Asset Store packages.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
 - [/docs/keyboard](https://assethoard.com/docs/keyboard): Keyboard shortcuts.
-- [/docs/license](https://assethoard.com/docs/license): Licence handling and per-asset licence tracking.
+- [/docs/license](https://assethoard.com/docs/license): How your AssetHoard licence works: buying, activating, and managing it across up to 2 devices.
+- [/docs/license-detection](https://assethoard.com/docs/license-detection): Automatic licence detection and per-asset attribution tracking on import.
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog

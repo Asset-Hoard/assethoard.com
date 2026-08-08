@@ -16,6 +16,9 @@
 		<loc>https://assethoard.com/docs/license</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/license-detection</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/variants</loc>
 	</url>
 	<url>
@@ -62,6 +65,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/privacy</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/terms</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases</loc>
