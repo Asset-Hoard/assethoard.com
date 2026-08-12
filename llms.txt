@@ -39,6 +39,7 @@
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog
+- [/blog/free-sound-effects-2026](https://assethoard.com/blog/free-sound-effects-2026): 22 places to find free sound effects and audio for your game in 2026. Big CC0 libraries, professional bundles, the BBC archive, and generators for making your own retro bleeps from scratch.
 - [/blog/look-inside-archives-without-unzipping](https://assethoard.com/blog/look-inside-archives-without-unzipping): How AssetHoard indexes and previews the contents of zip, unitypackage, tar.gz and rar archives in place, without extracting a single file to disk.
 - [/blog/how-to-organise-unity-asset-store-downloads](https://assethoard.com/blog/how-to-organise-unity-asset-store-downloads): A practical guide to managing your growing Unity Asset Store library, from folder structure to dedicated tools.
 - [/blog/dam-for-game-developers](https://assethoard.com/blog/dam-for-game-developers): Digital asset management (DAM) keeps every game asset findable in one place. Here's what that means for game devs, and what to look for in one.
