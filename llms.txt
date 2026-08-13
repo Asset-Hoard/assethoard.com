@@ -14,6 +14,7 @@
 - [/archive](https://assethoard.com/archive): Archive assets you are not using without deleting them from your library.
 - [/unity-asset-manager](https://assethoard.com/unity-asset-manager): Import and browse Unity Asset Store .unitypackage files.
 - [/godot-asset-manager](https://assethoard.com/godot-asset-manager): Manage Godot resources (.tres, .tscn, .res) alongside the rest of your assets.
+- [/gamemaker-asset-manager](https://assethoard.com/gamemaker-asset-manager): Import and preview GameMaker resources (.yy, .yymps, .yyz): sprites, tilesets, objects, sounds, and fonts.
 - [/2d-artists](https://assethoard.com/2d-artists): AssetHoard for 2D artists working with sprites, textures, and tilesets.
 - [/3d-gamedev-and-artists](https://assethoard.com/3d-gamedev-and-artists): AssetHoard for 3D game developers and artists working with models and materials.
 - [/downloads](https://assethoard.com/downloads): Download the AssetHoard beta for Windows, macOS, and Linux.
