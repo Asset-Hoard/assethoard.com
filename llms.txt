@@ -62,6 +62,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.1.21](https://assethoard.com/releases/0.1.21): Drop a GameMaker project, .yymps package or .yyz export into your library and AssetHoard reads the resources inside, no unpacking required. Plus faster 3D importing and previews, and speed-ups for large libraries and imports.
 - [/releases/0.1.20](https://assethoard.com/releases/0.1.20): The expanded 3D and material preview gains a live control panel: environment, surface and mesh settings, per-map toggles, and fixes for missing textures.
 - [/releases/0.1.19](https://assethoard.com/releases/0.1.19): Zip, RAR, tar, gz and Unity .unitypackage files now open in place, so you can browse and preview their contents without a second copy on disk. Plus faster package imports, reimports that keep your work, cascading licences, and a smoother sidebar.
 - [/releases/0.1.18](https://assethoard.com/releases/0.1.18): A streamlined toolbar, a collapsible sidebar, and a new Ctrl+P command palette to jump anywhere instantly. Plus smarter image search and animated variants.
