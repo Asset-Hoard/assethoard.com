@@ -40,6 +40,10 @@
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog
+- [/blog/unreal-vs-unity](https://assethoard.com/blog/unreal-vs-unity): Unreal vs Unity, compared for indie developers in 2026. Visual fidelity, 2D and mobile, iteration speed, pricing and royalties, plus who each engine suits.
+- [/blog/gamemaker-vs-godot](https://assethoard.com/blog/gamemaker-vs-godot): GameMaker vs Godot, compared for 2D game development in 2026. Licensing, scripting, workflow, 3D and track record, plus which 2D engine you should pick.
+- [/blog/godot-vs-unity](https://assethoard.com/blog/godot-vs-unity): Godot vs Unity, compared for indie developers in 2026. Licensing, 2D and 3D, scripting, the asset ecosystem and mobile, plus who each engine is really for.
+- [/blog/what-game-engine-should-i-start-with](https://assethoard.com/blog/what-game-engine-should-i-start-with): The best game engine for beginners in 2026, explained simply. How to choose between Godot, Unity, Unreal, GameMaker and the no-code tools for your first game.
 - [/blog/free-sound-effects-2026](https://assethoard.com/blog/free-sound-effects-2026): 22 places to find free sound effects and audio for your game in 2026. Big CC0 libraries, professional bundles, the BBC archive, and generators for making your own retro bleeps from scratch.
 - [/blog/look-inside-archives-without-unzipping](https://assethoard.com/blog/look-inside-archives-without-unzipping): How AssetHoard indexes and previews the contents of zip, unitypackage, tar.gz and rar archives in place, without extracting a single file to disk.
 - [/blog/how-to-organise-unity-asset-store-downloads](https://assethoard.com/blog/how-to-organise-unity-asset-store-downloads): A practical guide to managing your growing Unity Asset Store library, from folder structure to dedicated tools.
