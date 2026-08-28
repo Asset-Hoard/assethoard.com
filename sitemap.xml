@@ -40,6 +40,9 @@
 		<loc>https://assethoard.com/docs/search</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/spritesheet-slicing</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/linux</loc>
 	</url>
 	<url>
@@ -104,6 +107,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/3d-gamedev-and-artists</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/spritesheet-slicing</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/game-jam-sponsorship</loc>
@@ -206,6 +212,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.1.22</loc>
+		<lastmod>2026-08-28</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.1.21</loc>

@@ -16,6 +16,7 @@
 - [/godot-asset-manager](https://assethoard.com/godot-asset-manager): Manage Godot resources (.tres, .tscn, .res) alongside the rest of your assets.
 - [/gamemaker-asset-manager](https://assethoard.com/gamemaker-asset-manager): Import and preview GameMaker resources (.yy, .yymps, .yyz): sprites, tilesets, objects, sounds, and fonts.
 - [/2d-artists](https://assethoard.com/2d-artists): AssetHoard for 2D artists working with sprites, textures, and tilesets.
+- [/spritesheet-slicing](https://assethoard.com/spritesheet-slicing): Slice a spritesheet into individual frames with Grid or Auto detection, build animations, and export as GIF, packed sheet or per-frame PNGs.
 - [/3d-gamedev-and-artists](https://assethoard.com/3d-gamedev-and-artists): AssetHoard for 3D game developers and artists working with models and materials.
 - [/downloads](https://assethoard.com/downloads): Download the AssetHoard beta for Windows, macOS, and Linux.
 - [/purchase](https://assethoard.com/purchase): Buy AssetHoard with a one-time purchase, no subscription.
@@ -31,6 +32,7 @@
 - [/docs/materials](https://assethoard.com/docs/materials): Importing and previewing materials and texture sets.
 - [/docs/choose-a-renderer](https://assethoard.com/docs/choose-a-renderer): Choosing a renderer for 3D and material previews.
 - [/docs/variants](https://assethoard.com/docs/variants): How asset variants work.
+- [/docs/spritesheet-slicing](https://assethoard.com/docs/spritesheet-slicing): Slice a spritesheet into frames with Grid or Auto detection, build sprite sets, and export as GIF, packed sheet or per-frame PNGs.
 - [/docs/archives](https://assethoard.com/docs/archives): Working with archived assets.
 - [/docs/unity](https://assethoard.com/docs/unity): Importing Unity Asset Store packages.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
@@ -66,6 +68,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.1.22](https://assethoard.com/releases/0.1.22): AssetHoard v0.1.22 slices sprite sheets into frames and exports animations as GIFs, packed sheets or PNGs, from Aseprite, Piskel, GameMaker and Godot too.
 - [/releases/0.1.21](https://assethoard.com/releases/0.1.21): Drop a GameMaker project, .yymps package or .yyz export into your library and AssetHoard reads the resources inside, no unpacking required. Plus faster 3D importing and previews, and speed-ups for large libraries and imports.
 - [/releases/0.1.20](https://assethoard.com/releases/0.1.20): The expanded 3D and material preview gains a live control panel: environment, surface and mesh settings, per-map toggles, and fixes for missing textures.
 - [/releases/0.1.19](https://assethoard.com/releases/0.1.19): Zip, RAR, tar, gz and Unity .unitypackage files now open in place, so you can browse and preview their contents without a second copy on disk. Plus faster package imports, reimports that keep your work, cascading licences, and a smoother sidebar.
