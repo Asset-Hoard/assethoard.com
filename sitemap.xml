@@ -31,6 +31,9 @@
 		<loc>https://assethoard.com/docs/unity</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/unreal</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/filetype-support</loc>
 	</url>
 	<url>
@@ -86,6 +89,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/godot-asset-manager</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/unreal-asset-manager</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/gamemaker-asset-manager</loc>
