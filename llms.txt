@@ -71,6 +71,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.2.1](https://assethoard.com/releases/0.2.1): Import an Unreal project's .uasset and .umap files and preview them without opening the editor. Plus materials built from PBR texture maps, and more export options.
 - [/releases/0.1.22](https://assethoard.com/releases/0.1.22): AssetHoard v0.1.22 slices sprite sheets into frames and exports animations as GIFs, packed sheets or PNGs, from Aseprite, Piskel, GameMaker and Godot too.
 - [/releases/0.1.21](https://assethoard.com/releases/0.1.21): Drop a GameMaker project, .yymps package or .yyz export into your library and AssetHoard reads the resources inside, no unpacking required. Plus faster 3D importing and previews, and speed-ups for large libraries and imports.
 - [/releases/0.1.20](https://assethoard.com/releases/0.1.20): The expanded 3D and material preview gains a live control panel: environment, surface and mesh settings, per-map toggles, and fixes for missing textures.
