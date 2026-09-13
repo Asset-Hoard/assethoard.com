@@ -44,6 +44,7 @@
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
 ## Blog
+- [/blog/top-free-2d-game-assets-2026](https://assethoard.com/blog/top-free-2d-game-assets-2026): Our running roundup of the best free 2D asset packs for game developers and creative professionals, kept up to date through 2026.
 - [/blog/you-bought-the-bundle](https://assethoard.com/blog/you-bought-the-bundle): Humble, itch.io and Fanatical asset bundles are the cheapest way to build a game asset library and the fastest way to lose one. Here is how to keep yours findable.
 - [/blog/unreal-vs-unity](https://assethoard.com/blog/unreal-vs-unity): Unreal vs Unity, compared for indie developers in 2026. Visual fidelity, 2D and mobile, iteration speed, pricing and royalties, plus who each engine suits.
 - [/blog/gamemaker-vs-godot](https://assethoard.com/blog/gamemaker-vs-godot): GameMaker vs Godot, compared for 2D game development in 2026. Licensing, scripting, workflow, 3D and track record, plus which 2D engine you should pick.
