@@ -127,6 +127,9 @@
 		<loc>https://assethoard.com/free-game-assets</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/tools</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/blog/top-free-2d-game-assets-2026</loc>
 		<lastmod>2026-09-13</lastmod>
 	</url>
@@ -325,5 +328,105 @@
 	<url>
 		<loc>https://assethoard.com/releases/0.1.0b</loc>
 		<lastmod>2025-01-02</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/texture-atlas-packer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/sprite-sheet-slicer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/normal-map-generator</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/pbr-texture-previewer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/seamless-texture-checker</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/channel-packer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/image-compressor</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/bulk-image-resizer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/palette-extractor</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/contact-sheet-generator</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/gltf-viewer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/model-inspector</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/mesh-reducer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/obj-to-glb</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/glb-compressor</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/turntable-generator</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/audio-trimmer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/sfx-generator</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/audio-format-converter</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/audio-sprite</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/loop-maker</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/silence-trimmer</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/audio-normaliser</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/licence-detector</loc>
+		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/tools/metadata-inspector</loc>
+		<lastmod>2026-09-19</lastmod>
 	</url>
 </urlset>

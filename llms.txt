@@ -43,6 +43,33 @@
 - [/docs/license-detection](https://assethoard.com/docs/license-detection): Automatic licence detection and per-asset attribution tracking on import.
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
 
+## Free browser tools
+- [/tools/texture-atlas-packer](https://assethoard.com/tools/texture-atlas-packer): Pack many images into one sprite sheet with a coordinates file.
+- [/tools/sprite-sheet-slicer](https://assethoard.com/tools/sprite-sheet-slicer): Cut a sprite sheet into individual frames and export a zip.
+- [/tools/normal-map-generator](https://assethoard.com/tools/normal-map-generator): Turn a height or bump image into a tangent-space normal map.
+- [/tools/pbr-texture-previewer](https://assethoard.com/tools/pbr-texture-previewer): Preview albedo, normal, roughness and metallic maps on a 3D sphere.
+- [/tools/seamless-texture-checker](https://assethoard.com/tools/seamless-texture-checker): Tile any texture 3x3 to spot seams before you use it.
+- [/tools/channel-packer](https://assethoard.com/tools/channel-packer): Combine grayscale maps into the RGBA channels of one texture.
+- [/tools/image-compressor](https://assethoard.com/tools/image-compressor): Convert and compress PNG, JPG, WebP and AVIF in your browser.
+- [/tools/bulk-image-resizer](https://assethoard.com/tools/bulk-image-resizer): Resize or crop a whole batch of images and export a zip.
+- [/tools/palette-extractor](https://assethoard.com/tools/palette-extractor): Pull the dominant colours out of any image.
+- [/tools/contact-sheet-generator](https://assethoard.com/tools/contact-sheet-generator): Turn a folder of images into one overview sheet.
+- [/tools/gltf-viewer](https://assethoard.com/tools/gltf-viewer): Drag in a 3D model, orbit it, and read its stats.
+- [/tools/model-inspector](https://assethoard.com/tools/model-inspector): Read stats from OBJ, glTF and GLB files without opening Blender.
+- [/tools/mesh-reducer](https://assethoard.com/tools/mesh-reducer): Cut the triangle count of a 3D model and keep its shape.
+- [/tools/obj-to-glb](https://assethoard.com/tools/obj-to-glb): Convert an OBJ with its MTL and textures into a single GLB.
+- [/tools/glb-compressor](https://assethoard.com/tools/glb-compressor): Shrink glTF and GLB files with Draco or meshopt compression.
+- [/tools/turntable-generator](https://assethoard.com/tools/turntable-generator): Render a spinning 3D model as a GIF, sprite sheet or frames.
+- [/tools/audio-trimmer](https://assethoard.com/tools/audio-trimmer): Preview, trim and export a game sound effect.
+- [/tools/sfx-generator](https://assethoard.com/tools/sfx-generator): Generate 8-bit game sound effects and export a WAV.
+- [/tools/audio-format-converter](https://assethoard.com/tools/audio-format-converter): Convert audio between WAV, MP3 and OGG in your browser.
+- [/tools/audio-sprite](https://assethoard.com/tools/audio-sprite): Pack many sound effects into one file with a Howler JSON map.
+- [/tools/loop-maker](https://assethoard.com/tools/loop-maker): Turn a clip into a seamless loop for music and ambience.
+- [/tools/silence-trimmer](https://assethoard.com/tools/silence-trimmer): Auto-trim leading and trailing silence from a batch of clips.
+- [/tools/audio-normaliser](https://assethoard.com/tools/audio-normaliser): Match the loudness of a batch of clips by peak or LUFS.
+- [/tools/licence-detector](https://assethoard.com/tools/licence-detector): Detect licences in a set of files and draft a credits block.
+- [/tools/metadata-inspector](https://assethoard.com/tools/metadata-inspector): Drop any asset and see everything about it.
+
 ## Blog
 - [/blog/top-free-2d-game-assets-2026](https://assethoard.com/blog/top-free-2d-game-assets-2026): Our running roundup of the best free 2D asset packs for game developers and creative professionals, kept up to date through 2026.
 - [/blog/you-bought-the-bundle](https://assethoard.com/blog/you-bought-the-bundle): Humble, itch.io and Fanatical asset bundles are the cheapest way to build a game asset library and the fastest way to lose one. Here is how to keep yours findable.
