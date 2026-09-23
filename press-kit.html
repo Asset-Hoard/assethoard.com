@@ -42,34 +42,35 @@
 			!function(r){var e={};function o(n){if(e[n])return e[n].exports;var t=e[n]={i:n,l:!1,exports:{}};return r[n].call(t.exports,t,t.exports,o),t.l=!0,t.exports}o.m=r,o.c=e,o.d=function(r,e,n){o.o(r,e)||Object.defineProperty(r,e,{enumerable:!0,get:n})},o.r=function(r){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(r,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(r,"__esModule",{value:!0})},o.t=function(r,e){if(1&e&&(r=o(r)),8&e)return r;if(4&e&&"object"==typeof r&&r&&r.__esModule)return r;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:r}),2&e&&"string"!=typeof r)for(var t in r)o.d(n,t,function(e){return r[e]}.bind(null,t));return n},o.n=function(r){var e=r&&r.__esModule?function(){return r.default}:function(){return r};return o.d(e,"a",e),e},o.o=function(r,e){return Object.prototype.hasOwnProperty.call(r,e)},o.p="",o(o.s=0)}([function(r,e,o){"use strict";var n=o(1),t=o(5);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdn.rollbar.com/rollbarjs/refs/tags/v2.26.4/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";var n=o(2),t=o(3);function a(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}var l=0;function i(r,e){this.options=r,this._rollbarOldOnError=null;var o=l++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}var s=o(4),c=function(r,e){return new i(r,e)},u=function(r){return new s(c,r)};function p(r){return a((function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)}))}i.prototype.loadFull=function(r,e,o,n,t){var l=!1,i=e.createElement("script"),s=e.getElementsByTagName("script")[0],c=s.parentNode;i.crossOrigin="",i.src=n.rollbarJsUrl,o||(i.async=!0),i.onload=i.onreadystatechange=a((function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){i.onload=i.onreadystatechange=null;try{c.removeChild(i)}catch(r){}l=!0,function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(a=n.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(e);break}}"function"==typeof t&&t(e)}()}})),c.insertBefore(i,s)},i.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var d="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<d.length;++f)i.prototype[d[f]]=p(d[f]);r.exports={setupShim:function(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var l=new u(e);return a((function(){e.captureUncaught&&(l._rollbarOldOnError=r.onerror,n.captureUncaughtExceptions(r,l,!0),e.wrapGlobalEventHandlers&&t(r,l,!0)),e.captureUnhandledRejections&&n.captureUnhandledRejections(r,l,!0);var a=e.autoInstrument;return!1!==e.enabled&&(void 0===a||!0===a||"object"==typeof a&&a.network)&&r.addEventListener&&(r.addEventListener("load",l.captureLoad.bind(l)),r.addEventListener("DOMContentLoaded",l.captureDomContentLoaded.bind(l))),r[o]=l,l}))()}},Rollbar:u}},function(r,e,o){"use strict";function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=e.handleUncaughtException.apply(e,n);o&&o.apply(r,n),"anonymous"===t&&(e.anonymousErrorsPending+=1)}r.exports={captureUncaughtExceptions:function(r,e,o){if(r){var t;if("function"==typeof e._rollbarOldOnError)t=e._rollbarOldOnError;else if(r.onerror){for(t=r.onerror;t._rollbarOldOnError;)t=t._rollbarOldOnError;e._rollbarOldOnError=t}e.handleAnonymousErrors();var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};o&&(a._rollbarOldOnError=t),r.onerror=a}},captureUnhandledRejections:function(r,e,o){if(r){"function"==typeof r._rollbarURH&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n._rollbarOldOnUnhandledRejection=r.onunhandledrejection,r.onunhandledrejection=n,o&&(r._rollbarURH=n,r.addEventListener("unhandledrejection",n))}}}},function(r,e,o){"use strict";function n(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function t(r,e,o){return function(n){return a(r,e,o,n)}}function a(r,e,o,n){try{(o||l)(r,n,e)}catch(r){}}function l(r,e,o){if(e&&e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n,t,a;(n=e.addEventListener)&&!n._rollbarOldAdd;)t=l.bind(null,r),a=o,e.addEventListener=function(e,o,n){try{o&&"function"==typeof o.handleEvent&&("EventListener"in window?o.handleEvent=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}):(o.handleEvent._rollbar||(o.handleEvent._rollbar=r.wrap(o.handleEvent,{mechanism:{type:"eventCallback",data:{eventTarget:e}}})),o.handleEvent=o.handleEvent._rollbar))}catch(r){}var l=Array.prototype.slice.call(arguments,0);return l[1]=r.wrap(o,{mechanism:{type:"eventCallback",data:{eventTarget:e}}}),a?t(n,this,l):n.apply(this,l)},e.addEventListener._rollbarOldAdd=n;for(var i,s,c;(i=e.removeEventListener)&&!i._rollbarOldRemove;)s=r,c=o,e.removeEventListener=function(r,e,o){if(e&&e._rollbar)try{var n=Array.prototype.slice.call(arguments,0);return n[1]=e._rollbar,c?t(n,this,s):s.apply(this,n)}catch(r){}return i.apply(this,arguments)},e.removeEventListener._rollbarOldRemove=i}}r.exports=n},function(r,e,o){"use strict";function n(r,e){this.impl=r(e,this),this.options=e,function(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}(n.prototype)}n.prototype._swapAndProcessMessages=function(r,e){var o,n,t;for(this.impl=r(this.options);o=e.shift();)n=o.method,t=o.args,this.impl[n]&&"function"==typeof this.impl[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this.impl[n].apply(this.impl,[t[0],o.ts]):this.impl[n].apply(this.impl,t));return this},r.exports=n},function(r,e,o){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){for(var o,n,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
 		</script>
 
-		<link href="./_app/immutable/entry/start.dZ6opX3N.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CoB0H7VY.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/Ccp6_kxS.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CdkhpKAJ.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/start.C56w_z41.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CSMYxrNn.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DfKZo4aW.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/8oxb6pln.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Gn3Enq6E.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/NSPXcV3H.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/-UyI9lYi.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CQxaj60l.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/BuD_5Heq.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BVscmyNL.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/oK_6yV10.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/B0XwC4Ot.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.CXztNrfL.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.Ls3NzVHK.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/PPVm8Dsz.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CSS1y1Fb.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CSMiehiP.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CaRdPJxc.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/Baa-Y6-v.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/D51SavFG.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CJDmsSUi.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/D-HG8_iY.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.CiOvAimE.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/D40uHl34.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/ccBl663Z.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/n7_rodFO.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/0PDqS83Y.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DcSbzWbP.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/DbhmFIKK.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/BphAZIm6.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DsnmJJEf.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/D8L8EDxF.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/zMbbKgYV.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DGvg-Fq4.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CbgNFaMT.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BIvnOa4Q.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.C6zSskQi.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/B9zVZ7pO.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DLp38y0-.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/3aJg6zxW.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BRk_vm_m.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ImPxBe9i.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/C4UNzfvX.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DFfPt2Up.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/D1hxHnSi.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/42.UCq--vfk.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/CIuROjLF.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/42.DkAmcE95.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Cp7XCJa2.js" rel="modulepreload">
 		<link href="./_app/env.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/><!----><!--1hwn6ph--><meta name="description" content="Press kit for AssetHoard: descriptions, key features, story angles, fact sheet, logos and contact details."/> <link rel="canonical" href="https://assethoard.com/press-kit"/> <meta property="og:type" content="website"/> <meta property="og:title" content="Press Kit - AssetHoard"/> <meta property="og:description" content="Press kit for AssetHoard: descriptions, key features, story angles, fact sheet, logos and contact details."/> <meta property="og:image" content="https://assethoard.com/assethoard-og.png"/> <meta property="og:url" content="https://assethoard.com/press-kit"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="Press Kit - AssetHoard"/> <meta name="twitter:description" content="Press kit for AssetHoard: descriptions, key features, story angles, fact sheet, logos and contact details."/> <meta name="twitter:image" content="https://assethoard.com/assethoard-og.png"/> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"AssetHoard Press Kit","url":"https://assethoard.com/press-kit","about":{"@type":"SoftwareApplication","name":"AssetHoard","applicationCategory":"GameApplication","operatingSystem":"Windows 10+, macOS 11+, Ubuntu 20.04+","description":"A local-first desktop asset manager for game developers and digital artists. One searchable library for over 80 file types, fully offline.","url":"https://assethoard.com","author":{"@type":"Organization","name":"AssetHoard","url":"https://assethoard.com"}}}</script><!----> <link rel="preconnect" href="https://fonts.googleapis.com"/> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/> <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;family=DM+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/><!----><title>Press Kit - AssetHoard</title>
 		<link href="./_app/immutable/assets/0.BPJwrGsM.css" rel="stylesheet">
@@ -90,7 +91,7 @@
                         Unreal or GameMaker. No cloud account, no subscription,
                         nothing leaving your machine. It is a one-time purchase of $29
                         USD during open beta, rising to $49 at release, with
-                        lifetime upgrades.</p></div> <div class="desc-block svelte-1hwn6ph"><div class="lab svelte-1hwn6ph">Boilerplate · "About AssetHoard"</div> <p class="svelte-1hwn6ph">AssetHoard is a local-first desktop application that
+                        free updates for the major version you buy.</p></div> <div class="desc-block svelte-1hwn6ph"><div class="lab svelte-1hwn6ph">Boilerplate · "About AssetHoard"</div> <p class="svelte-1hwn6ph">AssetHoard is a local-first desktop application that
                         gives game developers and digital artists one organised,
                         searchable home for their creative files. Built in Rust
                         for Windows, macOS and Linux, it recognises over 80 file
@@ -105,7 +106,8 @@
                         developer's fix for their own messy asset folders and is
                         now in open beta, sold as a one-time $29 USD purchase
                         during open beta, rising to $49 at release, with
-                        lifetime upgrades and no subscription.</p></div></div></section> <section class="svelte-1hwn6ph"><div class="wrap svelte-1hwn6ph"><div class="sec-head svelte-1hwn6ph"><span class="sec-num svelte-1hwn6ph">02</span> <h2 class="svelte-1hwn6ph">Key features</h2></div> <ul class="feat svelte-1hwn6ph"><li class="svelte-1hwn6ph"><div class="ft svelte-1hwn6ph"><i class="svelte-1hwn6ph"></i>Offline semantic search</div> <div class="fb svelte-1hwn6ph">Find assets by meaning, not just filename, using an
+                        free updates for the major version you buy and no
+                        subscription.</p></div></div></section> <section class="svelte-1hwn6ph"><div class="wrap svelte-1hwn6ph"><div class="sec-head svelte-1hwn6ph"><span class="sec-num svelte-1hwn6ph">02</span> <h2 class="svelte-1hwn6ph">Key features</h2></div> <ul class="feat svelte-1hwn6ph"><li class="svelte-1hwn6ph"><div class="ft svelte-1hwn6ph"><i class="svelte-1hwn6ph"></i>Offline semantic search</div> <div class="fb svelte-1hwn6ph">Find assets by meaning, not just filename, using an
                             on-device model. No internet required.</div></li> <li class="svelte-1hwn6ph"><div class="ft svelte-1hwn6ph"><i class="svelte-1hwn6ph"></i>80+ file types</div> <div class="fb svelte-1hwn6ph">3D models, sprites, audio, Unity packages, Godot
                             scenes, Unreal .uasset packages, GameMaker resources,
                             Aseprite animations and more.</div></li> <li class="svelte-1hwn6ph"><div class="ft svelte-1hwn6ph"><i class="svelte-1hwn6ph"></i>Rich previews</div> <div class="fb svelte-1hwn6ph">Accurate, render-ready previews for every supported
@@ -120,13 +122,13 @@
                             to end after getting tired of losing work in a maze
                             of folders. Development, design and community are
                             all run by one person.</p></div> <div class="angle svelte-1hwn6ph"><h3 class="svelte-1hwn6ph"><span class="svelte-1hwn6ph">C.</span>No subscription, on principle</h3> <p class="svelte-1hwn6ph">A one-time $29 purchase during open beta, rising to
-                            $49 at release, with lifetime upgrades, a deliberate
+                            $49 at release, with free updates for the major version you buy, a deliberate
                             stand against the subscription model that has crept
                             into nearly every creative tool.</p></div> <div class="angle svelte-1hwn6ph"><h3 class="svelte-1hwn6ph"><span class="svelte-1hwn6ph">D.</span>Made for the engines the big tools
                             ignore</h3> <p class="svelte-1hwn6ph">First-class support for Godot, Unity, Unreal and
                             GameMaker workflows that incumbents like Eagle and
                             Connecter do not meaningfully target.</p></div></div></div></section> <section class="svelte-1hwn6ph"><div class="wrap svelte-1hwn6ph"><div class="sec-head svelte-1hwn6ph"><span class="sec-num svelte-1hwn6ph">04</span> <h2 class="svelte-1hwn6ph">Fact sheet</h2></div> <table class="facts svelte-1hwn6ph"><tbody class="svelte-1hwn6ph"><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Title</th><td class="svelte-1hwn6ph">AssetHoard</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Developer</th><td class="svelte-1hwn6ph">Mark Gandolfo · Melbourne AU</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Status</th><td class="svelte-1hwn6ph">Open beta</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Platforms</th><td class="svelte-1hwn6ph">Windows, macOS, Linux</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Price</th><td class="svelte-1hwn6ph">$29 USD during open beta · $49 at release ·
-                                one-time purchase · lifetime upgrades · no
+                                one-time purchase · free updates within the major version · no
                                 subscription</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Built with</th><td class="svelte-1hwn6ph">Rust</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Category</th><td class="svelte-1hwn6ph">Asset manager / creative workflow tool</td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Website</th><td class="svelte-1hwn6ph"><a href="https://assethoard.com" class="svelte-1hwn6ph">assethoard.com</a></td></tr><tr class="svelte-1hwn6ph"><th class="svelte-1hwn6ph">Open beta since</th><td class="svelte-1hwn6ph"><span class="mono svelte-1hwn6ph" style="color:var(--faint)">March 2026</span></td></tr></tbody></table></div></section> <section class="svelte-1hwn6ph"><div class="wrap svelte-1hwn6ph"><div class="sec-head svelte-1hwn6ph"><span class="sec-num svelte-1hwn6ph">05</span> <h2 class="svelte-1hwn6ph">About the developer</h2></div> <p style="color:var(--muted);max-width:65ch" class="svelte-1hwn6ph">AssetHoard is built by Mark Gandolfo, a solo developer based
                     in Melbourne, Australia. He started the project to solve his
                     own asset-organisation problem and has grown it from a
@@ -138,7 +140,7 @@
 			
 			<script>
 				{
-					__sveltekit_u6kdf5 = {
+					__sveltekit_goe4be = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						env: null
 					};
@@ -146,11 +148,11 @@
 					const element = document.currentScript.parentElement;
 
 					import("./_app/env.js").then(({ env }) => {
-						__sveltekit_u6kdf5.env = env;
+						__sveltekit_goe4be.env = env;
 
 						Promise.all([
-							import("./_app/immutable/entry/start.dZ6opX3N.js"),
-							import("./_app/immutable/entry/app.CXztNrfL.js")
+							import("./_app/immutable/entry/start.C56w_z41.js"),
+							import("./_app/immutable/entry/app.Ls3NzVHK.js")
 						]).then(([kit, app]) => {
 							kit.start(app, element, {
 									node_ids: [0, 42],
