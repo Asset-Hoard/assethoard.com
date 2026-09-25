@@ -33,6 +33,7 @@
 - [/docs/materials](https://assethoard.com/docs/materials): Importing and previewing materials and texture sets.
 - [/docs/choose-a-renderer](https://assethoard.com/docs/choose-a-renderer): Choosing a renderer for 3D and material previews.
 - [/docs/variants](https://assethoard.com/docs/variants): How asset variants work.
+- [/docs/group-pbr-textures](https://assethoard.com/docs/group-pbr-textures): Group loose PBR texture maps into one material: channels detected from file names, a lit sphere preview, and export or drag-out as a self-contained MaterialX (.mtlx) folder.
 - [/docs/spritesheet-slicing](https://assethoard.com/docs/spritesheet-slicing): Slice a spritesheet into frames with Grid or Auto detection, build sprite sets, and export as GIF, packed sheet or per-frame PNGs.
 - [/docs/turntable](https://assethoard.com/docs/turntable): Render a 3D model as a spinning turntable or play one of its animation clips, then export an animated GIF, a sprite sheet with an atlas JSON, a zip of PNG frames or a single frame. Rendered locally on your GPU.
 - [/docs/archives](https://assethoard.com/docs/archives): Working with archived assets.
