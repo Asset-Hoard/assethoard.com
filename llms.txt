@@ -38,6 +38,8 @@
 - [/docs/turntable](https://assethoard.com/docs/turntable): Render a 3D model as a spinning turntable or play one of its animation clips, then export an animated GIF, a sprite sheet with an atlas JSON, a zip of PNG frames or a single frame. Rendered locally on your GPU.
 - [/docs/archives](https://assethoard.com/docs/archives): Working with archived assets.
 - [/docs/unity](https://assethoard.com/docs/unity): Importing Unity Asset Store packages.
+- [/docs/godot](https://assethoard.com/docs/godot): Reading Godot .tres resources (Godot 3 and 4): resolving res:// references, previews for materials, SpriteFrames, TileSets, fonts, audio playlists and noise textures, and dragging a resource into a project with its dependencies.
+- [/docs/gamemaker](https://assethoard.com/docs/gamemaker): Reading GameMaker .yy resources (GameMaker Studio 2.3+), .yymps packages and .yyz exports: previews for sprites, sounds, tilesets, fonts, objects and rooms, reference resolution, and exporting.
 - [/docs/unreal](https://assethoard.com/docs/unreal): Reading Unreal Engine .uasset and .umap packages directly (UE4.10 to UE5.5): classification, previews for meshes, sprites and audio, dependency resolution, and exporting content with its references. No Unreal Editor or plugin.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
 - [/docs/keyboard](https://assethoard.com/docs/keyboard): Keyboard shortcuts.
