@@ -34,6 +34,7 @@
 - [/docs/choose-a-renderer](https://assethoard.com/docs/choose-a-renderer): Choosing a renderer for 3D and material previews.
 - [/docs/variants](https://assethoard.com/docs/variants): How asset variants work.
 - [/docs/spritesheet-slicing](https://assethoard.com/docs/spritesheet-slicing): Slice a spritesheet into frames with Grid or Auto detection, build sprite sets, and export as GIF, packed sheet or per-frame PNGs.
+- [/docs/turntable](https://assethoard.com/docs/turntable): Render a 3D model as a spinning turntable or play one of its animation clips, then export an animated GIF, a sprite sheet with an atlas JSON, a zip of PNG frames or a single frame. Rendered locally on your GPU.
 - [/docs/archives](https://assethoard.com/docs/archives): Working with archived assets.
 - [/docs/unity](https://assethoard.com/docs/unity): Importing Unity Asset Store packages.
 - [/docs/unreal](https://assethoard.com/docs/unreal): Reading Unreal Engine .uasset and .umap packages directly (UE4.10 to UE5.5): classification, previews for meshes, sprites and audio, dependency resolution, and exporting content with its references. No Unreal Editor or plugin.
@@ -99,6 +100,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.2.2](https://assethoard.com/releases/0.2.2): Export any 3D model as a turntable GIF, sprite sheet or single frame. Unreal meshes and materials now preview with their textures, and models drag out of the library with their textures included.
 - [/releases/0.2.1](https://assethoard.com/releases/0.2.1): Import an Unreal project's .uasset and .umap files and preview them without opening the editor. Plus materials built from PBR texture maps, and more export options.
 - [/releases/0.1.22](https://assethoard.com/releases/0.1.22): AssetHoard v0.1.22 slices sprite sheets into frames and exports animations as GIFs, packed sheets or PNGs, from Aseprite, Piskel, GameMaker and Godot too.
 - [/releases/0.1.21](https://assethoard.com/releases/0.1.21): Drop a GameMaker project, .yymps package or .yyz export into your library and AssetHoard reads the resources inside, no unpacking required. Plus faster 3D importing and previews, and speed-ups for large libraries and imports.
