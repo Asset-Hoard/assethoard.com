@@ -74,6 +74,12 @@
 - [/tools/licence-detector](https://assethoard.com/tools/licence-detector): Detect licences in a set of files and draft a credits block.
 - [/tools/metadata-inspector](https://assethoard.com/tools/metadata-inspector): Drop any asset and see everything about it.
 
+## Blog categories
+- [/blog/category/guides](https://assethoard.com/blog/category/guides): Practical guides for game developers: choosing an engine, understanding asset formats and licences, organising your library, and where to find free assets.
+- [/blog/category/artist-spotlight](https://assethoard.com/blog/category/artist-spotlight): Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets.
+- [/blog/category/indie-life](https://assethoard.com/blog/category/indie-life): Advice for solo indie game developers beyond code and art: running your game as a business, staying motivated and shipping without an artist.
+- [/blog/category/news](https://assethoard.com/blog/category/news): AssetHoard news and feature announcements, plus engineering deep dives on how we built them, from Rust and Tauri performance to file format parsing.
+
 ## Blog
 - [/blog/artist-spotlight-james-rommel-lobaton](https://assethoard.com/blog/artist-spotlight-james-rommel-lobaton): 2D/3D game animator James Rommel Lobaton on rigging other artists' work in Spine, his commission process, and what indie devs should know before hiring one.
 - [/blog/top-free-2d-game-assets-2026](https://assethoard.com/blog/top-free-2d-game-assets-2026): Our running roundup of the best free 2D asset packs for game developers and creative professionals, kept up to date through 2026.
