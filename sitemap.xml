@@ -58,6 +58,12 @@
 		<loc>https://assethoard.com/docs/turntable</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/mcp</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/docs/mcp-tools</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/linux</loc>
 	</url>
 	<url>
@@ -110,6 +116,9 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/semantic-search</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/mcp-server</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/local-first</loc>
@@ -264,6 +273,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.2.3</loc>
+		<lastmod>2026-10-08</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.2.2</loc>

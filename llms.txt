@@ -10,6 +10,7 @@
 - [Home](https://assethoard.com/): Overview of AssetHoard, the local-first game asset manager.
 - [/local-first](https://assethoard.com/local-first): Why AssetHoard keeps your library entirely on your machine, with no server or account.
 - [/semantic-search](https://assethoard.com/semantic-search): Find assets by meaning, not just filename, across your whole library.
+- [/mcp-server](https://assethoard.com/mcp-server): Connect Claude Code, Cursor, VS Code, Windsurf or Claude Desktop to your library through a local MCP server: search, preview and export assets into a game project.
 - [/variants](https://assethoard.com/variants): Group alternate versions of an asset together as variants.
 - [/archive](https://assethoard.com/archive): Archive assets you are not using without deleting them from your library.
 - [/unity-asset-manager](https://assethoard.com/unity-asset-manager): Import and browse Unity Asset Store .unitypackage files.
@@ -41,6 +42,8 @@
 - [/docs/godot](https://assethoard.com/docs/godot): Reading Godot .tres resources (Godot 3 and 4): resolving res:// references, previews for materials, SpriteFrames, TileSets, fonts, audio playlists and noise textures, and dragging a resource into a project with its dependencies.
 - [/docs/gamemaker](https://assethoard.com/docs/gamemaker): Reading GameMaker .yy resources (GameMaker Studio 2.3+), .yymps packages and .yyz exports: previews for sprites, sounds, tilesets, fonts, objects and rooms, reference resolution, and exporting.
 - [/docs/unreal](https://assethoard.com/docs/unreal): Reading Unreal Engine .uasset and .umap packages directly (UE4.10 to UE5.5): classification, previews for meshes, sprites and audio, dependency resolution, and exporting content with its references. No Unreal Editor or plugin.
+- [/docs/mcp](https://assethoard.com/docs/mcp): Set up the local MCP server and connect an AI client: settings, client configs, importing with approval, security model, worked examples and troubleshooting.
+- [/docs/mcp-tools](https://assethoard.com/docs/mcp-tools): Reference for every MCP tool (search, browse, inspect, export, plus optional bundle, tag, category, project and import tools), with arguments and response shapes.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
 - [/docs/keyboard](https://assethoard.com/docs/keyboard): Keyboard shortcuts.
 - [/docs/license](https://assethoard.com/docs/license): How your AssetHoard licence works: buying, activating, and managing it across up to 2 devices.
@@ -110,6 +113,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.2.3](https://assethoard.com/releases/0.2.3): A built-in MCP server lets Claude Code, Cursor, VS Code and Windsurf search your library and copy assets into your project. Also: assethoard:// links, searchable audio metadata, EXR and HDR support, and batch image export.
 - [/releases/0.2.2](https://assethoard.com/releases/0.2.2): Export any 3D model as a turntable GIF, sprite sheet or single frame. Unreal meshes and materials now preview with their textures, and models drag out of the library with their textures included.
 - [/releases/0.2.1](https://assethoard.com/releases/0.2.1): Import an Unreal project's .uasset and .umap files and preview them without opening the editor. Plus materials built from PBR texture maps, and more export options.
 - [/releases/0.1.22](https://assethoard.com/releases/0.1.22): AssetHoard v0.1.22 slices sprite sheets into frames and exports animations as GIFs, packed sheets or PNGs, from Aseprite, Piskel, GameMaker and Godot too.
