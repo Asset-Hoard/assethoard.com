@@ -164,7 +164,11 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/category/news</loc>
-		<lastmod>2026-08-07</lastmod>
+		<lastmod>2026-10-13</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/blog/how-we-built-the-assethoard-mcp-server</loc>
+		<lastmod>2026-10-13</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/staying-motivated-solo-indie-developer</loc>

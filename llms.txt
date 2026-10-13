@@ -84,6 +84,7 @@
 - [/blog/category/news](https://assethoard.com/blog/category/news): AssetHoard news and feature announcements, plus engineering deep dives on how we built them, from Rust and Tauri performance to file format parsing.
 
 ## Blog
+- [/blog/how-we-built-the-assethoard-mcp-server](https://assethoard.com/blog/how-we-built-the-assethoard-mcp-server): AssetHoard's built-in MCP server lets Claude Code, Cursor, VS Code and Windsurf search your asset library and export into your game project. How we built it.
 - [/blog/staying-motivated-solo-indie-developer](https://assethoard.com/blog/staying-motivated-solo-indie-developer): Motivation runs out on every long project. Solo indie developers who finish rely on habits, visible progress and real rest to get through the slow middle.
 - [/blog/artist-spotlight-james-rommel-lobaton](https://assethoard.com/blog/artist-spotlight-james-rommel-lobaton): 2D/3D game animator James Rommel Lobaton on rigging other artists' work in Spine, his commission process, and what indie devs should know before hiring one.
 - [/blog/top-free-2d-game-assets-2026](https://assethoard.com/blog/top-free-2d-game-assets-2026): Our running roundup of the best free 2D asset packs for game developers and creative professionals, kept up to date through 2026.
