@@ -17,6 +17,7 @@
 - [/godot-asset-manager](https://assethoard.com/godot-asset-manager): Manage Godot resources (.tres, .tscn, .res) alongside the rest of your assets.
 - [/unreal-asset-manager](https://assethoard.com/unreal-asset-manager): Read Unreal Engine .uasset and .umap packages directly (UE4.10 to UE5.5): classify, preview meshes, sprites, and audio, and export content back out with its dependencies. No Unreal Editor or plugin.
 - [/gamemaker-asset-manager](https://assethoard.com/gamemaker-asset-manager): Import and preview GameMaker resources (.yy, .yymps, .yyz): sprites, tilesets, objects, sounds, and fonts.
+- [/compare/eagle](https://assethoard.com/compare/eagle): Eagle vs AssetHoard: an honest comparison for game developers, covering 3D models, Aseprite, pixel art, PBR materials, .unitypackage and Godot files, and Linux support.
 - [/2d-artists](https://assethoard.com/2d-artists): AssetHoard for 2D artists working with sprites, textures, and tilesets.
 - [/spritesheet-slicing](https://assethoard.com/spritesheet-slicing): Slice a spritesheet into individual frames with Grid or Auto detection, build animations, and export as GIF, packed sheet or per-frame PNGs.
 - [/3d-gamedev-and-artists](https://assethoard.com/3d-gamedev-and-artists): AssetHoard for 3D game developers and artists working with models and materials.

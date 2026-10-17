@@ -115,6 +115,9 @@
 		<loc>https://assethoard.com/gamemaker-asset-manager</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/compare/eagle</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/semantic-search</loc>
 	</url>
 	<url>
@@ -257,10 +260,6 @@
 	<url>
 		<loc>https://assethoard.com/blog/pbr-vs-orm-explained</loc>
 		<lastmod>2026-04-17</lastmod>
-	</url>
-	<url>
-		<loc>https://assethoard.com/blog/eagle-alternative-game-developers</loc>
-		<lastmod>2026-04-03</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/how-i-manage-100000-game-assets</loc>
