@@ -49,6 +49,9 @@
 		<loc>https://assethoard.com/docs/archives</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/docs/watched-folders</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/docs/search</loc>
 	</url>
 	<url>
@@ -280,6 +283,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.2.4</loc>
+		<lastmod>2026-10-24</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.2.3</loc>
