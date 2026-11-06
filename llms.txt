@@ -44,6 +44,7 @@
 - [/docs/godot](https://assethoard.com/docs/godot): Reading Godot .tres resources (Godot 3 and 4): resolving res:// references, previews for materials, SpriteFrames, TileSets, fonts, audio playlists and noise textures, and dragging a resource into a project with its dependencies.
 - [/docs/gamemaker](https://assethoard.com/docs/gamemaker): Reading GameMaker .yy resources (GameMaker Studio 2.3+), .yymps packages and .yyz exports: previews for sprites, sounds, tilesets, fonts, objects and rooms, reference resolution, and exporting.
 - [/docs/unreal](https://assethoard.com/docs/unreal): Reading Unreal Engine .uasset and .umap packages directly (UE4.10 to UE5.5): classification, previews for meshes, sprites and audio, dependency resolution, and exporting content with its references. No Unreal Editor or plugin.
+- [/docs/plugins](https://assethoard.com/docs/plugins): Install, update and manage plugins: the registry and installing from a file, settings, sharing an extension between plugins, the sandbox and permissions, status badges, common problems and the plugin log.
 - [/docs/mcp](https://assethoard.com/docs/mcp): Set up the local MCP server and connect an AI client: settings, client configs, importing with approval, security model, worked examples and troubleshooting.
 - [/docs/mcp-tools](https://assethoard.com/docs/mcp-tools): Reference for every MCP tool (search, browse, inspect, export, plus optional bundle, tag, category, project and import tools), with arguments and response shapes.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
@@ -51,6 +52,11 @@
 - [/docs/license](https://assethoard.com/docs/license): How your AssetHoard licence works: buying, activating, and managing it across up to 2 devices.
 - [/docs/license-detection](https://assethoard.com/docs/license-detection): Automatic licence detection and per-asset attribution tracking on import.
 - [/docs/faq](https://assethoard.com/docs/faq): Frequently asked questions.
+
+## Plugins
+- [/plugins](https://assethoard.com/plugins): Free plugins that add file formats to AssetHoard and connect it to tools like Godot.
+- [/plugins/godot](https://assethoard.com/plugins/godot): Godot plugin: Browse and import your AssetHoard library from inside the Godot editor.
+- [/plugins/heic](https://assethoard.com/plugins/heic): HEIC plugin: Thumbnails and previews for HEIC and HEIF photos.
 
 ## Free browser tools
 - [/tools/texture-atlas-packer](https://assethoard.com/tools/texture-atlas-packer): Pack many images into one sprite sheet with a coordinates file.
@@ -117,6 +123,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.3.1](https://assethoard.com/releases/0.3.1): AssetHoard now supports plugins, starting with HEIC photos and a Godot editor plugin. Also: watched folders that follow renames and moves, one place to fix missing files, filters beside the library, audio export, Spine and LightWave support, and faster big libraries.
 - [/releases/0.2.4](https://assethoard.com/releases/0.2.4): Watched folders now keep tags, categories and bundles through renames and moves, even ones made while AssetHoard was closed. Also: clearer re-imports and faster launches on big libraries.
 - [/releases/0.2.3](https://assethoard.com/releases/0.2.3): A built-in MCP server lets Claude Code, Cursor, VS Code and Windsurf search your library and copy assets into your project. Also: assethoard:// links, searchable audio metadata, EXR and HDR support, and batch image export.
 - [/releases/0.2.2](https://assethoard.com/releases/0.2.2): Export any 3D model as a turntable GIF, sprite sheet or single frame. Unreal meshes and materials now preview with their textures, and models drag out of the library with their textures included.

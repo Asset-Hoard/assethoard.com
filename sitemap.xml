@@ -97,6 +97,9 @@
 		<loc>https://assethoard.com/terms</loc>
 	</url>
 	<url>
+		<loc>https://assethoard.com/open-source-licenses</loc>
+	</url>
+	<url>
 		<loc>https://assethoard.com/releases</loc>
 	</url>
 	<url>
@@ -155,6 +158,12 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/tools</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/plugins</loc>
+	</url>
+	<url>
+		<loc>https://assethoard.com/docs/plugins</loc>
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/category/guides</loc>
@@ -283,6 +292,10 @@
 	<url>
 		<loc>https://assethoard.com/blog/hello-world</loc>
 		<lastmod>2025-01-09</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/releases/0.3.1</loc>
+		<lastmod>2026-11-06</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/releases/0.2.4</loc>
@@ -491,5 +504,13 @@
 	<url>
 		<loc>https://assethoard.com/tools/metadata-inspector</loc>
 		<lastmod>2026-09-19</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/plugins/godot</loc>
+		<lastmod>2026-11-06</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/plugins/heic</loc>
+		<lastmod>2026-11-06</lastmod>
 	</url>
 </urlset>
