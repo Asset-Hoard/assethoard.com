@@ -179,7 +179,11 @@
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/category/news</loc>
-		<lastmod>2026-10-13</lastmod>
+		<lastmod>2026-11-07</lastmod>
+	</url>
+	<url>
+		<loc>https://assethoard.com/blog/how-assethoard-plugins-work</loc>
+		<lastmod>2026-11-07</lastmod>
 	</url>
 	<url>
 		<loc>https://assethoard.com/blog/how-we-built-the-assethoard-mcp-server</loc>

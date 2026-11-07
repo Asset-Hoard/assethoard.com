@@ -6,7 +6,93 @@
 		<atom:link href="https://assethoard.com/rss.xml" rel="self" type="application/rss+xml" />
 		<description>Guides, artist spotlights, indie life and engineering deep dives from the team behind AssetHoard, the local-first asset manager for indie game developers.</description>
 		<language>en-au</language>
-		<lastBuildDate>Tue, 13 Oct 2026 00:00:00 GMT</lastBuildDate>
+		<lastBuildDate>Sat, 07 Nov 2026 00:00:00 GMT</lastBuildDate>
+		<item>
+			<title>How AssetHoard plugins work under the hood</title>
+			<link>https://assethoard.com/blog/how-assethoard-plugins-work</link>
+			<guid isPermaLink="true">https://assethoard.com/blog/how-assethoard-plugins-work</guid>
+			<pubDate>Sat, 07 Nov 2026 00:00:00 GMT</pubDate>
+			<dc:creator>Mark Gandolfo</dc:creator>
+			<category>AssetHoard news</category>
+			<description>AssetHoard 0.3.1 adds plugins, starting with HEIC photos and a Godot editor bridge. Why we built them on a sandboxed V8 engine, what a plugin can and can&apos;t touch, and what happens when one breaks.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/docs/plugins/assethoard-plugins.png" alt="The Plugins page in AssetHoard settings, showing the Installed and Browse tabs, the Install from file button and the Godot plugin card" /></p>
+<p>Every week someone asks whether AssetHoard can read format X, or talk to engine Y. Plenty of those we can&#39;t build into the app. The decoder is a huge C library under a licence we don&#39;t want to link, or the engine integration has to be written in another language. And if we built in every one we could, the app would bloat fast.</p>
+<p><a href="https://assethoard.com/releases/0.3.1" title="Read the AssetHoard 0.3.1 release notes">AssetHoard 0.3.1</a> adds plugins to handle those requests. The hard part was letting other people&#39;s code run inside the app without giving it access to your machine, so most of this post is about that.</p>
+<p><a href="https://assethoard.com/docs/plugins/assethoard-plugins.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/docs/plugins/assethoard-plugins.png" alt="The Plugins page in AssetHoard settings, showing the Installed and Browse tabs, the Install from file button and the Godot plugin card" title="The Plugins page in AssetHoard settings" width="1916" height="1076" loading="eager" decoding="async"></a></p>
+<h2 id="the-first-two-plugins">The first two plugins</h2><p>We started with two plugins that work in completely different ways.</p>
+<h3 id="heic-a-new-file-format">HEIC: a new file format</h3><p><a href="https://assethoard.com/plugins/heic" title="The HEIC plugin for AssetHoard">HEIC</a> is the format iPhones save photos in, and a lot of reference images arrive that way. The decoder, libheif, is a big C library. The plugin is libheif compiled to WebAssembly, wrapped in a small amount of JavaScript.</p>
+<p>The plugin tells AssetHoard which extensions it handles and what kind of asset they become. Then it registers a hook that takes a file and returns raw pixels.</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">activate</span>(<span class="hljs-params">ctx</span>) {
+  ctx.<span class="hljs-title function_">registerFileHandler</span>({
+    <span class="hljs-title function_">decode</span>(<span class="hljs-params">file</span>) { <span class="hljs-comment">/* -&gt; { width, height, pixels } */</span> },
+    <span class="hljs-title function_">describe</span>(<span class="hljs-params">file</span>) { <span class="hljs-comment">/* cheap, header only -&gt; metadata */</span> },
+  });
+}</code></pre><p>AssetHoard handles everything after that in Rust. The plugin knows nothing about thumbnails, the large preview or Export As PNG. HEIC files work everywhere built-in formats do: folder import, watched folders, archives, bundle covers, reimport and export.</p>
+<p>The plugin never sees a file path either. It gets a handle it can read from during one call, and it can&#39;t open anything else on your disk.</p>
+<h3 id="godot-an-editor-bridge-with-no-plugin-code">Godot: an editor bridge with no plugin code</h3><p>The <a href="https://assethoard.com/plugins/godot" title="The Godot plugin for AssetHoard">Godot plugin</a> has no JavaScript in it. It&#39;s a manifest, a Godot editor addon and one permission.</p>
+<p>Install it, pick your Godot project, and an &quot;AssetHoard&quot; tab appears in the editor next to 2D, 3D and Script. You can browse bundles, search with the same filters as the app, and import into whichever folder you have selected in Godot.</p>
+<p><a href="https://assethoard.com/pages/godot-asset-manager/assethoard-godot-plugin.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/pages/godot-asset-manager/assethoard-godot-plugin.png" alt="The AssetHoard tab in the Godot editor, browsing a project with search, type and category filters" title="AssetHoard inside the Godot editor" width="1916" height="1046" loading="lazy" decoding="async"></a></p>
+<p>The permission tells AssetHoard to start a small local API, which AssetHoard runs itself. The plugin doesn&#39;t open any connections. AssetHoard also copies the addon into your project, after checking the folder is a Godot project. The plugin itself has no write access to anything.</p>
+<h2 id="why-an-embedded-v8-not-python-or-a-subprocess">Why an embedded V8, not Python or a subprocess</h2><p>These are the options we ruled out:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Why not</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Embedded Python</td>
+<td>No real in-process sandbox, and native packages need builds for every platform</td>
+</tr>
+<tr>
+<td>Python on WebAssembly</td>
+<td>Loses native packages, so codecs like HEIC become impractical</td>
+</tr>
+<tr>
+<td>Lua or QuickJS</td>
+<td>No WebAssembly, so codecs can&#39;t be plugins</td>
+</tr>
+<tr>
+<td>JavaScript embedded in the app via a webview</td>
+<td>Every byte would pass between the UI and Rust, and we keep heavy data in Rust</td>
+</tr>
+<tr>
+<td>A separate program per plugin</td>
+<td>Builds for every platform, code-signing problems, and no sandbox by default</td>
+</tr>
+</tbody></table></div>
+<p>We embedded V8, Chrome&#39;s JavaScript engine, through <code>deno_core</code>. That&#39;s the engine layer Deno is built on, without the rest of Deno. On its own it runs standard JavaScript and WebAssembly, and has no other abilities until we add them.</p>
+<p>That gave us three things we needed:</p>
+<ul>
+<li><strong>No access by default.</strong> A new engine instance can&#39;t touch files, the network or other processes.</li>
+<li><strong>WebAssembly support.</strong> A C codec ships as a <code>.wasm</code> file inside the plugin.</li>
+<li><strong>One package for every platform.</strong> The same plugin runs on Windows, macOS and Linux, so authors don&#39;t need separate builds.</li>
+</ul>
+<p>It adds a few megabytes to the installer, and a plugin starts in under 20 milliseconds. An installed plugin doesn&#39;t load until you import one of its files.</p>
+<h2 id="permissions-are-doors-we-build">Permissions are doors we build</h2><p>A plugin with no permissions can only read the file AssetHoard gives it, its own bundled files and its settings. HEIC needs nothing more, so it asks for no permissions.</p>
+<p>Anything beyond that needs a permission. Each permission is a narrow, specific ability that AssetHoard implements and enforces. Take Godot. A general &quot;write files&quot; permission would have been simpler for us to build, but you&#39;d be trusting the plugin with your whole disk. Instead you pick the folder, AssetHoard checks it, and AssetHoard copies only the files the plugin declared.</p>
+<p>Only a couple of permissions exist today, and more are designed. Each one ships with tests that check a plugin without the permission gets an error.</p>
+<h2 id="a-plugin-can-misbehave-the-app-shouldnt-notice">A plugin can misbehave, the app shouldn&#39;t notice</h2><p>We plan for two kinds of bad plugin: a buggy one that hangs, leaks memory or crashes, and a hostile one that tries to break out of the sandbox.</p>
+<p>For the buggy kind, every plugin runs separately, with a time limit on each call and a memory cap. Runaway loops get stopped. A plugin that fails repeatedly is paused for a while. Plugins also run alongside the normal import pipeline, so a stuck plugin doesn&#39;t hold up built-in formats or other plugins.</p>
+<p>A plugin failure also never fails your import. The file still comes in without a thumbnail, and right-click &gt; Reimport adds it once the plugin is fixed.</p>
+<p>For the hostile kind, the sandbox is the first line of defence, and we update V8 promptly when security fixes land. Registry downloads are signed and checksum verified. Submissions that ask for more permissions get a closer review. If a plugin turns out to be harmful, we can withdraw it and AssetHoard switches it off immediately.</p>
+<h2 id="fewer-prompts">Fewer prompts</h2><p>If an app asks for permission too often, people stop reading and click yes. So AssetHoard asks once, in plain language, when you install.</p>
+<ul>
+<li><strong>One prompt, at install.</strong> It lists what the plugin can do, which file types it reads, and anything it installs into another tool. There are no per-file or per-session prompts.</li>
+<li><strong>Updates only flag what changed.</strong> If an update doesn&#39;t ask for anything new, you just confirm it.</li>
+<li><strong>No restarts.</strong> Install, update, enable and disable all take effect immediately.</li>
+<li><strong>Settings without code.</strong> A plugin lists its settings and AssetHoard builds the form.</li>
+<li><strong>Warnings that match the risk.</strong> A plugin installed from a file gets a small tag. Plenty of game developers install plugins by hand or write their own, so we don&#39;t treat it as an emergency.</li>
+</ul>
+<h2 id="whats-next">What&#39;s next</h2><p>We built the plugin API so new kinds of plugin can be added the same way, each with its permissions designed before it ships.</p>
+<p>On the list: more file formats, plugins that add actions to the right-click menu, and the one people ask about most, plugins that run after import, such as tagging new textures with an AI model running on your own machine. That one needs things the sandbox doesn&#39;t allow yet, so it&#39;ll take more work. We&#39;ll write about it when it&#39;s ready.</p>
+<p>We&#39;re not giving dates for any of these. Whatever we add, plugins will still start with no access, and each new permission will be narrow, tested and explained at install.</p>
+<h2 id="try-it">Try it</h2><p>Plugins are in <a href="https://assethoard.com/releases/0.3.1" title="Read the AssetHoard 0.3.1 release notes">AssetHoard 0.3.1</a>. Open Settings &gt; Plugins, browse the registry, and install <a href="https://assethoard.com/plugins/heic" title="The HEIC plugin for AssetHoard">HEIC</a> or <a href="https://assethoard.com/plugins/godot" title="The Godot plugin for AssetHoard">Godot</a>. The <a href="https://assethoard.com/docs/plugins" title="How to install and manage AssetHoard plugins">plugins docs</a> have the details. If you want to build your own, an SDK with TypeScript types, a scaffold and a test tool is on the way. Tell us what you&#39;d build first. These two came straight from requests.</p>
+<hr>
+<p><em>The AssetHoard Team</em></p>
+]]></content:encoded>
+		</item>
 		<item>
 			<title>How we built the AssetHoard MCP server</title>
 			<link>https://assethoard.com/blog/how-we-built-the-assethoard-mcp-server</link>
