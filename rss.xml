@@ -1434,22 +1434,81 @@ Byte 7+:     &lt;pdnImage ...                   XML preamble starts here</code><
 ]]></content:encoded>
 		</item>
 		<item>
-			<title>Parsing Godot .tres files and walking the resource graph</title>
+			<title>What is a .tres file in Godot? (and how .res differs)</title>
 			<link>https://assethoard.com/blog/parsing-godot-tres-files</link>
 			<guid isPermaLink="true">https://assethoard.com/blog/parsing-godot-tres-files</guid>
 			<pubDate>Sat, 09 May 2026 00:00:00 GMT</pubDate>
 			<dc:creator>Mark Gandolfo</dc:creator>
 			<category>AssetHoard news</category>
-			<description>How AssetHoard parses Godot resource files, resolves cross-references, and reconstructs the res:// folder layout on drag-out so materials work the moment they land in your project.</description>
-			<content:encoded><![CDATA[<p><img src="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" alt="Parsing Godot .tres files and walking the resource graph" /></p>
-<p><a href="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" alt="AssetHoard library showing Godot .tres assets — material spheres, sprite frames animations and tilesets — with a SpriteFrames preview panel open on the right" title="AssetHoard v0.1.13: Godot .tres support with material, SpriteFrames and TileSet previews" width="1278" height="688" loading="eager" decoding="async"></a></p>
+			<description>A .tres file is a Godot text resource: a readable file storing one resource, such as a material or tileset. How it differs from .res and how to view one.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" alt="AssetHoard library showing Godot .tres assets, including material spheres, sprite frames animations and tilesets, with a SpriteFrames preview panel open" /></p>
+<p>A <code>.tres</code> file is a Godot <strong>text resource</strong>: a plain-text file that stores one resource, such as a material, a tileset or an animation, in a form you can read and edit. Its binary counterpart is <code>.res</code>. This post covers what a <code>.tres</code> contains, when Godot uses <code>.tres</code> versus <code>.res</code>, and how to open one. Further down is the engineering story of how AssetHoard parses them.</p>
+<h2 id="what-is-a-tres-file">What is a .tres file?</h2><p>In Godot, a <em>resource</em> is a data object the engine can save to disk and load back: a <code>StandardMaterial3D</code>, a <code>SpriteFrames</code> animation set, a <code>TileSet</code>, a <code>Theme</code>, a <code>Curve</code>, or your own custom <code>Resource</code> class. When a resource is saved as its own file with the <code>.tres</code> extension, Godot writes it in its text resource format.</p>
+<p>A <code>.tres</code> file stores:</p>
+<ul>
+<li><strong>A header</strong> naming the resource type, for example <code>[gd_resource type=&quot;StandardMaterial3D&quot; format=3]</code>. In Godot 4 the header also carries a <code>uid</code>.</li>
+<li><strong>External references</strong> (<code>[ext_resource]</code>), which point at other files the resource needs, such as textures, by <code>res://</code> path.</li>
+<li><strong>Embedded sub-resources</strong> (<code>[sub_resource]</code>), smaller resources that live inside the same file, such as an <code>AtlasTexture</code> slice of a sprite sheet.</li>
+<li><strong>The resource&#39;s own properties</strong> under <code>[resource]</code>, as <code>key = value</code> lines. Properties left at their default value are not written.</li>
+</ul>
+<p>A <code>.tres</code> does not usually contain the heavy data itself. A material <code>.tres</code> lists which textures it uses and its settings, but the image data stays in the PNG files it points at.</p>
+<h2 id="when-godot-uses-tres-and-when-it-uses-res">When Godot uses .tres and when it uses .res</h2><p>The content is the same. Only the encoding differs, and Godot picks the format from the file extension when a resource is saved.</p>
+<ul>
+<li><strong>In your project, while you work</strong>, resources are normally saved as <code>.tres</code>. The Godot docs describe <code>.tres</code> as the version-control-friendly option.</li>
+<li><strong>Resources can also be built-in</strong>, saved inside the scene (<code>.tscn</code>) that uses them rather than as a separate file. Clearing a resource&#39;s path in the Inspector makes it built-in.</li>
+<li><strong>When you export a game</strong>, Godot converts text resources and scenes to binary by default (the <code>editor/export/convert_text_resources_to_binary</code> project setting), because binary loads faster.</li>
+<li><strong>Imported files</strong> such as PNGs, WAVs and models are not stored as <code>.tres</code>. Godot keeps its processed copies in the hidden <code>.godot/imported</code> folder.</li>
+</ul>
+<h2 id="res-vs-tres">.res vs .tres</h2><div class="table-scroll"><table>
+<thead>
+<tr>
+<th></th>
+<th><code>.tres</code> (text resource)</th>
+<th><code>.res</code> (binary resource)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Format</td>
+<td>Plain text, INI-like sections</td>
+<td>Binary</td>
+</tr>
+<tr>
+<td>Readability</td>
+<td>Readable in any text editor</td>
+<td>Not human-readable</td>
+</tr>
+<tr>
+<td>Diffs in git</td>
+<td>Clean, line-by-line diffs and merges</td>
+<td>Opaque, a changed file is a changed blob</td>
+</tr>
+<tr>
+<td>Size and load speed</td>
+<td>Larger, slower to parse</td>
+<td>More compact, faster to load</td>
+</tr>
+<tr>
+<td>Typical use</td>
+<td>Resources in a project under version control</td>
+<td>Exported games, and resources nobody needs to read or diff</td>
+</tr>
+</tbody></table></div>
+<h2 id="how-to-open-read-or-edit-a-tres-file">How to open, read or edit a .tres file</h2><ul>
+<li><strong>In the Godot editor.</strong> Double-click the file in the FileSystem dock. Its properties open in the Inspector, where you can edit them and save. This is the safest option because Godot writes the file for you.</li>
+<li><strong>In any text editor.</strong> A <code>.tres</code> is plain UTF-8 text, so VS Code, Notepad++, Sublime Text or any other editor will open it. This is handy for checking a path or a value, or for a quick find-and-replace across many files. Commit or back up first, because a syntax error will stop Godot loading the resource.</li>
+<li><strong>In version control.</strong> Because the format is text, <code>git diff</code> shows exactly which property changed, and reviewers can read resource changes in a pull request like code.</li>
+</ul>
+<p>To convert between the two formats, open the resource in the Inspector, use <strong>Save As</strong>, and choose a <code>.tres</code> or <code>.res</code> extension.</p>
+<h2 id="viewing-tres-files-outside-godot">Viewing .tres files outside Godot</h2><p>Opening a project in the editor just to see what a material or tileset looks like is slow, and a text editor only shows the raw properties. AssetHoard reads native Godot <code>.tres</code> resources and previews them alongside your other assets: materials render on a lit sphere, SpriteFrames play back as animations, and TileSets open as a zoomable atlas. It also finds the textures each <code>.tres</code> references, so dragging one into a project brings its dependencies along. Binary <code>.res</code> files are not parsed. See <a href="https://assethoard.com/docs/godot" title="AssetHoard documentation for Godot .tres files">Godot and .tres files</a> in the docs, or the <a href="https://assethoard.com/godot-asset-manager" title="AssetHoard for Godot">Godot asset manager</a> overview.</p>
+<p><a href="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" alt="AssetHoard library showing Godot .tres assets, including material spheres, sprite frames animations and tilesets, with a SpriteFrames preview panel open on the right" title="AssetHoard v0.1.13: Godot .tres support with material, SpriteFrames and TileSet previews" width="1278" height="688" loading="eager" decoding="async"></a></p>
+<h2 id="how-assethoard-parses-tres-files">How AssetHoard parses .tres files</h2><p>The rest of this post is the engineering deep-dive: how AssetHoard reads <code>.tres</code> files, resolves their references and previews them.</p>
 <p>A <code>.tres</code> file looks innocent. Open one in a text editor and you get something close to INI: a header, a few sections, some key-value pairs. Tiny. Readable. Surely a couple of regexes away from being parseable.</p>
 <p>This impression survives roughly five minutes.</p>
 <p>Godot resource files are a custom format that references other resources by path, by UID, and sometimes both. A <code>StandardMaterial3D.tres</code> is a small text file pointing at textures that live somewhere else. Move just the <code>.tres</code> to a different project and the material is broken on the other end. The textures cannot be found. The material falls back to magenta. Your asset is, for any practical purpose, useless.</p>
 <p>This is a problem for an external asset manager. The whole point of AssetHoard is that you find a thing in one place and use it somewhere else. If &quot;use it somewhere else&quot; only works for self-contained files, then half of what comes out of a Godot project is excluded.</p>
 <p>So <a href="https://assethoard.com/releases/0.1.13" title="Read the AssetHoard v0.1.13 release notes">v0.1.13</a> ships proper <code>.tres</code> support. Materials, ShaderMaterials, SpriteFrames and TileSets all get real previews instead of generic icons. More importantly, dragging a <code>.tres</code> out of AssetHoard now walks its reference graph and pulls every linked file along with it, reconstructing the <code>res://</code> folder layout at the drop location. Drop the result into a Godot project and it just works.</p>
-<p>This post is the long version of how that got built. Lexer, parser, resource resolution, rendering, and the drag-out behaviour. There are sharp edges in every layer.</p>
-<h2 id="the-tres-godot-format">The .tres Godot format</h2><p>Before parsing anything you have to understand what you are parsing. The <code>.tres</code> format is text-based, deceptively simple at a glance, and full of corners.</p>
+<p>What follows is the long version of how that got built. Lexer, parser, resource resolution, rendering, and the drag-out behaviour. There are sharp edges in every layer.</p>
+<h2 id="the-tres-format-in-detail">The .tres format in detail</h2><p>Before parsing anything you have to understand what you are parsing. As covered above, the <code>.tres</code> format is text-based. It is also deceptively simple at a glance, and full of corners.</p>
 <p>A minimal example:</p>
 <pre><code class="hljs language-plaintext">[gd_resource type=&quot;StandardMaterial3D&quot; load_steps=3 format=3 uid=&quot;uid://abc123&quot;]
 
@@ -1652,13 +1711,13 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <p>Within a single drag, identical sources are deduped and target-path collisions follow first-write-wins, with a warning logged. A real collision means the resolver is wrong upstream.</p>
 <p>The behaviour is always-on for <code>.tres</code> assets and not user-configurable.</p>
 <h2 id="what-is-next">What is next</h2><p>A few things I am still working on or thinking about.</p>
-<p><strong>UID-based path recovery.</strong> UIDs are parsed and stored on the <code>[gd_resource]</code> header and on each <code>[ext_resource]</code> block, but resolution is path-only today. When a referenced file moves and the path goes stale, falling back to a library-wide UID index is the planned recovery path. Tracked as a separate card.</p>
+<p><strong>UID-based path recovery.</strong> UIDs are parsed and stored on the <code>[gd_resource]</code> header and on each <code>[ext_resource]</code> block, but resolution is path-only today. When a referenced file moves and the path goes stale, falling back to a library-wide UID index is the planned recovery path.</p>
 <p><strong>Custom resource scripts.</strong> Anything driven by user GDScript currently gets the &quot;indexed but no preview&quot; fallback. The cleanest path forward is probably a render hint that resource authors can embed in their own resources, which is something I would want to coordinate with the Godot community before defining. Would love to hear what shape that should take.</p>
 <p><strong>Scene file (<code>.tscn</code>) parsing.</strong> Scene files share most of the resource format and would unlock a lot. Currently in scope but not in <a href="https://assethoard.com/releases/0.1.13" title="Read the AssetHoard v0.1.13 release notes">v0.1.13</a>.</p>
 <p><strong>GDExtension resources.</strong> Outside the scope of what an external tool can reasonably parse without engine-specific knowledge. Probably an &quot;indexed but no preview&quot; forever, unless GDExtension authors want to ship metadata alongside their resources.</p>
 <p><strong>Extracting <code>godot_variant</code> as a crate.</strong> The lexer and parser module is <code>std + serde</code> only on purpose. If there is appetite for a published crate that handles Godot 3 and Godot 4 Variant grammar with graceful error recovery, get in touch.</p>
 <p>If you have run into adjacent problems, whether that is building tooling that consumes Godot resources from outside the editor, or wrestling with the format yourself, I would genuinely like to hear about it. <a href="https://assethoard.com/discord" title="Join the AssetHoard Discord server">Discord</a> or the <a href="https://assethoard.com/contact" title="Send a message via the AssetHoard contact form">contact form</a>.</p>
-<p>AssetHoard is a local-first asset manager for indie game devs and digital artists. The Godot work shipped in <a href="https://assethoard.com/releases/0.1.13" title="Read the AssetHoard v0.1.13 release notes">v0.1.13</a>. Open beta, free during beta, runs offline. Feature overview at <a href="https://assethoard.com/godot-asset-manager" title="AssetHoard for Godot — feature overview">assethoard.com/godot-asset-manager</a>.</p>
+<p>AssetHoard is a local-first asset manager for indie game devs and digital artists. The Godot work shipped in <a href="https://assethoard.com/releases/0.1.13" title="Read the AssetHoard v0.1.13 release notes">v0.1.13</a>. Open beta, free during beta, runs offline. Feature overview at <a href="https://assethoard.com/godot-asset-manager" title="AssetHoard for Godot: feature overview">assethoard.com/godot-asset-manager</a>.</p>
 <hr>
 <p><em>Mark</em></p>
 ]]></content:encoded>
