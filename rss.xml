@@ -601,15 +601,13 @@
 <p>I send those to the art director so they can choose one and ask for adjustments. Then it comes back to me to polish. When everything is signed off, I start doing the cutouts for the Spine animation. The final files are delivered in a folder at the end.</p>
 <!-- TODO: image, e.g. Bone Dragon silhouettes and final --><h2 id="what-does-your-toolkit-look-like-for-2d-and-3d-work">What does your toolkit look like for 2D and 3D work?</h2><p>I use Photoshop and Procreate for 2D, and Maya or 3ds Max for 3D, though I&#39;m practising Blender now.</p>
 <p><video controls muted loop playsinline preload="metadata" aria-label="Rough animation test by James Rommel Lobaton: a figure at a desk in a sketched room, drawn frame by frame in red line"><source src="https://assethoard.com/blog/2026/artist-spotlight/284100568-963885287637534-8856451239821048219-n.mp4" type="video/mp4"></video></p>
-<p><em>A rough animation test: the figure is drawn frame by frame in red line, with the frame numbers pencilled in.</em></p>
-<h3 id="why-spine-for-game-animation">Why Spine for game animation?</h3><p>It&#39;s a very strong piece of software for quick 2D animation. It&#39;s built for games, it keeps getting better with every update, and it&#39;s a one-time payment. Spine is probably the tool I couldn&#39;t work without. It&#39;s a big part of my commission work.</p>
+<p class="media-caption">A rough animation test: the figure is drawn frame by frame in red line, with the frame numbers pencilled in.</p><h3 id="why-spine-for-game-animation">Why Spine for game animation?</h3><p>It&#39;s a very strong piece of software for quick 2D animation. It&#39;s built for games, it keeps getting better with every update, and it&#39;s a one-time payment. Spine is probably the tool I couldn&#39;t work without. It&#39;s a big part of my commission work.</p>
 <h2 id="between-client-work-fan-art-and-challenges-like-inktober-and-swordtember-how-do-you-keep-your-files-organised">Between client work, fan art and challenges like Inktober and Swordtember, how do you keep your files organised?</h2><p>Staying organised is a pain. You have to name things correctly or you&#39;ll waste time looking for your files. I keep my files on Google Drive and my PC, and I name them after the game or the customer.</p>
 <p>My biggest pain point is not having enough space on my PC&#39;s drive.</p>
-<p><em>(We may know a thing or two about that one. Here&#39;s <a href="https://assethoard.com/blog/how-i-manage-100000-game-assets">how we keep 100,000 game assets findable</a>.)</em></p>
-<h2 id="what-do-you-wish-indie-developers-knew-before-commissioning-an-animator">What do you wish indie developers knew before commissioning an animator?</h2><p>Know what you want first: what type of game, what animation style, what art style. Always have references. And always communicate. The faster the reply, the better.</p>
+<aside class="editor-note"><p>We may know a thing or two about that one. Here is <a href="https://assethoard.com/blog/how-i-manage-100000-game-assets" title="How I manage 100,000 game assets">how we keep 100,000 game assets findable</a>.</p>
+</aside><h2 id="what-do-you-wish-indie-developers-knew-before-commissioning-an-animator">What do you wish indie developers knew before commissioning an animator?</h2><p>Know what you want first: what type of game, what animation style, what art style. Always have references. And always communicate. The faster the reply, the better.</p>
 <p><video controls muted playsinline preload="metadata" aria-label="Character design process by James Rommel Lobaton, from silhouettes and colour roughs to the final animated character"><source src="https://assethoard.com/blog/2026/artist-spotlight/flashback-nov-3-2024-11-33-10.mp4" type="video/mp4"></video></p>
-<p><em>James&#39;s character process: silhouettes first, then colour roughs, then the final character animated.</em></p>
-<hr>
+<p class="media-caption">James's character process: silhouettes first, then colour roughs, then the final character animated.</p><hr>
 <p>See more of James&#39;s work, or get in touch about new projects:</p>
 <ul>
 <li><a href="https://www.artstation.com/jamesrommellobaton8" target="_blank" rel="noopener noreferrer">ArtStation</a></li>
@@ -617,7 +615,7 @@
 <li><a href="https://www.linkedin.com/in/james-rommel-lobaton-549b3720b/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
 </ul>
 <hr>
-<p><em>This is part of our Artist Spotlight series. If you&#39;re a game asset creator and want to be featured, get in touch at <a href="mailto:mark@assethoard.com">mark@assethoard.com</a>.</em></p>
+<p><em>This is part of our Artist Spotlight series. If you are a game asset creator and want to be featured, <a href="https://assethoard.com/contact" title="Contact the AssetHoard team about being featured">get in touch</a>.</em></p>
 ]]></content:encoded>
 		</item>
 		<item>
@@ -2403,7 +2401,7 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <li><a href="https://www.fab.com/sellers/Tesseract%20%20Assets" target="_blank" rel="noopener noreferrer">Fab</a></li>
 </ul>
 <hr>
-<p><em>This is the first in our Artist Spotlight series. If you&#39;re a game asset creator and want to be featured, get in touch at <a href="mailto:mark@assethoard.com">mark@assethoard.com</a>.</em></p>
+<p><em>This is the first in our Artist Spotlight series. If you are a game asset creator and want to be featured, <a href="https://assethoard.com/contact" title="Contact the AssetHoard team about being featured">get in touch</a>.</em></p>
 ]]></content:encoded>
 		</item>
 		<item>
