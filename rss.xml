@@ -6,7 +6,341 @@
 		<atom:link href="https://assethoard.com/rss.xml" rel="self" type="application/rss+xml" />
 		<description>Guides, artist spotlights, indie life and engineering deep dives from the team behind AssetHoard, the local-first asset manager for indie game developers.</description>
 		<language>en-au</language>
-		<lastBuildDate>Sat, 07 Nov 2026 00:00:00 GMT</lastBuildDate>
+		<lastBuildDate>Tue, 10 Nov 2026 00:00:00 GMT</lastBuildDate>
+		<item>
+			<title>FBX vs GLB: which 3D format is best for games?</title>
+			<link>https://assethoard.com/blog/fbx-vs-glb</link>
+			<guid isPermaLink="true">https://assethoard.com/blog/fbx-vs-glb</guid>
+			<pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+			<dc:creator>Mark Gandolfo</dc:creator>
+			<category>Guides</category>
+			<description>FBX is Autodesk&apos;s interchange format; GLB is the binary form of the open glTF standard. How they differ on materials, animation, size and engine support.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/assethoard-og.png" alt="AssetHoard, the local-first asset manager for indie game developers" /></p>
+<p><strong>FBX</strong> is Autodesk&#39;s proprietary 3D interchange format, the long-standing default for moving animated models between modelling tools and game engines. <strong>GLB</strong> is the binary form of <strong>glTF 2.0</strong>, an open standard from the Khronos Group built for delivering 3D at runtime, with the mesh, PBR materials, textures and animation packed into one file. The short answer: use GLB for Godot, the web, and sharing or archiving models, and FBX when your engine or animation pipeline expects it, which still often means Unity and Unreal character work.</p>
+<p>The rest of this post goes through the differences that actually matter for game development.</p>
+<h2 id="fbx-vs-glb-at-a-glance">FBX vs GLB at a glance</h2><div class="table-scroll"><table>
+<thead>
+<tr>
+<th></th>
+<th>FBX</th>
+<th>GLB (glTF 2.0)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Owner</td>
+<td>Autodesk</td>
+<td>Khronos Group, open standard</td>
+</tr>
+<tr>
+<td>Specification</td>
+<td>Not public, read through Autodesk&#39;s SDK</td>
+<td>Public and royalty-free</td>
+</tr>
+<tr>
+<td>Files</td>
+<td>One <code>.fbx</code>, textures often separate</td>
+<td>One <code>.glb</code> with textures embedded</td>
+</tr>
+<tr>
+<td>Materials</td>
+<td>Older material model, PBR varies by exporter</td>
+<td>Metallic-roughness PBR built in</td>
+</tr>
+<tr>
+<td>Units and axes</td>
+<td>Vary by exporting program</td>
+<td>Always metres, Y up</td>
+</tr>
+<tr>
+<td>Animation</td>
+<td>Skeletal, blend shapes, very mature</td>
+<td>Skeletal, morph targets, multiple clips</td>
+</tr>
+<tr>
+<td>Compression</td>
+<td>None standard</td>
+<td>Draco or meshopt meshes, KTX2 textures</td>
+</tr>
+<tr>
+<td>Unity</td>
+<td>Native</td>
+<td>Through a package such as glTFast</td>
+</tr>
+<tr>
+<td>Unreal Engine</td>
+<td>Native</td>
+<td>Built-in importer in Unreal Engine 5</td>
+</tr>
+<tr>
+<td>Godot</td>
+<td>Native since Godot 4.3</td>
+<td>Native, the recommended format</td>
+</tr>
+<tr>
+<td>Web (three.js, Babylon.js)</td>
+<td>Limited</td>
+<td>The standard</td>
+</tr>
+</tbody></table></div>
+<h2 id="materials">Materials</h2><p>This is the difference you are most likely to notice. glTF defines a single <strong>metallic-roughness PBR</strong> material model, so a GLB exported from Blender should look the same in Godot, three.js or any other glTF viewer. Base colour, metallic, roughness, normal, occlusion and emissive maps all have a defined place.</p>
+<p>FBX predates modern PBR. Its core material properties come from older lighting models, and each program fills in PBR values its own way. That is why an FBX that looks right in one tool often arrives in an engine with flat colours, missing roughness, or textures that need reconnecting by hand.</p>
+<p>If texture maps are your pain point, our explainer on <a href="https://assethoard.com/blog/pbr-vs-orm-explained">what an ORM texture is</a> covers how glTF packs occlusion, roughness and metallic into one image.</p>
+<h2 id="scale-and-orientation">Scale and orientation</h2><p>glTF fixes its units as metres and its up axis as Y. FBX stores units and axes as settings, and different programs choose differently. The classic symptom is a model that imports at 100 times its intended size, or lying on its back. Most engines have import options to correct this, but with GLB there is nothing to correct.</p>
+<h2 id="animation">Animation</h2><p>Both formats handle skeletal animation, blend shapes (called morph targets in glTF) and multiple animation clips in one file. FBX has decades of tooling behind it for complex rigs, and services such as Mixamo export FBX, so it remains the default in many character pipelines. glTF animation is solid for most game use, and exporters have caught up a lot.</p>
+<h2 id="file-size">File size</h2><p>A GLB packs everything into one binary file, and glTF supports <strong>Draco</strong> and <strong>meshopt</strong> mesh compression and <strong>KTX2</strong> GPU-compressed textures. Compressed, a GLB is often a fraction of the size of the equivalent FBX, which matters for web games, downloads and large libraries. Our free <a href="https://assethoard.com/tools/glb-compressor">GLB compressor</a> shrinks a GLB in the browser, and the <a href="https://assethoard.com/tools/mesh-reducer">mesh reducer</a> cuts the polygon count.</p>
+<h2 id="engine-support">Engine support</h2><ul>
+<li><strong>Unity</strong> imports FBX natively. GLB and glTF need a package such as Unity&#39;s glTFast, added through the Package Manager.</li>
+<li><strong>Unreal Engine</strong> imports FBX natively, and Unreal Engine 5 has a built-in glTF importer.</li>
+<li><strong>Godot</strong> treats glTF as its preferred format. Godot 4.3 and later also import FBX natively, while earlier Godot 4 versions needed the external FBX2glTF tool.</li>
+<li><strong>Blender</strong> imports and exports both.</li>
+<li><strong>Web engines</strong> such as three.js and Babylon.js are built around glTF.</li>
+</ul>
+<h2 id="when-to-use-fbx">When to use FBX</h2><ul>
+<li>Your engine is Unity and you do not want to add a glTF package.</li>
+<li>You are working with an existing Maya, 3ds Max or MotionBuilder pipeline, or a service such as Mixamo that outputs FBX.</li>
+<li>The asset pack you bought only ships FBX. Many Asset Store packs do.</li>
+</ul>
+<h2 id="when-to-use-glb">When to use GLB</h2><ul>
+<li>You use Godot, or you are building for the web.</li>
+<li>You want a model to look the same everywhere, with PBR materials that survive the trip.</li>
+<li>You want one self-contained file to share, sell or archive.</li>
+<li>File size matters, and you want mesh and texture compression.</li>
+</ul>
+<h2 id="how-to-convert-fbx-to-glb">How to convert FBX to GLB</h2><p>The free route is Blender:</p>
+<ol>
+<li><strong>File, Import, FBX</strong>, then check the model, its scale and its materials.</li>
+<li>Fix anything that came in wrong, usually texture connections or roughness values.</li>
+<li><strong>File, Export, glTF 2.0</strong>, and choose <strong>glTF Binary (.glb)</strong> as the format.</li>
+</ol>
+<p>Then open the result in our free <a href="https://assethoard.com/tools/gltf-viewer">glTF viewer</a> or <a href="https://assethoard.com/tools/model-inspector">model inspector</a> to check it looks the way you expect. For OBJ files, our <a href="https://assethoard.com/tools/obj-to-glb">OBJ to GLB converter</a> does the job in the browser.</p>
+<h2 id="keeping-both-formats-in-one-library">Keeping both formats in one library</h2><p>Most game devs end up with both. Asset Store packs come as FBX, free CC0 packs often come as GLB or glTF, and older packs as OBJ. AssetHoard previews FBX, glTF, GLB, OBJ and more side by side, renders a thumbnail for every model on import, and lets you orbit any of them in an interactive viewer, so you can find a model by sight whatever format it is in. See <a href="https://assethoard.com/3d-gamedev-and-artists" title="AssetHoard for 3D game developers and artists">AssetHoard for 3D game devs and artists</a> or the <a href="https://assethoard.com/docs/3d" title="AssetHoard documentation for 3D files">3D files documentation</a>.</p>
+<p><a href="https://assethoard.com/downloads">Download AssetHoard</a></p>
+]]></content:encoded>
+		</item>
+		<item>
+			<title>What is a .uasset file? Unreal packages explained</title>
+			<link>https://assethoard.com/blog/what-is-a-uasset-file</link>
+			<guid isPermaLink="true">https://assethoard.com/blog/what-is-a-uasset-file</guid>
+			<pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+			<dc:creator>Mark Gandolfo</dc:creator>
+			<category>Guides</category>
+			<description>A .uasset is Unreal Engine&apos;s binary package format, holding one asset such as a mesh or texture. What is inside, and how to open one outside Unreal.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/pages/unreal/assethoard-unreal.png" alt="AssetHoard showing Unreal Engine .uasset packages from a project, with 3D model thumbnails for static and skeletal meshes and bundles for audio, levels, materials, models and sprites" /></p>
+<p>A <code>.uasset</code> file is <strong>Unreal Engine&#39;s package format</strong>: a binary file that holds one asset, such as a static mesh, texture, material, sound or Blueprint, along with a header listing everything that asset depends on. Every asset in an Unreal project&#39;s <code>Content</code> folder is a <code>.uasset</code>, apart from levels, which are <code>.umap</code> files in the same format. This post covers what is inside one, how <code>.umap</code>, <code>.uexp</code> and cooked packages differ, and how to open a <code>.uasset</code> with or without the Unreal Editor.</p>
+<h2 id="what-is-inside-a-uasset-file">What is inside a .uasset file?</h2><p>A <code>.uasset</code> is not a mesh file or an image file with a different extension. It is a container that Unreal serialises its own objects into, and it has a few parts:</p>
+<ul>
+<li><strong>A package summary</strong> with the engine version that saved it, flags and offsets to the rest of the file.</li>
+<li><strong>A name table</strong> of every name the package uses, so each one is stored only once.</li>
+<li><strong>An import table</strong> listing the objects this package depends on: classes from <code>/Script/</code>, engine content from <code>/Engine/</code>, and other assets in your project under <code>/Game/</code>.</li>
+<li><strong>An export table</strong> listing the objects this package defines, usually one main asset plus any sub-objects it owns.</li>
+<li><strong>The serialised object data</strong>, such as vertex buffers, texture mips or audio.</li>
+<li><strong>In editor packages, a thumbnail</strong> of the asset, which is what the Content Browser shows.</li>
+</ul>
+<p>The import table is why moving <code>.uasset</code> files around in Windows Explorer or Finder breaks things. A material refers to its textures by <code>/Game/</code> paths, so if the textures move without Unreal knowing, the references point at nothing.</p>
+<h2 id="uasset-umap-uexp-and-ubulk">.uasset, .umap, .uexp and .ubulk</h2><div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.uasset</code></td>
+<td>A package holding one asset: mesh, texture, material, sound, Blueprint, data table and so on</td>
+</tr>
+<tr>
+<td><code>.umap</code></td>
+<td>A package holding a level, with the actors placed in it</td>
+</tr>
+<tr>
+<td><code>.uexp</code></td>
+<td>In cooked builds, the object data split out of a <code>.uasset</code>, which keeps only the header</td>
+</tr>
+<tr>
+<td><code>.ubulk</code></td>
+<td>In cooked builds, large bulk data such as texture mips, split out again</td>
+</tr>
+<tr>
+<td><code>.pak</code>, <code>.utoc</code>, <code>.ucas</code></td>
+<td>Containers a shipped game packs its cooked packages into</td>
+</tr>
+</tbody></table></div>
+<h2 id="uncooked-and-cooked-packages">Uncooked and cooked packages</h2><p>The <code>.uasset</code> files in your project&#39;s <code>Content</code> folder are <strong>uncooked</strong>. They keep editor-only data such as thumbnails and source audio, and they are what the Unreal Editor loads.</p>
+<p>When you package a game, Unreal <strong>cooks</strong> that content for the target platform: it strips editor-only data, converts textures and audio to platform formats, splits packages into <code>.uasset</code> and <code>.uexp</code> files, and usually seals the lot inside <code>.pak</code> or IoStore containers. Cooked packages are built to load fast in a game, not to be edited, so most tools that work with project content expect uncooked packages.</p>
+<h2 id="how-to-open-a-uasset-file-in-unreal-engine">How to open a .uasset file in Unreal Engine</h2><ul>
+<li><strong>Use a project of the same or a newer engine version.</strong> An asset saved in a newer version of Unreal cannot be loaded by an older one. Older assets do open in newer versions, and are upgraded when you save them.</li>
+<li><strong>Copy it into the project&#39;s <code>Content</code> folder, keeping its folder structure.</strong> It appears in the Content Browser, and its <code>/Game/</code> references resolve as long as the assets it depends on are where it expects them.</li>
+<li><strong>To move assets between projects, use Migrate.</strong> Right-click the asset in the Content Browser and choose <strong>Asset Actions, Migrate</strong>. Unreal copies the asset and everything it references into the other project&#39;s <code>Content</code> folder with the paths intact.</li>
+<li><strong>To get a mesh or texture out of Unreal</strong>, right-click it and choose <strong>Asset Actions, Export</strong>. Meshes export as FBX, textures as image files.</li>
+</ul>
+<p>You cannot read a <code>.uasset</code> in a text editor or an image viewer, and there is no direct converter to FBX or PNG. The editor is the usual way in, which is slow when all you want is to see what a file is.</p>
+<h2 id="how-to-open-a-uasset-without-the-unreal-editor">How to open a .uasset without the Unreal Editor</h2><p>AssetHoard reads <code>.uasset</code> and <code>.umap</code> packages directly from disk. There is no editor to launch and no plugin to install in Unreal:</p>
+<ul>
+<li><strong>Packages are classified by what they contain.</strong> AssetHoard reads the main object in each package, so meshes show up as 3D models, PaperSprites and flipbooks as sprites, SoundWaves and SoundCues as audio, and textures and materials as themselves.</li>
+<li><strong>Previews are real.</strong> Static and skeletal meshes open in an interactive 3D viewer, flipbooks play at their real frame rate, and audio plays in place. Anything else shows the thumbnail Unreal baked into the package.</li>
+<li><strong>Dependencies are mapped.</strong> Every <code>/Game/</code> reference is matched against your library, so you can see which textures a material uses and which are missing.</li>
+<li><strong>You can export with dependencies.</strong> Drag an asset out, or right-click and export it, and AssetHoard writes a <code>Content</code>-shaped folder with everything it references, ready to drop into another project.</li>
+<li><strong>Your project is never changed.</strong> AssetHoard only reads packages.</li>
+</ul>
+<p>It fully parses uncooked packages from UE4.10 to UE5.5. Packages from UE5.6 and newer import as generic packages for now, and cooked packages classify and resolve references but fall back to an icon instead of a rich preview. The <a href="https://assethoard.com/docs/unreal" title="AssetHoard documentation for Unreal packages">Unreal packages documentation</a> has the details, and <a href="https://assethoard.com/unreal-asset-manager" title="AssetHoard as an Unreal asset manager">AssetHoard for Unreal Engine</a> has the overview.</p>
+<p>If you are still choosing an engine, our <a href="https://assethoard.com/blog/unreal-vs-unity">Unreal vs Unity comparison</a> may help.</p>
+<p><a href="https://assethoard.com/downloads">Download AssetHoard</a></p>
+]]></content:encoded>
+		</item>
+		<item>
+			<title>What is a .unitypackage file? How to open one</title>
+			<link>https://assethoard.com/blog/what-is-a-unitypackage-file</link>
+			<guid isPermaLink="true">https://assethoard.com/blog/what-is-a-unitypackage-file</guid>
+			<pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+			<dc:creator>Mark Gandolfo</dc:creator>
+			<category>Guides</category>
+			<description>A .unitypackage is a compressed archive of Unity assets and their .meta files. What is inside, how to import one, and how to open one without Unity.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/pages/unity/assethoard-unity-categorise.png" alt="AssetHoard showing a library of Unity Asset Store packages, each as a bundle with its asset count, with the Manage categories dialog open" /></p>
+<p>A <code>.unitypackage</code> file is <strong>Unity&#39;s asset package format</strong>: a gzip-compressed tar archive that bundles assets together with their <code>.meta</code> files, so Unity can recreate them in another project with the same folder paths, import settings and references. Everything you buy on the Unity Asset Store downloads as one, and so do most Unity packs from Humble Bundle, itch.io and publishers&#39; own sites. This post covers what is inside a <code>.unitypackage</code>, how to import and create one, and how to see what it contains without opening Unity.</p>
+<h2 id="what-is-inside-a-unitypackage-file">What is inside a .unitypackage file?</h2><p>Extract one and the layout is not what you might expect. Instead of a folder tree that mirrors the project, you get one folder per asset, each named after that asset&#39;s <strong>GUID</strong>, a long hexadecimal ID such as <code>8a3c5f1e2b...</code>. Inside each folder:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>File</th>
+<th>What it holds</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>asset</code></td>
+<td>The file itself (a texture, model, script, prefab and so on), renamed to just <code>asset</code></td>
+</tr>
+<tr>
+<td><code>asset.meta</code></td>
+<td>Unity&#39;s import settings for the file, and its GUID</td>
+</tr>
+<tr>
+<td><code>pathname</code></td>
+<td>A one-line text file with the path the asset is restored to, such as <code>Assets/Characters/Knight/Knight.fbx</code></td>
+</tr>
+<tr>
+<td><code>preview.png</code></td>
+<td>The thumbnail Unity generated for the asset, when there is one</td>
+</tr>
+</tbody></table></div>
+<p>Folders in the package get a GUID folder too, but with no <code>asset</code> file.</p>
+<p>The GUIDs are the point of the format. Unity assets refer to each other by GUID rather than by file path, so a material knows which texture it uses and a prefab knows which mesh it uses. Keeping the GUIDs means those references survive the trip from one project to another.</p>
+<h2 id="how-to-import-a-unitypackage-into-unity">How to import a .unitypackage into Unity</h2><ol>
+<li>Open the project you want to import into.</li>
+<li>Double-click the <code>.unitypackage</code> file, or choose <strong>Assets, Import Package, Custom Package</strong> in the editor and select it.</li>
+<li>Unity shows an import window listing everything in the package. Untick anything you do not want.</li>
+<li>Click <strong>Import</strong>.</li>
+</ol>
+<p>Asset Store purchases follow the same path through the Package Manager: open <strong>My Assets</strong>, download the package, then click <strong>Import</strong>.</p>
+<p>A package exported from a newer version of Unity may not import cleanly into an older one, so if a pack throws errors, check which Unity version it was made for.</p>
+<h2 id="how-to-create-a-unitypackage">How to create a .unitypackage</h2><ol>
+<li>In the Project window, select the assets or folders you want to share.</li>
+<li>Choose <strong>Assets, Export Package</strong>.</li>
+<li>Leave <strong>Include dependencies</strong> ticked so materials, textures and scripts the assets rely on come along too.</li>
+<li>Click <strong>Export</strong> and choose where to save the file.</li>
+</ol>
+<h2 id="how-to-open-a-unitypackage-without-unity">How to open a .unitypackage without Unity</h2><p>Because a <code>.unitypackage</code> is a tar.gz archive, you do not need Unity to look inside:</p>
+<ul>
+<li><strong>7-Zip</strong> on Windows opens it in two steps: the gzip layer first, then the tar inside.</li>
+<li><strong>The <code>tar</code> command</strong>, built into Windows 10 and later, macOS and Linux, extracts it in one go: <code>tar -xzf MyPack.unitypackage -C extracted</code>.</li>
+</ul>
+<p>The catch is the layout described above. You get hundreds of GUID-named folders, each with a file called <code>asset</code>, and the only clue to what each one is sits in its <code>pathname</code> file. You can script your way round that, but you still end up with loose files and no previews, and you have learned nothing about the other 299 packages in your library.</p>
+<p>That is why so many Unity developers import packs into a throwaway project just to see what they bought. We wrote more about that habit, and where Unity keeps your downloads, in <a href="https://assethoard.com/blog/how-to-organise-unity-asset-store-downloads">how to organise Unity Asset Store downloads</a>.</p>
+<h2 id="previewing-unitypackage-files-in-assethoard">Previewing .unitypackage files in AssetHoard</h2><p>AssetHoard reads <code>.unitypackage</code> files directly and catalogues what is inside, without Unity:</p>
+<ul>
+<li><strong>It finds your Asset Store downloads.</strong> AssetHoard detects the Asset Store cache on Windows, macOS and Linux and lists every package it finds, with a one-click import for each, or all of them at once. Packages from anywhere else can be dragged straight in.</li>
+<li><strong>Each package becomes a bundle</strong>, named after the package and publisher, so you can tag and categorise packs by project or style.</li>
+<li><strong>Assets inside get real previews.</strong> Unity&#39;s own stored thumbnails are used where they exist, models open in an interactive 3D viewer, non-binary materials render as PBR spheres, audio gets a waveform, and shaders and scripts open as highlighted code.</li>
+<li><strong>You can drag assets into Unity</strong> when you are ready to use them.</li>
+</ul>
+<p>Prefabs are listed with their Unity thumbnail when the package has one, but their contents are not parsed yet, and materials saved in Unity&#39;s binary format are not shown. The <a href="https://assethoard.com/docs/unity" title="AssetHoard documentation for Unity packages">Unity packages documentation</a> covers the details, and <a href="https://assethoard.com/unity-asset-manager" title="AssetHoard as a Unity asset manager">AssetHoard for Unity</a> has the overview.</p>
+<p><a href="https://assethoard.com/downloads">Download AssetHoard</a></p>
+]]></content:encoded>
+		</item>
+		<item>
+			<title>What is a .yymps file? GameMaker local packages</title>
+			<link>https://assethoard.com/blog/what-is-a-yymps-file</link>
+			<guid isPermaLink="true">https://assethoard.com/blog/what-is-a-yymps-file</guid>
+			<pubDate>Tue, 10 Nov 2026 00:00:00 GMT</pubDate>
+			<dc:creator>Mark Gandolfo</dc:creator>
+			<category>Guides</category>
+			<description>A .yymps file is a GameMaker local package: a zip of sprites, objects, sounds and more, exported from one project to import into another. How to open one.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/pages/gmtk/assethoard-gmtk-ymmps.png" alt="AssetHoard library showing GameMaker .yymps packages as bundles, each with a sprite thumbnail, and the details panel open on an animated insect robot sprite" /></p>
+<p>A <code>.yymps</code> file is a <strong>GameMaker local package</strong>: a zip archive holding a selection of resources, such as sprites, objects, scripts, sounds and tilesets, exported from one GameMaker project so they can be imported into another. If you have bought an asset pack for GameMaker on the Marketplace or itch.io, it probably arrived as a <code>.yymps</code>. This post covers what is inside one, how to import and create them, and how to see what a package contains without opening GameMaker.</p>
+<h2 id="what-is-inside-a-yymps-file">What is inside a .yymps file?</h2><p>A <code>.yymps</code> is an ordinary zip file with a GameMaker-specific extension. Open it and you will find:</p>
+<ul>
+<li><strong>Resource folders</strong> laid out the same way as a GameMaker project: <code>sprites/</code>, <code>objects/</code>, <code>sounds/</code>, <code>scripts/</code>, <code>tilesets/</code>, <code>fonts/</code> and so on.</li>
+<li><strong>A <code>.yy</code> file for each resource.</strong> This is a JSON file describing the resource: a sprite&#39;s frames and playback speed, an object&#39;s sprite and parent, a sound&#39;s audio file and settings.</li>
+<li><strong>The raw files those resources use</strong>, such as the PNG frames of a sprite or the WAV and OGG files behind a sound.</li>
+<li><strong>A small metadata file</strong> describing the package itself.</li>
+</ul>
+<p>The <code>.yy</code> files are what tie everything together. On its own, a sprite&#39;s <code>.yy</code> is just a list of frame references, and an object&#39;s <code>.yy</code> is mostly a pointer to a sprite. GameMaker reads them and rebuilds the resources when you import the package.</p>
+<h2 id="how-to-import-a-yymps-file-into-gamemaker">How to import a .yymps file into GameMaker</h2><ol>
+<li>Open the project you want to add the resources to.</li>
+<li>Choose <strong>Tools, Import Local Package</strong> from the menu.</li>
+<li>Select the <code>.yymps</code> file.</li>
+<li>GameMaker lists every resource in the package. Tick the ones you want and click <strong>Import</strong>.</li>
+</ol>
+<p>The resources land in your Asset Browser like any others. If the package contains a resource with the same name as one already in your project, GameMaker will ask how to handle the clash, so read that dialog carefully before you click through.</p>
+<h2 id="how-to-create-a-yymps-file">How to create a .yymps file</h2><p>To share resources between your own projects, or to distribute an asset pack:</p>
+<ol>
+<li>Open the project that holds the resources.</li>
+<li>Choose <strong>Tools, Create Local Package</strong>.</li>
+<li>Fill in the package details, then add the resources you want to include.</li>
+<li>Save the package. GameMaker writes a <code>.yymps</code> file you can import anywhere.</li>
+</ol>
+<p>Include anything the resources depend on. If you export an object but not the sprite it uses, the object will import with a missing sprite.</p>
+<h2 id="yymps-vs-yyz-vs-yy">.yymps vs .yyz vs .yy</h2><p>GameMaker uses several similar extensions, and they are easy to mix up:</p>
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Extension</th>
+<th>What it is</th>
+<th>When you see it</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.yymps</code></td>
+<td>A local package: chosen resources from a project, zipped</td>
+<td>Asset packs, Marketplace downloads, sharing resources between projects</td>
+</tr>
+<tr>
+<td><code>.yyz</code></td>
+<td>A compressed export of a whole project</td>
+<td>Sharing or archiving an entire project</td>
+</tr>
+<tr>
+<td><code>.yyp</code></td>
+<td>The project file, listing every resource in the project</td>
+<td>The root of every project folder</td>
+</tr>
+<tr>
+<td><code>.yy</code></td>
+<td>A single resource&#39;s definition, in JSON</td>
+<td>One per sprite, object, sound and so on, inside a project or package</td>
+</tr>
+<tr>
+<td><code>.yymp</code></td>
+<td>The older package format from GameMaker Studio 2 before version 2.3</td>
+<td>Old asset packs</td>
+</tr>
+</tbody></table></div>
+<p>The short version: import a <code>.yymps</code> into a project, open a <code>.yyz</code> as a project.</p>
+<h2 id="how-to-open-a-yymps-file-without-gamemaker">How to open a .yymps file without GameMaker</h2><p>Because a <code>.yymps</code> is a zip, any archive tool can open it. Use 7-Zip, or copy the file, rename the copy to <code>.zip</code> and open it in Windows Explorer or macOS Finder.</p>
+<p>That shows you the files, but not much more. You will see folders of <code>.yy</code> JSON and PNG frames with names like <code>spr_player_idle</code>, and you have to open frames one at a time to work out what each sprite looks like. Sounds, tilesets and fonts are no easier. For a pack of a few hundred resources, that is a slow way to find the one you want.</p>
+<h2 id="previewing-yymps-packages-in-assethoard">Previewing .yymps packages in AssetHoard</h2><p>AssetHoard reads <code>.yymps</code> packages and <code>.yyz</code> exports in place, without extracting them, and treats the resources inside like any other asset in your library:</p>
+<ul>
+<li><strong>Sprites</strong> play back as animations at their own playback speed.</li>
+<li><strong>Sounds</strong> play straight from the card.</li>
+<li><strong>Tilesets</strong> open with a grid overlay that respects offset and separation.</li>
+<li><strong>Fonts</strong> show their baked atlas.</li>
+<li><strong>Objects</strong> show the sprite they use.</li>
+</ul>
+<p>Each resource is filed under the type it actually is, so a GameMaker sprite turns up alongside the rest of your sprites and the normal filters find it. Everything is searchable and taggable, which matters once you own more than a handful of packs. It works with the <code>.yy</code> format used since GameMaker Studio 2.3.</p>
+<p>The full details, including how references between resources are resolved and current limitations, are in the <a href="https://assethoard.com/docs/gamemaker" title="AssetHoard documentation for GameMaker files">GameMaker files documentation</a>. For the overview, see <a href="https://assethoard.com/gamemaker-asset-manager" title="AssetHoard as a GameMaker asset manager">AssetHoard for GameMaker</a>.</p>
+<p>If you are weighing up which engine to use in the first place, our <a href="https://assethoard.com/blog/gamemaker-vs-godot">GameMaker vs Godot comparison</a> covers the trade-offs.</p>
+<p><a href="https://assethoard.com/downloads">Download AssetHoard</a></p>
+]]></content:encoded>
+		</item>
 		<item>
 			<title>How AssetHoard plugins work under the hood</title>
 			<link>https://assethoard.com/blog/how-assethoard-plugins-work</link>
@@ -239,53 +573,33 @@
 <p>This time we&#39;re talking to James Rommel G. Lobaton, a 2D and 3D game animator from the Philippines with ten years in the industry, a Unity Asset Store shop, and a portfolio that swings happily between Dota 2, fighting games, horror icons and anime.</p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-jason.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-jason.jpg" alt="Jason Voorhees in his hockey mask lunging through streaks of green and red, fan art by James Rommel Lobaton" width="1600" height="844" loading="eager" decoding="async"></a></p>
 <h2 id="for-readers-who-havent-come-across-your-work-yet-what-do-you-do">For readers who haven&#39;t come across your work yet, what do you do?</h2><div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-<div>
-
-<p>I&#39;m a 2D/3D game animator, and I&#39;ve been in the animation industry for ten years now. I create animation for games, and on the side I take commissions for character designs and creatures.</p>
+<div><p>I&#39;m a 2D/3D game animator, and I&#39;ve been in the animation industry for ten years now. I create animation for games, and on the side I take commissions for character designs and creatures.</p>
 <p>During the day I work at a local game dev studio in the Philippines. After work I go home and work again on freelance jobs.</p>
 <p>We also have a Unity Asset Store shop, where my friends and I make 2D chibi assets for games. Some are PNGs, and some are bundles with animations ready to drop into a game.</p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-six-fanarts.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-six-fanarts.jpg" alt="Six Fan Arts Challenge 2026: six characters in comic panels drawn in heavy black line art, by James Rommel Lobaton" width="1200" height="1492" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-six-fanarts.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-six-fanarts.jpg" alt="Six Fan Arts Challenge 2026: six characters in comic panels drawn in heavy black line art, by James Rommel Lobaton" width="1200" height="1492" loading="lazy" decoding="async"></a></p>
 </div>
-</div>
-
-<h2 id="how-did-you-end-up-working-across-both-2d-and-3d-and-was-game-development-always-the-goal">How did you end up working across both 2D and 3D, and was game development always the goal?</h2><p>I started late on this path. Before animation I was a delivery guy, delivering special welding rods to industrial companies. Animation is my second chance.</p>
+</div><h2 id="how-did-you-end-up-working-across-both-2d-and-3d-and-was-game-development-always-the-goal">How did you end up working across both 2D and 3D, and was game development always the goal?</h2><p>I started late on this path. Before animation I was a delivery guy, delivering special welding rods to industrial companies. Animation is my second chance.</p>
 <p>I studied a vocational 3D animation course, and from there I threw myself into learning everything about 3D, trying to be a one-man army. While I kept studying 3D, I was also learning Photoshop and basic 2D drawing.</p>
 <p>Then I got the opportunity to work at a game dev studio as a 3D animator. As the project went on we ran into trouble: they couldn&#39;t integrate 3D characters into a 2D environment. That&#39;s where the switch happened. I needed to learn <a href="https://esotericsoftware.com/?utm_source=assethoard&utm_medium=referral" target="_blank" rel="noopener noreferrer">Spine</a>, and that&#39;s how I became a 2D/3D animator.</p>
 <p>My teacher in the industry was into games, so all of my practice was for games. Dota 2 inspired me a lot too. So yes, I love game dev.</p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota-team-a.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota-team-a.jpg" alt="Dota 2 heroes whose names start with A, lined up in front of a big "Team A" title, fan art by James Rommel Lobaton" width="1600" height="913" loading="lazy" decoding="async"></a></p>
 <h2 id="your-portfolio-mixes-dota-2-fighting-games-horror-icons-and-anime-what-shaped-your-style">Your portfolio mixes Dota 2, fighting games, horror icons and anime. What shaped your style?</h2><p>I&#39;ve loved comics since I was a kid. I love the sharp black lines and big buckets of black against vibrant colours. Since starting on this path, I&#39;ve always practised my drawing, starting with chibi characters. The style has stayed the same: black line art and cool, vibrant colours.</p>
-<div class="post-flipbook">
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota.jpg" alt="Zeus from Dota 2 crackling with lightning, fan art by James Rommel Lobaton" title="Zeus, Dota 2" width="960" height="1200" loading="lazy" decoding="async"></a></p>
+<div class="post-flipbook"><p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-dota.jpg" alt="Zeus from Dota 2 crackling with lightning, fan art by James Rommel Lobaton" title="Zeus, Dota 2" width="960" height="1200" loading="lazy" decoding="async"></a></p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-fighting.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-fighting.jpg" alt="Cammy and Chun-Li from Street Fighter standing side by side, fan art by James Rommel Lobaton" title="Cammy and Chun-Li, Street Fighter" width="960" height="1200" loading="lazy" decoding="async"></a></p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-horror.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-horror.jpg" alt="Freddy Krueger slashing with his bladed glove, fan art by James Rommel Lobaton" title="Freddy Krueger, A Nightmare on Elm Street" width="960" height="1200" loading="lazy" decoding="async"></a></p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-anime.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-anime.jpg" alt="Kaiju No. 8 in his armoured kaiju form with glowing cyan markings, fan art by James Rommel Lobaton" title="Kaiju No. 8" width="960" height="1200" loading="lazy" decoding="async"></a></p>
-</div>
-
-<p>Games that influenced me are Hades, Borderlands, Skullgirls and Darkest Dungeon. For artists, it&#39;s Mike Mignola, Ludo Lullabi and Todd McFarlane. They&#39;re brilliant artists, and I love how unique their work is. There&#39;s so much energy in their drawings. It keeps my fire going.</p>
+</div><p>Games that influenced me are Hades, Borderlands, Skullgirls and Darkest Dungeon. For artists, it&#39;s Mike Mignola, Ludo Lullabi and Todd McFarlane. They&#39;re brilliant artists, and I love how unique their work is. There&#39;s so much energy in their drawings. It keeps my fire going.</p>
 <h3 id="and-what-are-you-drawn-to-right-now">And what are you drawn to right now?</h3><p>I still practise and develop my style digitally, but right now I&#39;m also doing traditional painting and drawing on the side. I love going back to watercolour, gouache and acrylic, with some oil pastels too. It&#39;s my way of not burning out, because I&#39;m always doing something different.</p>
-<!-- TODO: image, e.g. traditional painting -->
-
-<h2 id="on-projects-like-into-the-crypt-you-animated-characters-drawn-by-another-artist-how-do-you-approach-that">On projects like Into the Crypt you animated characters drawn by another artist. How do you approach that?</h2><p>Before I take a commission, I always check whether I can do cutouts in the other artist&#39;s style. I use Spine, so I need to cut the art into parts. That&#39;s why I don&#39;t take on realistic art: it&#39;s hard for me to fill in the missing parts of the drawing.</p>
+<!-- TODO: image, e.g. traditional painting --><h2 id="on-projects-like-into-the-crypt-you-animated-characters-drawn-by-another-artist-how-do-you-approach-that">On projects like Into the Crypt you animated characters drawn by another artist. How do you approach that?</h2><p>Before I take a commission, I always check whether I can do cutouts in the other artist&#39;s style. I use Spine, so I need to cut the art into parts. That&#39;s why I don&#39;t take on realistic art: it&#39;s hard for me to fill in the missing parts of the drawing.</p>
 <div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-<div>
-
-<h3 id="what-makes-a-piece-of-art-easy-or-hard-to-rig">What makes a piece of art easy or hard to rig?</h3><p>The hard part is when a character is complicated, like one with lots of tentacles or heavy clothing. The cutouts take time, and the rigging needs some study or research. If a character is really complicated, I need to know how the client plans for it to move so that I can do the cutouts wisely.</p>
+<div><h3 id="what-makes-a-piece-of-art-easy-or-hard-to-rig">What makes a piece of art easy or hard to rig?</h3><p>The hard part is when a character is complicated, like one with lots of tentacles or heavy clothing. The cutouts take time, and the rigging needs some study or research. If a character is really complicated, I need to know how the client plans for it to move so that I can do the cutouts wisely.</p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-lou-carcolh.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-lou-carcolh.jpg" alt="Lou Carcolh, a spiked-shell creature trailing long tentacles, from Creatuanary 2026 by James Rommel Lobaton" width="960" height="1127" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-lou-carcolh.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/james-lobaton-lou-carcolh.jpg" alt="Lou Carcolh, a spiked-shell creature trailing long tentacles, from Creatuanary 2026 by James Rommel Lobaton" width="960" height="1127" loading="lazy" decoding="async"></a></p>
 </div>
-</div>
-
-<h2 id="take-us-through-a-typical-commission-like-the-bone-dragon-boss-what-happens-between-the-brief-and-the-final-files">Take us through a typical commission, like the Bone Dragon boss. What happens between the brief and the final files?</h2><p>First, the client sends all the details about the boss monster. Then I create different silhouettes, pick the ones I like and add detail. At this stage it&#39;s all sketches.</p>
+</div><h2 id="take-us-through-a-typical-commission-like-the-bone-dragon-boss-what-happens-between-the-brief-and-the-final-files">Take us through a typical commission, like the Bone Dragon boss. What happens between the brief and the final files?</h2><p>First, the client sends all the details about the boss monster. Then I create different silhouettes, pick the ones I like and add detail. At this stage it&#39;s all sketches.</p>
 <p>I send those to the art director so they can choose one and ask for adjustments. Then it comes back to me to polish. When everything is signed off, I start doing the cutouts for the Spine animation. The final files are delivered in a folder at the end.</p>
-<!-- TODO: image, e.g. Bone Dragon silhouettes and final -->
-
-<h2 id="what-does-your-toolkit-look-like-for-2d-and-3d-work">What does your toolkit look like for 2D and 3D work?</h2><p>I use Photoshop and Procreate for 2D, and Maya or 3ds Max for 3D, though I&#39;m practising Blender now.</p>
+<!-- TODO: image, e.g. Bone Dragon silhouettes and final --><h2 id="what-does-your-toolkit-look-like-for-2d-and-3d-work">What does your toolkit look like for 2D and 3D work?</h2><p>I use Photoshop and Procreate for 2D, and Maya or 3ds Max for 3D, though I&#39;m practising Blender now.</p>
 <p><video controls muted loop playsinline preload="metadata" aria-label="Rough animation test by James Rommel Lobaton: a figure at a desk in a sketched room, drawn frame by frame in red line"><source src="https://assethoard.com/blog/2026/artist-spotlight/284100568-963885287637534-8856451239821048219-n.mp4" type="video/mp4"></video></p>
 <p><em>A rough animation test: the figure is drawn frame by frame in red line, with the frame numbers pencilled in.</em></p>
 <h3 id="why-spine-for-game-animation">Why Spine for game animation?</h3><p>It&#39;s a very strong piece of software for quick 2D animation. It&#39;s built for games, it keeps getting better with every update, and it&#39;s a one-time payment. Spine is probably the tool I couldn&#39;t work without. It&#39;s a big part of my commission work.</p>
@@ -317,7 +631,7 @@
 			<content:encoded><![CDATA[<p><img src="https://assethoard.com/blog/2026/top-free-2d-game-assets-2026.png" alt="Top Free 2D Game Assets in 2026" /></p>
 <p>Free 2D game assets are everywhere, but the ones you can actually ship are harder to find. Half the packs you come across are free to download and not free to use, and the licence is usually buried three clicks deep or missing entirely. This is our running roundup of the free 2D game asset sources we keep coming back to, updated through 2026 (last refreshed September 2026).</p>
 <p>A quick word before the list: free does not mean unrestricted. Most of these allow commercial use, but the exact terms vary by site and sometimes by individual asset, so treat every link below as a starting point and confirm the licence before you put anything in a build you intend to sell.</p>
-<p>If you&#39;d rather skip the hunt, we keep a <a href="https://assethoard.com/free-game-assets">curated directory of free CC0 assets</a>, filterable by type, style, and source, with every licence checked so you can grab something and get back to building.</p>
+<p>If you would rather skip the hunt, we keep a <a href="https://assethoard.com/free-game-assets">curated directory of free game assets</a>, filterable by type, style, source, and licence, with every licence checked so you can grab something and get back to building.</p>
 <h2 id="start-with-the-classics">Start with the classics</h2><p>If you have never gone hunting for free assets before, start with the names every game developer already has bookmarked. These are the obvious, always-recommended ones, and they cover an enormous amount of ground on their own.</p>
 <ul>
 <li><a href="https://kenney.nl/assets" target="_blank" rel="noopener noreferrer">Kenney</a> - thousands of assets covering 2D sprites, tiles, and UI, plus 3D and audio, all released as CC0. Public domain, no attribution, commercial use fine. If you only ever use one source, make it this one.</li>
@@ -877,9 +1191,7 @@
 <div class="figure-inline">
 <p class="figure-inline__text">Tags are the thing folders can't do. A package might be "low-poly" and "fantasy" and "Synty" and "characters" all at once. In a folder structure, it lives in exactly one place. If you organise by publisher, you can't find it when you're browsing by style. If you organise by style, you lose the publisher grouping. Any folder scheme is a single taxonomy, and your brain uses multiple taxonomies simultaneously.</p>
 <a href="https://assethoard.com/pages/unity/assethoard-unity-categorise.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the AssetHoard category management screenshot in a new tab"><img src="https://assethoard.com/pages/unity/assethoard-unity-categorise.png" alt="AssetHoard's Manage Categories dialog assigning categories such as Props, Sprites, and Textures to a Unity package, shown over a grid of package thumbnails" title="Tagging and categorising a Unity package across multiple categories at once in AssetHoard" loading="lazy"></a>
-</div>
-
-<p>Spreadsheets help with this. You can add multiple columns for different attributes. But they don&#39;t scale pleasantly once you&#39;re past about fifty entries, and they&#39;re completely disconnected from the actual files.</p>
+</div><p>Spreadsheets help with this. You can add multiple columns for different attributes. But they don&#39;t scale pleasantly once you&#39;re past about fifty entries, and they&#39;re completely disconnected from the actual files.</p>
 <p>The deeper problem is that to even fill in a spreadsheet accurately, you need to know what&#39;s in each package. And the only way to find out what&#39;s in a .unitypackage without tooling is to import it into Unity. Which brings you back to the throwaway project workflow, just with more paperwork involved.</p>
 <h2 id="using-assethoard-to-manage-your-unity-library">Using AssetHoard to manage your Unity library</h2><p>This is where a dedicated <a href="https://assethoard.com/">game asset manager</a> earns its keep.</p>
 <p><video controls muted playsinline preload="metadata"><source src="https://assethoard.com/pages/unity/assethoard-unity-browse.mp4" type="video/mp4"></video></p>
@@ -926,7 +1238,7 @@
 <li><strong>Holds up at scale.</strong> Ten files is nothing. A hundred thousand is the real test.</li>
 </ul>
 <p>If you&#39;re weighing actual tools against that list, we&#39;ve done a <a href="https://assethoard.com/blog/best-offline-asset-manager-indie-developers">round-up of offline asset managers for indie developers</a> that covers the main options.</p>
-<h2 id="where-assethoard-fits">Where AssetHoard fits</h2><p>AssetHoard is a local-first desktop asset manager for game developers and digital artists. One place for everything, sitting on your own machine.</p>
+<h2 id="where-assethoard-fits">Where AssetHoard fits</h2><p>AssetHoard is local-first <a href="https://assethoard.com/game-asset-management">game asset management software</a> for game developers and digital artists. One place for everything, sitting on your own machine.</p>
 <p>That list above was more or less the design brief. It reads 80+ file types, so your models, sprites, Aseprite files, audio, fonts, and engine packages all land in one library. It generates thumbnails so you can browse by sight, and <a href="https://assethoard.com/semantic-search">search works semantically and visually</a>, so you can look for what something resembles rather than only what you named it. Variant groups keep the &quot;which one&#39;s the final one&quot; problem contained. You can drag assets straight into <a href="https://assethoard.com/unity-asset-manager">Unity</a> or <a href="https://assethoard.com/godot-asset-manager">Godot</a>. And it&#39;s built in Rust, so it stays responsive when your library gets big.</p>
 <p>It runs on Windows, macOS, and Linux. No accounts, no cloud, no monthly bill. It&#39;s a one-time purchase, $29 USD, and the library stays yours.</p>
 <p>If your assets are already scattered across half a dozen drives, it&#39;s a decent place to bring them together. And if you want to see how a real library holds up at scale, here&#39;s <a href="https://assethoard.com/blog/how-i-manage-100000-game-assets">how I organise 100,000 game assets</a> with it.</p>
@@ -1306,14 +1618,10 @@ Byte 7+:     &lt;pdnImage ...                   XML preamble starts here</code><
 <p>Software licences such as MIT, Apache 2.0 and the GPL family were designed for source code. You will see these on shaders, tools, plugins, and occasionally on asset packs distributed through code repositories.</p>
 <p>The distinction matters because the two families use different language and were written with different assumptions. A licence written for code does not always map cleanly onto a sprite sheet. When a 3D model arrives under the MIT licence, which happens, you are relying on a reasonable reading of terms that were not written with 3D models in mind. That is usually fine, but it is worth knowing that is what you are doing.</p>
 <h2 id="the-creative-commons-licences">The Creative Commons licences</h2><p>Creative Commons is not a single licence. It is a set of licences built from a few interchangeable parts, and once you know the parts, the names stop being cryptic.</p>
-<h3 id="cc0">CC0: the closest thing to no strings</h3>
-
-<p>CC0 is a public domain dedication. The creator has waived their rights as far as the law allows. You can use the asset in a commercial project, modify it, and redistribute it, and you are not required to credit anyone.</p>
+<h3 id="cc0">CC0: the closest thing to no strings</h3><p>CC0 is a public domain dedication. The creator has waived their rights as far as the law allows. You can use the asset in a commercial project, modify it, and redistribute it, and you are not required to credit anyone.</p>
 <p>CC0 is the easiest licence to work with, and it is why <a href="https://assethoard.com/blog/where-to-find-free-game-assets-2026">sites built around CC0 assets</a> are popular with developers who want to avoid licence tracking entirely. Attribution is still a courteous thing to do, and many developers credit CC0 creators anyway, but it is a courtesy and not an obligation.</p>
 <p>If an asset is genuinely CC0, you can use it and effectively forget about it. The difficulty is confirming that it genuinely is CC0, which comes back to record keeping, covered further down.</p>
-<h3 id="cc-by">CC-BY: free to use, credit required</h3>
-
-<p>CC-BY allows commercial use, modification and redistribution, on one condition: you must give appropriate credit to the creator. That credit normally means naming the creator, linking to the original where practical, and indicating whether you made changes.</p>
+<h3 id="cc-by">CC-BY: free to use, credit required</h3><p>CC-BY allows commercial use, modification and redistribution, on one condition: you must give appropriate credit to the creator. That credit normally means naming the creator, linking to the original where practical, and indicating whether you made changes.</p>
 <p>CC-BY is one of the most common licences on free game assets, and the attribution requirement is also the most commonly missed obligation in game development. Missing it is not a technicality. If you ship a commercial game using CC-BY assets and provide no credit, you are not complying with the licence.</p>
 <p>The practical fix is simple and worth building into your process early. Keep a credits file from the first day of the project. Every time a CC-BY asset goes in, the creator goes into the file. Doing this continuously takes seconds. Reconstructing it the week before launch, from assets whose origins you no longer remember, can take days, and sometimes it cannot be done at all.</p>
 <h3 id="the-modifier-letters">The modifier letters</h3><p>The rest of the Creative Commons system is built from modifiers added to BY. Each one adds a restriction.</p>
@@ -1327,9 +1635,7 @@ Byte 7+:     &lt;pdnImage ...                   XML preamble starts here</code><
 <p><strong id="apache">Apache 2.0</strong> is similar to MIT in spirit, permissive and commercially usable, with more explicit wording, including an explicit grant of patent rights. It also asks that you note significant changes you have made. For most game use it behaves much like MIT with a longer licence file.</p>
 <p><strong id="gpl">The GPL family</strong> is the one to approach with genuine care. The GPL is a copyleft licence, and depending on how GPL-licensed code is incorporated, it can require that the larger work it becomes part of is also released under the GPL. For proprietary commercial games this is often a serious problem. The LGPL is more permissive about linking and is frequently fine for libraries used in commercial software, but GPL terms reward careful reading rather than assumption. If a tool or plugin you depend on is GPL-licensed, understand the obligation before you build on it, not after.</p>
 <p>A note specific to game engines: code licences and asset store terms are separate things. The engine you use has its own licence, and an asset bought from a storefront is governed by that storefront&#39;s terms in addition to any licence the creator attaches. Those storefront terms are part of the picture and worth reading at least once.</p>
-<h2 id="licences-at-a-glance">Licences at a glance</h2>
-
-<p>This table is a quick orientation, not a replacement for reading the licence on an asset that matters. &quot;Copyleft&quot; means a modified version must be released under the same licence, and &quot;modifications allowed&quot; refers to distributing a changed version rather than editing privately.</p>
+<h2 id="licences-at-a-glance">Licences at a glance</h2><p>This table is a quick orientation, not a replacement for reading the licence on an asset that matters. &quot;Copyleft&quot; means a modified version must be released under the same licence, and &quot;modifications allowed&quot; refers to distributing a changed version rather than editing privately.</p>
 <div class="table-scroll"><table>
 <thead>
 <tr>
@@ -1426,9 +1732,7 @@ Byte 7+:     &lt;pdnImage ...                   XML preamble starts here</code><
 <div class="figure-inline">
 <p class="figure-inline__text">This is a problem <a href="https://assethoard.com">AssetHoard</a> is built to take off your hands. It is a local-first asset manager that keeps your whole library in one place, and licence and source are part of what it tracks alongside each asset, so the terms stay attached to the file instead of being scattered across the places you originally found them. When you reach a release and need a complete, accurate credits list, the information is already where the assets are. If you would like to see the rest of what it does, the <a href="https://assethoard.com">website</a> is the place to start.</p>
 <a href="https://assethoard.com/features/assethoard-license.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image"><img src="https://assethoard.com/features/assethoard-license.png" alt="AssetHoard showing the licence and source recorded in an asset's details panel" title="AssetHoard tracks licence and source on every asset" loading="lazy"></a>
-</div>
-
-<h2 id="the-short-version">The short version</h2><p>If you remember nothing else: CC0 means use it freely. CC-BY means use it and credit the creator. NC means keep it away from anything commercial. ShareAlike and the GPL family mean read the actual terms before you build on the asset. And whatever the licence, record where the asset came from on the day it enters your library, because the licence is worth nothing to you if you cannot find it again when you ship.</p>
+</div><h2 id="the-short-version">The short version</h2><p>If you remember nothing else: CC0 means use it freely. CC-BY means use it and credit the creator. NC means keep it away from anything commercial. ShareAlike and the GPL family mean read the actual terms before you build on the asset. And whatever the licence, record where the asset came from on the day it enters your library, because the licence is worth nothing to you if you cannot find it again when you ship.</p>
 <hr>
 <p><em>The AssetHoard Team</em></p>
 ]]></content:encoded>
@@ -1500,7 +1804,6 @@ Byte 7+:     &lt;pdnImage ...                   XML preamble starts here</code><
 </ul>
 <p>To convert between the two formats, open the resource in the Inspector, use <strong>Save As</strong>, and choose a <code>.tres</code> or <code>.res</code> extension.</p>
 <h2 id="viewing-tres-files-outside-godot">Viewing .tres files outside Godot</h2><p>Opening a project in the editor just to see what a material or tileset looks like is slow, and a text editor only shows the raw properties. AssetHoard reads native Godot <code>.tres</code> resources and previews them alongside your other assets: materials render on a lit sphere, SpriteFrames play back as animations, and TileSets open as a zoomable atlas. It also finds the textures each <code>.tres</code> references, so dragging one into a project brings its dependencies along. Binary <code>.res</code> files are not parsed. See <a href="https://assethoard.com/docs/godot" title="AssetHoard documentation for Godot .tres files">Godot and .tres files</a> in the docs, or the <a href="https://assethoard.com/godot-asset-manager" title="AssetHoard for Godot">Godot asset manager</a> overview.</p>
-<p><a href="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/releases/v0.1.13/assethoard-v0.1.13.png" alt="AssetHoard library showing Godot .tres assets, including material spheres, sprite frames animations and tilesets, with a SpriteFrames preview panel open on the right" title="AssetHoard v0.1.13: Godot .tres support with material, SpriteFrames and TileSet previews" width="1278" height="688" loading="eager" decoding="async"></a></p>
 <h2 id="how-assethoard-parses-tres-files">How AssetHoard parses .tres files</h2><p>The rest of this post is the engineering deep-dive: how AssetHoard reads <code>.tres</code> files, resolves their references and previews them.</p>
 <p>A <code>.tres</code> file looks innocent. Open one in a text editor and you get something close to INI: a header, a few sections, some key-value pairs. Tiny. Readable. Surely a couple of regexes away from being parseable.</p>
 <p>This impression survives roughly five minutes.</p>
@@ -1679,28 +1982,20 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <div class="figure-inline figure-inline--reverse">
 <p class="figure-inline__text"><strong>StandardMaterial3D, ORMMaterial3D, SpatialMaterial.</strong> Rendered to a real sphere using <code>THREE.MeshStandardMaterial</code> and <code>THREE.SphereGeometry</code>, with an IBL studio environment for reflections and a single directional key light. The thumbnail generator keeps a singleton offscreen <code>WebGLRenderer</code> (<code>preserveDrawingBuffer: true</code>), swaps the maps onto a reused sphere, and captures the result. The preview is a real material, not a representation.</p>
 <div class="figure-inline__image"><video controls muted playsinline preload="metadata"><source src="https://assethoard.com/blog/2026/godot-tech/assethoard-godot-material.mp4" type="video/mp4"></video></div>
-</div>
-
-<p><strong>ShaderMaterial.</strong> Render the linked <code>.gdshader</code> source as code with GLSL syntax highlighting via highlight.js. Trying to render an arbitrary user shader without running it is impossible, and running untrusted user shaders against a stub uniform set produces garbage at best. Code preview turns out to be more useful in practice. You can scan the shader and recognise it immediately, which is more than you can say for yet another generic sphere.</p>
+</div><p><strong>ShaderMaterial.</strong> Render the linked <code>.gdshader</code> source as code with GLSL syntax highlighting via highlight.js. Trying to render an arbitrary user shader without running it is impossible, and running untrusted user shaders against a stub uniform set produces garbage at best. Code preview turns out to be more useful in practice. You can scan the shader and recognise it immediately, which is more than you can say for yet another generic sphere.</p>
 <p><strong>FastNoiseLite + Gradient.</strong> These are procedural materials with no texture references at all. The naive approach is &quot;no textures, no preview, fall back to icon&quot;, which produces a folder full of identical blank spheres. Instead we feed the Godot 4 <code>FastNoiseLite</code> parameters extracted from the <code>.tres</code> body into the <code>fastnoise-lite</code> npm package, which is a JavaScript port of the same library Godot itself uses. The noise is sampled into a canvas, the gradient is applied pixel by pixel, and the result plugs into the same texture slot a real albedo map would. It will not be pixel-identical to Godot. RNG seed handling and Godot&#39;s seamless mode (4D noise sampled on a torus) differ. But visually it is equivalent, which is the point. An ice noise material looks like ice and a lava one looks like lava.</p>
 <div class="figure-inline">
 <p class="figure-inline__text"><strong>SpriteFrames.</strong> Animation playback. Frame data is pre-flattened in Rust during the import pass, so each frame carries its source asset id, disk path, atlas region (<code>sx, sy, sw, sh</code>) and per-frame duration multiplier. The frontend does not need to walk sub_resources at playback time. The preview component blits each frame's region onto a canvas with a <code>setTimeout</code>-driven loop, with animation tabs, transport controls, frame counter, and 0.5×/1×/2× speed control. Trying to communicate "this is animated" via a static image is a losing battle, so we just animate it.</p>
 <div class="figure-inline__image"><video controls muted playsinline preload="metadata"><source src="https://assethoard.com/blog/2026/godot-tech/assethoard-godot-spriteframes.mp4" type="video/mp4"></video></div>
-</div>
-
-<div class="figure-inline figure-inline--reverse">
+</div><div class="figure-inline figure-inline--reverse">
 <p class="figure-inline__text"><strong>TileSet.</strong> Interactive zoom and pan preview. The Rust parser produces a normalised <code>TileSetData</code> covering atlas sources, tile counts, terrain names (set-major, so multi-set TileSets keep their grouping), custom data layer names, and physics and navigation layer counts. The Svelte preview renders the atlas with margin and separation honoured, multi-cell tile spans drawing across the cells they cover, and tooltip name lookup. The Godot 3 sub-rect path bakes the offset into per-tile <code>explicit_region</code> so the same renderer handles both formats.</p>
 <div class="figure-inline__image"><video controls muted playsinline preload="metadata"><source src="https://assethoard.com/blog/2026/godot-tech/assethoard-godot-tilesets.mp4" type="video/mp4"></video></div>
-</div>
-
-<p><strong>Custom resource scripts.</strong> There is no safe way to run user GDScript from an external tool, so these get an &quot;indexed but no preview&quot; fallback with the flat-properties list as their detail view. This is the weakest part of the current implementation and probably the area I would most welcome community input on.</p>
+</div><p><strong>Custom resource scripts.</strong> There is no safe way to run user GDScript from an external tool, so these get an &quot;indexed but no preview&quot; fallback with the flat-properties list as their detail view. This is the weakest part of the current implementation and probably the area I would most welcome community input on.</p>
 <h2 id="drag-out-reconstructing-res">Drag-out: reconstructing res://</h2><p>The final piece is the drag-out behaviour, and this is the bit I am most pleased with.</p>
 <p>When a user drags a <code>.tres</code> out of AssetHoard, the OS drag-and-drop pipeline expects a list of file paths. The naive implementation hands over the path to the <code>.tres</code> itself. The user drops it into their Godot project, and immediately discovers the textures are not there.</p>
 <video controls muted playsinline preload="metadata">
   <source src="https://assethoard.com/pages/godot-asset-manager/assethoard-godot-dragnaddrop.mp4" type="video/mp4">
-</video>
-
-<p>The fix is conceptually simple. Before the drag begins, build a temporary directory containing the <code>.tres</code> and every file in its dependency graph, arranged in the <code>res://</code> layout each file expects. Hand the OS that whole tree as the drag payload. The user drops it, the operating system copies the lot, and the <code>.tres</code> finds its textures because the relative paths still resolve.</p>
+</video><p>The fix is conceptually simple. Before the drag begins, build a temporary directory containing the <code>.tres</code> and every file in its dependency graph, arranged in the <code>res://</code> layout each file expects. Hand the OS that whole tree as the drag payload. The user drops it, the operating system copies the lot, and the <code>.tres</code> finds its textures because the relative paths still resolve.</p>
 <p>The drag-out logic lives in <code>commands/tres_drag.rs</code>. Two Tauri commands cover the cases: <code>stage_tres_for_drag</code> for one or more <code>.tres</code> assets dragged directly, and <code>stage_tres_bundle_for_drag</code> for dragging a bundle whose contents include <code>.tres</code> files. The bundle command merges the trees so the drop lands as a single self-contained project root rather than per-asset subdirectories.</p>
 <p>Layout reconstruction is direct: the staging root <em>is</em> the project root. Every reference lands at <code>&lt;staging_root&gt;/&lt;res_path stripped of &quot;res://&quot;&gt;</code>, and the <code>.tres</code> itself goes at the staging root using just its filename. After the user drops the staging tree into a Godot project, the <code>res://</code> references resolve from the new location.</p>
 <pre><code class="hljs language-rust"><span class="hljs-keyword">let</span> <span class="hljs-variable">staging_root</span> = std::env::<span class="hljs-title function_ invoke__">temp_dir</span>()
@@ -1734,9 +2029,7 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <div class="figure-inline">
 <p class="figure-inline__text">If you've spent any time building games as an indie developer, you've probably hit the same wall: a folder full of assets that's completely out of control. Hundreds of sprites, sound files, models, textures, and Unity packages, organised by a naming convention you invented two years ago and have since partially abandoned. The folder called "final" next to the folder called "final_v2" next to the folder called "actually_final".</p>
 <a href="https://assethoard.com/blog/2026/messy-assetfolder.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image"><img src="https://assethoard.com/blog/2026/messy-assetfolder.png" alt="A chaotic asset folder full of duplicates, inconsistent naming conventions, and final_v2-style filenames" title="A typical messy asset folder" loading="lazy"></a>
-</div>
-
-<p>The obvious solution is an asset manager. The question is which one, and whether it needs to be online at all.</p>
+</div><p>The obvious solution is an asset manager. The question is which one, and whether it needs to be online at all.</p>
 <h2 id="the-problem-with-cloud-first-tools">The problem with cloud-first tools</h2><p>A lot of creative tools have gone cloud-first. It makes sense from a business perspective: recurring revenue, easy updates, cross-device sync. But for game developers, it introduces a set of problems that don&#39;t get talked about enough.</p>
 <p>Connectivity is the obvious one. Game developers work everywhere. On trains with patchy mobile signal, at game jams where the venue wifi is already overloaded, in coffee shops with paywalled connections, on planes. If your asset library lives behind a login screen and an internet connection, you&#39;re stuck the moment you lose signal.</p>
 <p>Then there&#39;s data ownership. If your assets and all the organisational work you&#39;ve done (the tags, the collections, the metadata) live on someone else&#39;s server, you&#39;re renting access to your own library. Cloud tools shut down. Companies get acquired. Services pivot. When that happens, your organisational work evaporates. You get an email saying you have 30 days to export what you can, and then it&#39;s gone.</p>
@@ -1754,15 +2047,11 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <h3 id="eagle-cool">Eagle.cool</h3><div class="figure-inline figure-inline--reverse">
 <p class="figure-inline__text">Eagle is a polished visual file organiser with a nice interface and a solid tagging system. It handles images and video well, has a clean design, and costs $29.95 as a one-time purchase. For designers and illustrators, it's genuinely excellent.</p>
 <a href="https://assethoard.com/blog/2026/best-offline-asset-manager/eagle.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image"><img src="https://assethoard.com/blog/2026/best-offline-asset-manager/eagle.png" alt="Eagle.cool app icon, a polished visual file organiser aimed at designers and illustrators" title="Eagle.cool" loading="lazy"></a>
-</div>
-
-<p>For game developers, it falls short in some important ways. There&#39;s no support for <code>.unitypackage</code> or other engine-specific formats. 3D model preview isn&#39;t there. Drag-to-engine workflow isn&#39;t part of its design, because it wasn&#39;t built with game engines in mind. Eagle is a great tool aimed squarely at designers. If your asset library is primarily images, it&#39;s worth considering. If it&#39;s primarily game assets, you&#39;re using a tool that wasn&#39;t made for your use case.</p>
+</div><p>For game developers, it falls short in some important ways. There&#39;s no support for <code>.unitypackage</code> or other engine-specific formats. 3D model preview isn&#39;t there. Drag-to-engine workflow isn&#39;t part of its design, because it wasn&#39;t built with game engines in mind. Eagle is a great tool aimed squarely at designers. If your asset library is primarily images, it&#39;s worth considering. If it&#39;s primarily game assets, you&#39;re using a tool that wasn&#39;t made for your use case.</p>
 <h3 id="hydrus-network">Hydrus Network</h3><div class="figure-inline">
 <p class="figure-inline__text">Hydrus is free, open source, and extraordinarily powerful. Its tagging and search capabilities are genuinely impressive. It's built around the kind of detailed metadata management that booru-style image collections use, and it handles large libraries well.</p>
 <a href="https://assethoard.com/blog/2026/best-offline-asset-manager/hydrus-white.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image"><img src="https://assethoard.com/blog/2026/best-offline-asset-manager/hydrus-white.png" alt="The Hydrus Network interface, a dense and technical UI built around tag-based image library management" title="Hydrus Network interface" loading="lazy"></a>
-</div>
-
-<p>The trade-off is complexity. The UI is dense and technical. Getting it set up and configured to your workflow takes real time and effort. And critically, it&#39;s built around images. There&#39;s no 3D model preview, no game package inspection, no concept of engine integration. It&#39;s a powerful tool for a specific use case, and that use case isn&#39;t game development.</p>
+</div><p>The trade-off is complexity. The UI is dense and technical. Getting it set up and configured to your workflow takes real time and effort. And critically, it&#39;s built around images. There&#39;s no 3D model preview, no game package inspection, no concept of engine integration. It&#39;s a powerful tool for a specific use case, and that use case isn&#39;t game development.</p>
 <p>If you want maximum tagging control and are willing to invest time learning the tool, Hydrus is worth exploring. If you want something you can use immediately with game-specific files, it&#39;s not the right fit.</p>
 <h3 id="assethoard">AssetHoard</h3><p><a href="https://assethoard.com/hero/assethoard-backgrounds.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/hero/assethoard-backgrounds.png" alt="AssetHoard library showing a grid of game-ready background art with previews, tags, and search visible in a local-first asset manager built for indie developers" title="AssetHoard, an offline asset manager for indie developers" width="1920" height="1032" loading="eager" decoding="async"></a></p>
 <p><a href="https://assethoard.com">AssetHoard</a> is a <a href="https://assethoard.com">game asset manager</a> built specifically for indie developers and artists. It supports 80+ game-development-specific file formats: <code>.unitypackage</code>, <code>.aseprite</code>, <code>.tres</code>, <code>.krita</code>, <code>.fbx</code>, <code>.gltf</code>, <code>.blend</code>, <code>.wav</code>, <code>.ogg</code>, and more.</p>
@@ -1783,22 +2072,16 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 			<category>Guides</category>
 			<description>Most asset tools blur pixel art by default. Here is why it happens, what proper pixel rendering looks like, and how to stop fighting your tools.</description>
 			<content:encoded><![CDATA[<p><img src="https://assethoard.com/blog/2026/assethoard-pixel-renderer.png" alt="Why your pixel art looks blurry (and how to fix it)" /></p>
-<img src="https://assethoard.com/blog/2026/assethoard-pixel-renderer.png" alt="AssetHoard pixel art renderer showing crisp nearest-neighbour scaling" style="width: 100%; border-radius: 0.5rem; margin-bottom: 1.5rem;" />
-
-<p>You drag a 32x32 sprite into your asset browser. Something you spent an afternoon getting right, every pixel placed deliberately. The preview comes up. It looks like someone has rubbed butter on the screen.</p>
+<img src="https://assethoard.com/blog/2026/assethoard-pixel-renderer.png" alt="AssetHoard pixel art renderer showing crisp nearest-neighbour scaling" style="width: 100%; border-radius: 0.5rem; margin-bottom: 1.5rem;" /><p>You drag a 32x32 sprite into your asset browser. Something you spent an afternoon getting right, every pixel placed deliberately. The preview comes up. It looks like someone has rubbed butter on the screen.</p>
 <p>This is not your fault, and it is not the sprite&#39;s fault. It is the rendering pipeline, and almost every general-purpose tool you have ever used gets it wrong by default.</p>
-<h2 id="what-is-actually-happening">What is actually happening</h2><img src="https://assethoard.com/blog/2026/pixel-renderer.webp" alt="Comparison of bilinear filtering versus nearest-neighbour scaling on a pixel art sprite" style="float: right; width: 40%; margin: 0.25rem 0 1rem 1.5rem; border-radius: 0.5rem;" />
-
-<p>When a tool displays an image at a size different from its native resolution, it has to invent the missing pixels. There are two main approaches.</p>
+<h2 id="what-is-actually-happening">What is actually happening</h2><img src="https://assethoard.com/blog/2026/pixel-renderer.webp" alt="Comparison of bilinear filtering versus nearest-neighbour scaling on a pixel art sprite" style="float: right; width: 40%; margin: 0.25rem 0 1rem 1.5rem; border-radius: 0.5rem;" /><p>When a tool displays an image at a size different from its native resolution, it has to invent the missing pixels. There are two main approaches.</p>
 <p>The first is interpolation. The renderer looks at the source pixels around each output pixel and blends them together to produce a smooth gradient. This is called bilinear or bicubic filtering, depending on the algorithm. It is excellent for photographs, where soft transitions between colours match how the real world actually looks. A photo upscaled with bilinear filtering looks natural. The eye accepts the smoothing because real surfaces do not have hard pixel boundaries.</p>
 <p>The second is nearest-neighbour. Instead of blending, the renderer simply picks the closest source pixel for each output pixel. No averaging, no smoothing, no invention. The result is a clean grid where every source pixel becomes a perfect square block.</p>
 <p>For pixel art, you want the second one. Always.</p>
 <p>And here is the thing. Pixel art is not low-resolution photography. Every pixel in a good sprite is there on purpose. The artist sat with a four-pixel sword tip and decided whether the highlight should be one pixel or two. They placed antialiasing by hand on the edges that needed it and left the others sharp. The whole point of the medium is that the grid is the canvas, not a limitation to be papered over.</p>
 <p>Bilinear filtering takes all of that careful work and averages it into mush. The single-pixel highlight gets smeared into the blade. Hand-placed antialiasing turns into generic blur. Hard silhouettes that read cleanly at native resolution dissolve into soft halos. The render pipeline is doing what it thinks is helpful, except the help is undoing the work.</p>
 <p>Nearest-neighbour just gets out of the way. Whatever the artist made survives the scaling, only larger.</p>
-<div style="clear: both;"></div>
-
-<h2 id="why-so-many-tools-get-it-wrong">Why so many tools get it wrong</h2><p>Two reasons, both reasonable in isolation.</p>
+<div style="clear: both;"></div><h2 id="why-so-many-tools-get-it-wrong">Why so many tools get it wrong</h2><p>Two reasons, both reasonable in isolation.</p>
 <p>The first is that photographs vastly outnumber pixel art in any general-purpose image pipeline. If a tool has to pick one default behaviour, picking the one that works for the majority is the safe choice. Bilinear filtering is fine, even good, for almost every image that is not pixel art.</p>
 <p>The second reason is harder. Detecting pixel art automatically is not trivial. There is no metadata flag inside a PNG that announces &quot;I am pixel art, please render me crisply.&quot; The information has to be inferred from the image itself, and any single signal can be misleading.</p>
 <p>Small dimensions are a hint, but plenty of pixel art lives at 512x512 or larger, and plenty of photos exist at thumbnail sizes. A limited colour palette is a hint, but a stylised illustration might also have few colours. Hard edges are a hint, but high-contrast photography has hard edges too. No single check is reliable on its own.</p>
@@ -1830,20 +2113,17 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 ]]></content:encoded>
 		</item>
 		<item>
-			<title>PBR vs ORM: Understanding the Difference</title>
+			<title>What is an ORM texture? (and how it differs from PBR)</title>
 			<link>https://assethoard.com/blog/pbr-vs-orm-explained</link>
 			<guid isPermaLink="true">https://assethoard.com/blog/pbr-vs-orm-explained</guid>
 			<pubDate>Fri, 17 Apr 2026 00:00:00 GMT</pubDate>
 			<dc:creator>Mark Gandolfo</dc:creator>
 			<category>Guides</category>
-			<description>One is a lighting model. The other is how you pack some of its textures. Here is what that means across Unity, Unreal, Godot and Blender.</description>
-			<content:encoded><![CDATA[<p><img src="https://assethoard.com/blog/2026/pbr.jpg" alt="PBR vs ORM: Understanding the Difference" /></p>
-<img src="https://assethoard.com/blog/2026/pbr.jpg" alt="PBR vs ORM textures" style="float: left; width: 40%; margin: 0.25rem 1.5rem 1rem 0; border-radius: 0.5rem;" />
-
+			<description>An ORM texture packs ambient occlusion, roughness and metallic into the red, green and blue channels of one image. Here is how that relates to PBR, and the channel layouts for Unity, Unreal, Godot and Blender.</description>
+			<content:encoded><![CDATA[<p><img src="https://assethoard.com/blog/2026/pbr.jpg" alt="What is an ORM texture? (and how it differs from PBR)" /></p>
+<img src="https://assethoard.com/blog/2026/pbr.jpg" alt="PBR vs ORM textures" style="float: left; width: 40%; margin: 0.25rem 1.5rem 1rem 0; border-radius: 0.5rem;" /><p>An ORM texture is a single image that stores three greyscale material maps in its colour channels: ambient <strong>O</strong>cclusion in red, <strong>R</strong>oughness in green and <strong>M</strong>etallic in blue. It is a packing format used by PBR materials, not an alternative to PBR.</p>
 <p>If you have spent any time with 3D assets, you have seen both terms thrown around as if they are interchangeable. They are not. PBR and ORM operate at different levels of the pipeline, and understanding the distinction saves a lot of confusion when importing materials between engines.</p>
-<div style="clear: both;"></div>
-
-<h2 id="pbr-is-the-lighting-model">PBR is the lighting model</h2><p>PBR stands for Physically Based Rendering. It is a shading approach that simulates how light actually behaves, with energy conservation, microsurface scattering, and Fresnel effects baked into the maths. A PBR material is driven by a stack of greyscale and colour textures: base colour (sometimes called albedo), normal, roughness, metallic, and ambient occlusion, often with emissive or height on top.</p>
+<div style="clear: both;"></div><h2 id="pbr-is-the-lighting-model">PBR is the lighting model</h2><p>PBR stands for Physically Based Rendering. It is a shading approach that simulates how light actually behaves, with energy conservation, microsurface scattering, and Fresnel effects baked into the maths. A PBR material is driven by a stack of greyscale and colour textures: base colour (sometimes called albedo), normal, roughness, metallic, and ambient occlusion, often with emissive or height on top.</p>
 <p>The shader reads those inputs and produces results that look consistent under different lighting. A rusted iron surface looks rusted whether it is sitting in a sunlit field or a dim warehouse, because the maths accounts for the physics rather than faking it per-scene.</p>
 <h2 id="the-textures-that-feed-it">The textures that feed it</h2><p>A PBR material is not one texture, it is a small bundle of them. Each one describes a different physical property of the surface. Here is what you will typically see in a material folder:</p>
 <pre><code class="hljs language-plaintext">brick_wall/
@@ -1955,9 +2235,10 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <li><strong><a href="https://www.texturecan.com/" target="_blank" rel="noopener noreferrer">TextureCan</a></strong> has 4K-minimum textures with SBSAR files for procedural tweaking</li>
 <li><strong><a href="https://www.sharetextures.com/" target="_blank" rel="noopener noreferrer">ShareTextures</a></strong> covers wood, stone, metal, and ground textures up to 4K</li>
 </ul>
-<p>Most of these deliver individual PBR maps rather than pre-packed ORM textures. If you need an ORM for Unreal or Godot, you can pack one yourself in any image editor by assigning AO to the red channel, roughness to green, and metallic to blue. ImageMagick does it in a single command, and most DCC tools have built-in or plugin-based packers. If you would rather not touch the command line, an AssetHoard user has created <a href="https://www.tikodevelopments.com/texture-packer-tool" target="_blank" rel="noopener noreferrer">Tiko Developments Texture Packer Tool</a>, a browser-based packer that outputs ORM layouts for all Unreal, Unity (HDRP, SRP and URP), gLTF, Godot, and even custom. </p>
+<p>Most of these deliver individual PBR maps rather than pre-packed ORM textures. If you need an ORM for Unreal or Godot, you can pack one yourself in any image editor by assigning AO to the red channel, roughness to green, and metallic to blue. Our free <a href="https://assethoard.com/tools/channel-packer">ORM channel packer</a> does it in the browser, ImageMagick does it in a single command, and most DCC tools have built-in or plugin-based packers. You can also check the packed result on a sphere with the <a href="https://assethoard.com/tools/pbr-texture-previewer">PBR texture previewer</a>. If you would rather not touch the command line, an AssetHoard user has created <a href="https://www.tikodevelopments.com/texture-packer-tool" target="_blank" rel="noopener noreferrer">Tiko Developments Texture Packer Tool</a>, a browser-based packer that outputs ORM layouts for all Unreal, Unity (HDRP, SRP and URP), gLTF, Godot, and even custom. </p>
 <h2 id="the-practical-takeaway">The practical takeaway</h2><p>PBR is the workflow. ORM is one way of organising the textures that feed it. When someone says a material is &quot;PBR,&quot; they mean it works with a physically based shader. When they say it is &quot;ORM packed,&quot; they mean the three greyscale maps are already combined into one file.</p>
 <p>Knowing which is which makes it much easier to troubleshoot when a material looks wrong after import. Nine times out of ten, it is a channel convention mismatch rather than a broken texture.</p>
+<p>If those materials end up inside a glTF or GLB model, the textures are usually most of the file size. The free <a href="https://assethoard.com/tools/glb-compressor">GLB compressor</a> can downscale them and compress the mesh in one pass, all in your browser.</p>
 <hr>
 <p>If you work with a lot of PBR materials across different engines, keeping them organised gets painful fast. <a href="https://assethoard.com">AssetHoard</a> is a local-first desktop asset manager built for exactly this kind of library. It is free during open beta.</p>
 <hr>
@@ -1988,22 +2269,16 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <div class="figure-inline">
 <p class="figure-inline__text"><strong>No material file support.</strong> Material files like .mtl, .mtlx (MaterialX), .mat (Unity), and Substance .sbsar / .sbs aren't recognised by Eagle. They sit in your library as opaque files with no preview of what the material actually looks like.</p>
 <a href="https://assethoard.com/blog/2026/comparison/competitor-material-support.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the material-file preview comparison in a new tab"><img src="https://assethoard.com/blog/2026/comparison/competitor-material-support.png" alt="A material file open in a competitor tool, shown as an unsupported-format placeholder with no preview of the actual surface" title="A material file shown as an unsupported-format placeholder in a competitor tool" loading="lazy"></a>
-</div>
-
-<p><strong>No material sphere rendering.</strong> Even when textures are organised as a PBR set, Eagle can&#39;t render them on a 3D sphere with proper lighting to show you the actual surface. You&#39;re inspecting maps, not materials.</p>
+</div><p><strong>No material sphere rendering.</strong> Even when textures are organised as a PBR set, Eagle can&#39;t render them on a 3D sphere with proper lighting to show you the actual surface. You&#39;re inspecting maps, not materials.</p>
 <div class="figure-inline">
 <p class="figure-inline__text"><strong>No .unitypackage support.</strong> Unity Asset Store packages are a staple of many game developers' workflows. Eagle can't inspect or browse the contents of a .unitypackage file. You'd have to import it into Unity just to see what's inside.</p>
 <a href="https://assethoard.com/blog/2026/comparison/competitor-unity.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the .unitypackage handling comparison in a new tab"><img src="https://assethoard.com/blog/2026/comparison/competitor-unity.png" alt="A .unitypackage file in a competitor tool with no way to inspect its contents, just a generic file entry" title="A .unitypackage shown as a generic file entry with no inspectable contents in a competitor tool" loading="lazy"></a>
-</div>
-
-<p><strong>No Godot resource support.</strong> If you&#39;re working with Godot, your library is likely full of .tres, .tscn, and .res files. Eagle doesn&#39;t understand these formats, so they just sit there unlabelled.</p>
+</div><p><strong>No Godot resource support.</strong> If you&#39;re working with Godot, your library is likely full of .tres, .tscn, and .res files. Eagle doesn&#39;t understand these formats, so they just sit there unlabelled.</p>
 <p><strong>No Aseprite preview at all.</strong> Eagle doesn&#39;t render .aseprite files. If you&#39;re working with pixel art, you&#39;ll see an unsupported-format placeholder rather than the artwork or its animation.</p>
 <div class="figure-inline">
 <p class="figure-inline__text"><strong>No pixel-perfect sprite rendering.</strong> Eagle displays pixel art using a blended renderer, which works great for sunsets or pictures of people, but pixel art needs precise rendering at any scale. For pixel artists, that turns the library into a wall of soft, distorted thumbnails.</p>
 <a href="https://assethoard.com/blog/2026/comparison/competitor-sprite-support.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the pixel-art sprite rendering comparison in a new tab"><img src="https://assethoard.com/blog/2026/comparison/competitor-sprite-support.png" alt="A pixel-art sprite previewed in a competitor tool with smoothing applied, edges and details come out blurry and softened instead of crisp" title="A pixel-art sprite rendered with blurry smoothing in a competitor tool" loading="lazy"></a>
-</div>
-
-<p><strong>No PBR texture set grouping.</strong> A single PBR material typically comes as a set of textures: albedo, normal map, roughness, metallic, ambient occlusion. Eagle doesn&#39;t understand the relationship between these files, so they sit separately in your library with no indication that they belong together.</p>
+</div><p><strong>No PBR texture set grouping.</strong> A single PBR material typically comes as a set of textures: albedo, normal map, roughness, metallic, ambient occlusion. Eagle doesn&#39;t understand the relationship between these files, so they sit separately in your library with no indication that they belong together.</p>
 <p><strong>No Linux support.</strong> Eagle runs on Windows and macOS only. If your development machine is Linux, Eagle is off the table entirely, which rules it out for a meaningful slice of indie and open-source game developers.</p>
 <p>None of these are criticisms of Eagle as a product. They&#39;re just evidence that it was designed with a different user in mind.</p>
 <h2 id="assethoard-as-an-alternative">AssetHoard as an alternative</h2><p><a href="https://assethoard.com" title="AssetHoard — built for game developers and creative professionals">AssetHoard</a> was built specifically for game developers and artists who are managing the kind of files that Eagle can&#39;t handle well.</p>
@@ -2011,24 +2286,16 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <div class="figure-inline">
 <p class="figure-inline__text">The 3D model browser lets you rotate, zoom, and play back animations directly in the app, useful when you're trying to decide between three similar character rigs. Models from .blend, .gltf/.glb, .fbx, .dae, and .obj all sit alongside one another in the same library.</p>
 <a href="https://assethoard.com/hero/animations-3D.webp" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the AssetHoard 3D model viewer animation in a new tab"><img src="https://assethoard.com/hero/animations-3D.webp" alt="Animated demo of AssetHoard's 3D model viewer rotating a model with interactive zoom and pan controls" title="AssetHoard 3D model viewer with rotate, zoom, and animation playback" loading="lazy"></a>
-</div>
-
-<div class="figure-inline figure-inline--reverse">
+</div><div class="figure-inline figure-inline--reverse">
 <p class="figure-inline__text">If you work with Unity, the <a href="https://assethoard.com/unity-asset-manager" title="AssetHoard Unity asset manager — inspect .unitypackage files without importing">Unity asset manager</a> workflow lets you inspect .unitypackage contents without importing into Unity first. You can see exactly what's in a package, browse its assets, and decide whether it's worth bringing into your project. For Godot users, the <a href="https://assethoard.com/godot-asset-manager" title="AssetHoard Godot asset manager — preview .tres, .tscn, and .res files">Godot asset manager</a> handles .tres, .tscn, and .res files alongside the rest of your library.</p>
 <a href="https://assethoard.com/hero/assethoard-unity.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the AssetHoard .unitypackage browser screenshot in a new tab"><img src="https://assethoard.com/hero/assethoard-unity.png" alt="AssetHoard importing a Unity Asset Store .unitypackage and listing its contents inline" title="AssetHoard inspecting a .unitypackage and listing its contents inline" loading="lazy"></a>
-</div>
-
-<div class="figure-inline">
+</div><div class="figure-inline">
 <p class="figure-inline__text">Aseprite files have full animation support, with frame-by-frame playback rather than the frozen previews you'll see elsewhere. Pixel art is detected automatically at import (by dimensions, palette, or format) and rendered with a precise pixel renderer, so sprites stay crisp at every zoom. If the auto-pick gets it wrong, you can <a href="https://assethoard.com/docs/choose-a-renderer" title="AssetHoard docs — override the renderer per asset, bundle, or category">override the renderer</a> per asset, per bundle, or per category.</p>
 <a href="https://assethoard.com/hero/animations-sprite.webp" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the Aseprite animation playback demo in a new tab"><img src="https://assethoard.com/hero/animations-sprite.webp" alt="AssetHoard playing an Aseprite sprite animation frame by frame at pixel-perfect crispness" title="AssetHoard playing an Aseprite animation frame by frame at pixel-perfect crispness" loading="lazy"></a>
-</div>
-
-<div class="figure-inline figure-inline--reverse">
+</div><div class="figure-inline figure-inline--reverse">
 <p class="figure-inline__text">PBR texture sets are grouped automatically so albedo, normal, and roughness maps are shown together rather than scattered across your library. Material files render on a live 3D sphere with proper lighting, so you can see what a surface will actually look like before bringing it into your engine.</p>
 <a href="https://assethoard.com/hero/assethoard-materials.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image" title="Open the AssetHoard material browser screenshot in a new tab"><img src="https://assethoard.com/hero/assethoard-materials.png" alt="AssetHoard's material browser showing a PBR material rendered on a live 3D sphere with proper lighting" title="AssetHoard rendering a PBR material on a live 3D sphere with proper lighting" loading="lazy"></a>
-</div>
-
-<p>When you&#39;re ready to use an asset, you can drag it directly into Unity or Godot. No intermediate steps.</p>
+</div><p>When you&#39;re ready to use an asset, you can drag it directly into Unity or Godot. No intermediate steps.</p>
 <p>It&#39;s local-first. Your library lives on your machine, no cloud sync, no account required.</p>
 <h2 id="honest-trade-offs">Honest trade-offs</h2><p>AssetHoard isn&#39;t better at everything, and it&#39;s worth being clear about that.</p>
 <p>Eagle&#39;s browser extension for collecting web references is excellent and has no equivalent in AssetHoard. If you&#39;re regularly saving inspiration from the web, that&#39;s a genuine advantage.</p>
@@ -2079,9 +2346,7 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <div class="figure-inline">
 <p class="figure-inline__text">What changes when you stop fighting your directory structure is that you start actually using the assets you own. That pack you bought eighteen months ago and never properly ingested. That artist's collection you downloaded and forgot about. They are in there. You just need a way to find them.</p>
 <a href="https://assethoard.com/hero/assethoard-hero.png" target="_blank" rel="noopener noreferrer" class="figure-inline__image"><img src="https://assethoard.com/hero/assethoard-hero.png" alt="AssetHoard game asset manager showing a searchable library of game files in a single, browsable view" title="AssetHoard: one searchable library for everything you own" loading="lazy"></a>
-</div>
-
-<p>Until now, indie developers have not had a purpose-built asset manager made for them. That is what AssetHoard is for.</p>
+</div><p>Until now, indie developers have not had a purpose-built asset manager made for them. That is what AssetHoard is for.</p>
 <hr>
 <p><em>The AssetHoard Team</em></p>
 ]]></content:encoded>
@@ -2099,64 +2364,35 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <p>First up is Shaoul from Tesseract Assets, a 3D artist specialising in props, weapons, and stylised environments.</p>
 <p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-hero.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-hero.jpg" alt="Stylised environment scene by Tesseract Assets" width="3302" height="1798" loading="eager" decoding="async"></a></p>
 <div style="margin-top: -3.5rem; margin-bottom: -2rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-rocks.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-rocks.jpg" alt="Stylised environment scene by Tesseract Assets" width="2559" height="1550" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-rocks.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-rocks.jpg" alt="Stylised environment scene by Tesseract Assets" width="2559" height="1550" loading="lazy" decoding="async"></a></p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-weapons.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-weapons.jpg" alt="Stylised environment scene by Tesseract Assets" width="1919" height="1089" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-weapons.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-weapons.jpg" alt="Stylised environment scene by Tesseract Assets" width="1919" height="1089" loading="lazy" decoding="async"></a></p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-houses.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-houses.jpg" alt="Stylised environment scene by Tesseract Assets" width="2559" height="1460" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-houses.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-houses.jpg" alt="Stylised environment scene by Tesseract Assets" width="2559" height="1460" loading="lazy" decoding="async"></a></p>
 </div>
+</div><h2 id="what-kind-of-assets-do-you-create-and-what-got-you-into-it">What kind of assets do you create, and what got you into it?</h2><div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-pack.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-pack.jpg" alt="Stylised nature pack by Tesseract Assets" width="3609" height="1816" loading="lazy" decoding="async"></a></p>
 </div>
-
-<h2 id="what-kind-of-assets-do-you-create-and-what-got-you-into-it">What kind of assets do you create, and what got you into it?</h2><div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-pack.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-pack.jpg" alt="Stylised nature pack by Tesseract Assets" width="3609" height="1816" loading="lazy" decoding="async"></a></p>
+<div><p>I mainly create 3D assets for games, with a focus on small props and weapons. I started out doing smaller, standalone objects because they let me concentrate on shape language, materials, and storytelling without getting overwhelmed by huge scenes.</p>
 </div>
-<div>
-
-<p>I mainly create 3D assets for games, with a focus on small props and weapons. I started out doing smaller, standalone objects because they let me concentrate on shape language, materials, and storytelling without getting overwhelmed by huge scenes.</p>
-</div>
-</div>
-
-<p>Over time, that naturally grew into building more cohesive sets and recently into stylised environments, where props really shine as part of a bigger world.</p>
+</div><p>Over time, that naturally grew into building more cohesive sets and recently into stylised environments, where props really shine as part of a bigger world.</p>
 <p>What got me into it was the mix of art and problem-solving. I&#39;ve always enjoyed breaking things down visually and figuring out how they&#39;re built, and game assets sit right at that intersection of creativity and technical constraints.</p>
 <h2 id="what-does-your-process-look-like-from-concept-to-finished-asset">What does your process look like from concept to finished asset?</h2><div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-<div>
-
-<p>I usually start with reference gathering and visual exploration. I sometimes use AI to generate some reference, even if there&#39;s already a concept. Understanding the style, proportions, and materials upfront saves a lot of time later. I put everything on PureRef to have a general overview.</p>
+<div><p>I usually start with reference gathering and visual exploration. I sometimes use AI to generate some reference, even if there&#39;s already a concept. Understanding the style, proportions, and materials upfront saves a lot of time later. I put everything on PureRef to have a general overview.</p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-village.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-village.jpg" alt="Stylised environment village by Tesseract Assets" width="3482" height="1732" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-village.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-village.jpg" alt="Stylised environment village by Tesseract Assets" width="3482" height="1732" loading="lazy" decoding="async"></a></p>
 </div>
-</div>
-
-<p>From there, I block out the asset in 3D to lock in the silhouette and scale. Once the shapes feel right, I model and sometimes sculpt to final forms. Texturing comes next, where I really try to push material definition and readability, especially for stylised work.</p>
+</div><p>From there, I block out the asset in 3D to lock in the silhouette and scale. Once the shapes feel right, I model and sometimes sculpt to final forms. Texturing comes next, where I really try to push material definition and readability, especially for stylised work.</p>
 <p>The final steps are optimisation, testing in-engine when possible, and polishing things like roughness values, edge wear, and overall presentation so the asset holds up from different angles and distances.</p>
 <h2 id="what-tools-do-you-use-day-to-day">What tools do you use day-to-day?</h2><p>My core tools are Blender for modelling, Substance Painter for texturing, a bit of ZBrush to sculpt, and Substance Designer for some tiled textures. Unreal Engine 5 for rendering and testing.</p>
 <p>I also rely a lot on PureRef for reference and Photoshop for quick texture tweaks or presentation work. Plus some workflow apps like Upscayl, Bulk Rename Utility, XnConvert, ShareX, and Lightshot.</p>
 <h2 id="whats-something-most-people-dont-realise-about-creating-3d-assets">What&#39;s something most people don&#39;t realise about creating 3D assets?</h2><div style="margin-bottom: -1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-<div>
-
-<p>People don&#39;t realise how much time goes into things that aren&#39;t immediately visible, like clean topology, proper UVs, optimisation, and making sure assets behave well in-engine. A model can look great in a render and still cause problems in an actual game.</p>
+<div><p>People don&#39;t realise how much time goes into things that aren&#39;t immediately visible, like clean topology, proper UVs, optimisation, and making sure assets behave well in-engine. A model can look great in a render and still cause problems in an actual game.</p>
 </div>
-<div>
-
-<p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-axe.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-axe.jpg" alt="textured Axe by Tesseract Assets" width="1280" height="720" loading="lazy" decoding="async"></a></p>
+<div><p><a href="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-axe.jpg" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/artist-spotlight/tesseract-assets-axe.jpg" alt="textured Axe by Tesseract Assets" width="1280" height="720" loading="lazy" decoding="async"></a></p>
 </div>
-</div>
-
-
-<h2 id="whats-been-your-favourite-project-to-work-on">What&#39;s been your favourite project to work on?</h2><p>My last weapon pack (Volume 5) as it&#39;s the most recent and benefits from the experience gathered doing previous weapon packs.</p>
-<iframe width="640" height="480" src="https://www.youtube.com/embed/2Hlseh3xmQM" frameborder="0" allowfullscreen></iframe>
-
-<p>I&#39;m especially proud of my recent shift toward stylised environment work. Moving from individual props and weapons into a more cohesive visual world has been really rewarding. It pushed me to think more about colour, composition, and how assets support each other rather than standing alone.</p>
+</div><h2 id="whats-been-your-favourite-project-to-work-on">What&#39;s been your favourite project to work on?</h2><p>My last weapon pack (Volume 5) as it&#39;s the most recent and benefits from the experience gathered doing previous weapon packs.</p>
+<iframe width="640" height="480" src="https://www.youtube.com/embed/2Hlseh3xmQM" frameborder="0" allowfullscreen></iframe><p>I&#39;m especially proud of my recent shift toward stylised environment work. Moving from individual props and weapons into a more cohesive visual world has been really rewarding. It pushed me to think more about colour, composition, and how assets support each other rather than standing alone.</p>
 <h2 id="any-tips-for-game-devs-on-getting-the-most-out-of-assets-theyve-bought-or-downloaded">Any tips for game devs on getting the most out of assets they&#39;ve bought or downloaded?</h2><p>Don&#39;t treat assets as untouchable. Even small adjustments to scale, roughness, colour balance, or wear can make a big difference in how well they fit your project. Consistency matters more than individual detail.</p>
 <p>Also, test assets early in-engine and in context. Lighting, shaders, and camera distance can completely change how something reads compared to a standalone render.</p>
 <h2 id="what-are-you-working-on-next">What are you working on next?</h2><p>I&#39;m continuing to expand my stylised environment work, focusing on building stronger, more complete scenes and refining my visual language. I&#39;m also experimenting more with storytelling through props and environments, making assets that feel like they belong to a lived-in world rather than just looking good on their own.</p>
@@ -2304,8 +2540,10 @@ normal_texture = ExtResource(&quot;2_normal&quot;)</code></pre><p>The shape is s
 <p><a href="https://assethoard.com/blog/2026/asprite-animation.png" target="_blank" rel="noopener noreferrer"><img src="https://assethoard.com/blog/2026/asprite-animation.png" alt="AssetHoard Asprite" width="1780" height="888" loading="eager" decoding="async"></a></p>
 <p>Asset hunting is one of the great time sinks of indie game development. You sit down to build a level and somehow lose the morning to forum threads, broken Patreon links, and downloads that turn out to be 32x32 placeholders in disguise.</p>
 <p>The good news is that 2026 is a genuinely excellent year to be doing this. Plenty of artists, studios, and one-person operations now release HD, professional-quality work for free, often under licences that let you ship commercially without attribution.</p>
+<blockquote>
+<p><strong>Looking for the assets themselves, not a list of sites?</strong> Our <a href="https://assethoard.com/free-game-assets">free game assets catalogue</a> collects the best free packs from across these sites in one place, all cleared for commercial use. Filter by type, style, source, and licence, then jump straight to the download. Every licence is checked.</p>
+</blockquote>
 <p>Here are 15 sites worth bookmarking, grouped by what they&#39;re best at.</p>
-<p>We&#39;ve also gathered the best CC0 picks from across these sites into a single <a href="https://assethoard.com/free-game-assets">free game assets directory</a> you can filter by type, style, and source, then jump straight to the source. It&#39;s a good starting point before you go spelunking through the full catalogues below.</p>
 <h2 id="the-all-rounders">The All-Rounders</h2><p>These sites cover multiple asset types and should be your first stops.</p>
 <h3 id="itch-io">itch.io</h3><p>The indie darling of game distribution also happens to be one of the best places to find free assets. Head to <a href="https://itch.io/game-assets/free" target="_blank" rel="noopener noreferrer">itch.io/game-assets/free</a> and you&#39;ll find everything from pixel art character sprites to complete game kits with 3D models, audio, and animations bundled together.</p>
 <p>The curation is decent, the community is active, and you can filter by asset type, art style, and licence. Many creators release their work under CC0 (public domain), meaning you can use it commercially without attribution.</p>

@@ -8,6 +8,7 @@
 
 ## Product
 - [Home](https://assethoard.com/): Overview of AssetHoard, the local-first game asset manager.
+- [/game-asset-management](https://assethoard.com/game-asset-management): Game asset management software for indie developers: what it covers, and how AssetHoard compares with folders and general-purpose DAM systems.
 - [/local-first](https://assethoard.com/local-first): Why AssetHoard keeps your library entirely on your machine, with no server or account.
 - [/semantic-search](https://assethoard.com/semantic-search): Find assets by meaning, not just filename, across your whole library.
 - [/mcp-server](https://assethoard.com/mcp-server): Connect Claude Code, Cursor, VS Code, Windsurf or Claude Desktop to your library through a local MCP server: search, preview and export assets into a game project.
@@ -26,6 +27,18 @@
 - [/press-kit](https://assethoard.com/press-kit): Logos, screenshots, and brand assets for press and reviewers.
 - [/about](https://assethoard.com/about): About AssetHoard and the people building it.
 - [/contact](https://assethoard.com/contact): Get in touch with the AssetHoard team.
+
+## Free game assets
+- [/free-game-assets](https://assethoard.com/free-game-assets): A curated, filterable catalogue of free game assets for commercial use (CC0 and CC BY), with every licence checked and credit requirements marked.
+- [/free-game-assets/cc0](https://assethoard.com/free-game-assets/cc0): Free CC0 game assets: sprites, tilesets, 3D models, UI, audio and textures in the public domain. Commercial use with no attribution, every licence checked.
+- [/free-game-assets/pixel-art](https://assethoard.com/free-game-assets/pixel-art): Free CC0 pixel art for games: sprites, tilesets, characters and UI you can use commercially with no attribution. Every licence checked, direct links.
+- [/free-game-assets/3d-models](https://assethoard.com/free-game-assets/3d-models): Free CC0 3D models for games: low-poly characters, props and environment kits in FBX, glTF and OBJ. Commercial use, no attribution, every licence checked.
+- [/free-game-assets/characters](https://assethoard.com/free-game-assets/characters): Free CC0 character assets for games: 3D character models and 2D character sprites, many rigged or animated. Commercial use with no attribution required.
+- [/free-game-assets/environments](https://assethoard.com/free-game-assets/environments): Free CC0 environment assets: modular level kits, nature packs, dungeons and towns for 2D and 3D games. Commercial use, no attribution, every licence checked.
+- [/free-game-assets/props](https://assethoard.com/free-game-assets/props): Free CC0 props and items for games: furniture, weapons, food, tools and set dressing in 2D and 3D. Commercial use with no attribution, every licence checked.
+- [/free-game-assets/tilesets](https://assethoard.com/free-game-assets/tilesets): Free CC0 tilesets for platformers, top-down RPGs and 3D grids. Pixel art and low-poly 3D tiles you can use commercially with no attribution required.
+- [/free-game-assets/textures](https://assethoard.com/free-game-assets/textures): Free CC0 textures for games: PBR materials with colour, normal, roughness and AO maps, plus stylised and pixel textures. Commercial use, no attribution.
+- [/free-game-assets/sprites](https://assethoard.com/free-game-assets/sprites): Free CC0 sprites and sprite sheets for 2D games: characters, items, tiles and effects. Commercial use with no attribution, every licence checked.
 
 ## Documentation
 - [/docs](https://assethoard.com/docs): Documentation home.
@@ -92,6 +105,10 @@
 - [/blog/category/news](https://assethoard.com/blog/category/news): AssetHoard news and feature announcements, plus engineering deep dives on how we built them, from Rust and Tauri performance to file format parsing.
 
 ## Blog
+- [/blog/fbx-vs-glb](https://assethoard.com/blog/fbx-vs-glb): FBX is Autodesk's interchange format; GLB is the binary form of the open glTF standard. How they differ on materials, animation, size and engine support.
+- [/blog/what-is-a-uasset-file](https://assethoard.com/blog/what-is-a-uasset-file): A .uasset is Unreal Engine's binary package format, holding one asset such as a mesh or texture. What is inside, and how to open one outside Unreal.
+- [/blog/what-is-a-unitypackage-file](https://assethoard.com/blog/what-is-a-unitypackage-file): A .unitypackage is a compressed archive of Unity assets and their .meta files. What is inside, how to import one, and how to open one without Unity.
+- [/blog/what-is-a-yymps-file](https://assethoard.com/blog/what-is-a-yymps-file): A .yymps file is a GameMaker local package: a zip of sprites, objects, sounds and more, exported from one project to import into another. How to open one.
 - [/blog/how-assethoard-plugins-work](https://assethoard.com/blog/how-assethoard-plugins-work): AssetHoard 0.3.1 adds plugins, starting with HEIC photos and a Godot editor bridge. Why we built them on a sandboxed V8 engine, what a plugin can and can't touch, and what happens when one breaks.
 - [/blog/how-we-built-the-assethoard-mcp-server](https://assethoard.com/blog/how-we-built-the-assethoard-mcp-server): AssetHoard's built-in MCP server lets Claude Code, Cursor, VS Code and Windsurf search your asset library and export into your game project. How we built it.
 - [/blog/staying-motivated-solo-indie-developer](https://assethoard.com/blog/staying-motivated-solo-indie-developer): Motivation runs out on every long project. Solo indie developers who finish rely on habits, visible progress and real rest to get through the slow middle.
@@ -115,7 +132,7 @@
 - [/blog/parsing-godot-tres-files](https://assethoard.com/blog/parsing-godot-tres-files): A .tres file is a Godot text resource: a readable file storing one resource, such as a material or tileset. How it differs from .res and how to view one.
 - [/blog/best-offline-asset-manager-indie-developers](https://assethoard.com/blog/best-offline-asset-manager-indie-developers): A look at offline asset managers for game developers, and how to pick one that handles engine-specific formats.
 - [/blog/why-your-pixel-art-looks-blurry](https://assethoard.com/blog/why-your-pixel-art-looks-blurry): Most asset tools blur pixel art by default. Here is why it happens, what proper pixel rendering looks like, and how to stop fighting your tools.
-- [/blog/pbr-vs-orm-explained](https://assethoard.com/blog/pbr-vs-orm-explained): One is a lighting model. The other is how you pack some of its textures. Here is what that means across Unity, Unreal, Godot and Blender.
+- [/blog/pbr-vs-orm-explained](https://assethoard.com/blog/pbr-vs-orm-explained): An ORM texture packs ambient occlusion, roughness and metallic into the red, green and blue channels of one image. Here is how that relates to PBR, and the channel layouts for Unity, Unreal, Godot and Blender.
 - [/blog/eagle-alternative-game-developers](https://assethoard.com/blog/eagle-alternative-game-developers): Eagle is a great visual organiser, but it wasn't built for game assets. Here's what to look for if you're a game developer.
 - [/blog/how-i-manage-100000-game-assets](https://assethoard.com/blog/how-i-manage-100000-game-assets): Humble Bundle packs, asset store purchases, and indie artist downloads pile up fast. Here is how I stopped drowning in folders and started actually finding what I need.
 - [/blog/artist-spotlight-tesseract-assets](https://assethoard.com/blog/artist-spotlight-tesseract-assets): We chat with Shaoul from Tesseract Assets about 3D props, weapons, stylised environments, and the invisible work that makes game assets actually work in-engine.
