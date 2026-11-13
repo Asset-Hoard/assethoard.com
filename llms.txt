@@ -105,6 +105,7 @@
 - [/blog/category/news](https://assethoard.com/blog/category/news): AssetHoard news and feature announcements, plus engineering deep dives on how we built them, from Rust and Tauri performance to file format parsing.
 
 ## Blog
+- [/blog/artist-spotlight-life-altered](https://assethoard.com/blog/artist-spotlight-life-altered): Solo developer Christoph Kühl on Life Altered, a dice-driven nature deckbuilder, and how he mixes commissions, asset packs and public domain scientific art on an indie budget.
 - [/blog/fbx-vs-glb](https://assethoard.com/blog/fbx-vs-glb): FBX is Autodesk's interchange format; GLB is the binary form of the open glTF standard. How they differ on materials, animation, size and engine support.
 - [/blog/what-is-a-uasset-file](https://assethoard.com/blog/what-is-a-uasset-file): A .uasset is Unreal Engine's binary package format, holding one asset such as a mesh or texture. What is inside, and how to open one outside Unreal.
 - [/blog/what-is-a-unitypackage-file](https://assethoard.com/blog/what-is-a-unitypackage-file): A .unitypackage is a compressed archive of Unity assets and their .meta files. What is inside, how to import one, and how to open one without Unity.
