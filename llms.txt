@@ -142,6 +142,7 @@
 - [/blog/hello-world](https://assethoard.com/blog/hello-world): We built the asset manager we wished existed. No accounts, no subscriptions, no uploading your files to someone else's server. Just you and your hoard.
 
 ## Releases
+- [/releases/0.3.2](https://assethoard.com/releases/0.3.2): AssetHoard 0.3.2: find similar images and sprites in your library, drag Unity prefabs out of a .unitypackage with every dependency, and filter assets by licence.
 - [/releases/0.3.1](https://assethoard.com/releases/0.3.1): AssetHoard now supports plugins, starting with HEIC photos and a Godot editor plugin. Also: watched folders that follow renames and moves, one place to fix missing files, filters beside the library, audio export, Spine and LightWave support, and faster big libraries.
 - [/releases/0.2.4](https://assethoard.com/releases/0.2.4): Watched folders now keep tags, categories and bundles through renames and moves, even ones made while AssetHoard was closed. Also: clearer re-imports and faster launches on big libraries.
 - [/releases/0.2.3](https://assethoard.com/releases/0.2.3): A built-in MCP server lets Claude Code, Cursor, VS Code and Windsurf search your library and copy assets into your project. Also: assethoard:// links, searchable audio metadata, EXR and HDR support, and batch image export.
