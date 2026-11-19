@@ -1,0 +1,1 @@
+import{n as e}from"../chunks/XKyaHtl9.js";import{n as t}from"../chunks/CetCF49P.js";var n=e({load:()=>r,prerender:()=>!0});function r(){throw t(308,`/press-kit`)}export{n as universal};

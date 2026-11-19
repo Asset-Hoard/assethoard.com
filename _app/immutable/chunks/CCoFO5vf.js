@@ -1,0 +1,1 @@
+var e=new URL(`../assets/assethoard-logo.CwJilSta.svg`,import.meta.url).href;export{e as t};
