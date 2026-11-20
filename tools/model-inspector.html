@@ -12,13 +12,20 @@
 		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<!-- Google tag (gtag.js). Loaded on the live site only, so dev and preview sessions stay out of GA4.
+		     gtag() is always defined: elsewhere its calls just queue in dataLayer and go nowhere.
+		     Keep the hostnames in step with isProductionHost() in src/lib/attribution.ts. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-3E2E3JF689');
+			if (location.hostname === 'assethoard.com' || location.hostname === 'www.assethoard.com') {
+				var gtagScript = document.createElement('script');
+				gtagScript.async = true;
+				gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689';
+				document.head.appendChild(gtagScript);
+				gtag('js', new Date());
+				gtag('config', 'G-3E2E3JF689');
+			}
 		</script>
 
 		<!-- Ahrefs Analytics -->
@@ -153,17 +160,18 @@
 		<link href="../_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.CaKA356T.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/0.BOTk3C5N.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.Dn7L8ptj.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/0.DlCdvzZj.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CCoFO5vf.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/C_-1E8HS.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/rkES0WeA.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/BwrV-6QM.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/_QbbGIvK.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CU3gMydY.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/N9cesyo8.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/D_oo8oxr.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/B53D1_ot.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
 		<link href="../_app/immutable/nodes/85.8_9u_f5e.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/By6NIhRp.js" rel="modulepreload">
@@ -188,16 +196,16 @@
 			
 			<script>
 				{
-					__sveltekit_lcrlsv = {
+					__sveltekit_1d97dsj = {
 						base: new URL("..", location).pathname.slice(0, -1),
-						version: "1795119080155"
+						version: "1795150402952"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_lcrlsv);
-						const app = await import("../_app/immutable/entry/app.CaKA356T.js");
+						kit.init(__sveltekit_1d97dsj);
+						const app = await import("../_app/immutable/entry/app.Dn7L8ptj.js");
 						kit.start(app, element, {
 							node_ids: [0, 85],
 							data: [null,null],

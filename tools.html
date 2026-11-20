@@ -12,13 +12,20 @@
 		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<!-- Google tag (gtag.js). Loaded on the live site only, so dev and preview sessions stay out of GA4.
+		     gtag() is always defined: elsewhere its calls just queue in dataLayer and go nowhere.
+		     Keep the hostnames in step with isProductionHost() in src/lib/attribution.ts. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-3E2E3JF689');
+			if (location.hostname === 'assethoard.com' || location.hostname === 'www.assethoard.com') {
+				var gtagScript = document.createElement('script');
+				gtagScript.async = true;
+				gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689';
+				document.head.appendChild(gtagScript);
+				gtag('js', new Date());
+				gtag('config', 'G-3E2E3JF689');
+			}
 		</script>
 
 		<!-- Ahrefs Analytics -->
@@ -153,23 +160,24 @@
 		<link href="./_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.CaKA356T.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.BOTk3C5N.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.Dn7L8ptj.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.DlCdvzZj.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/CCoFO5vf.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/C_-1E8HS.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/rkES0WeA.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/BwrV-6QM.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/_QbbGIvK.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CU3gMydY.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/N9cesyo8.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/D_oo8oxr.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/B53D1_ot.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/70.CW3g5kuZ.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/70.CisEcCc3.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/BslgmPtU.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/DZJw1WYa.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/BZ8HUJEV.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/8F_r4nCW.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/fGM4D9iw.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--171l7w4--><meta name="description" content="Free, browser-based tools for game developers and artists: texture atlas packer, sprite sheet slicer, normal map generator, image compressor, PBR previewer and more. No upload, no account."/> <link rel="canonical" href="https://assethoard.com/tools"/> <meta property="og:type" content="website"/> <meta property="og:url" content="https://assethoard.com/tools"/> <meta property="og:title" content="Free browser tools for game developers and artists"/> <meta property="og:description" content="Texture packers, sprite slicers, normal map generators and more. Free, runs locally in your browser."/> <meta property="og:image" content="https://assethoard.com/assethoard-og.png"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="Free browser tools for game developers and artists"/> <meta name="twitter:description" content="Texture packers, sprite slicers, normal map generators and more. Free, runs locally in your browser."/> <meta name="twitter:image" content="https://assethoard.com/assethoard-og.png"/> <!--[--><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Free online game dev tools","description":"A collection of free, browser-based tools for game developers and creative professionals: texture packers, sprite slicers, normal map generators, image compressors and more. Everything runs locally, no upload required.","url":"https://assethoard.com/tools","mainEntity":{"@type":"ItemList","numberOfItems":25,"itemListElement":[{"@type":"ListItem","position":1,"url":"https://assethoard.com/tools/texture-atlas-packer","name":"Texture atlas packer"},{"@type":"ListItem","position":2,"url":"https://assethoard.com/tools/sprite-sheet-slicer","name":"Sprite sheet slicer"},{"@type":"ListItem","position":3,"url":"https://assethoard.com/tools/normal-map-generator","name":"Normal map generator"},{"@type":"ListItem","position":4,"url":"https://assethoard.com/tools/pbr-texture-previewer","name":"PBR texture previewer"},{"@type":"ListItem","position":5,"url":"https://assethoard.com/tools/seamless-texture-checker","name":"Seamless texture checker"},{"@type":"ListItem","position":6,"url":"https://assethoard.com/tools/channel-packer","name":"Channel packer"},{"@type":"ListItem","position":7,"url":"https://assethoard.com/tools/image-compressor","name":"Image compressor"},{"@type":"ListItem","position":8,"url":"https://assethoard.com/tools/bulk-image-resizer","name":"Bulk image resizer"},{"@type":"ListItem","position":9,"url":"https://assethoard.com/tools/palette-extractor","name":"Colour palette extractor"},{"@type":"ListItem","position":10,"url":"https://assethoard.com/tools/contact-sheet-generator","name":"Contact sheet generator"},{"@type":"ListItem","position":11,"url":"https://assethoard.com/tools/gltf-viewer","name":"glTF and GLB viewer"},{"@type":"ListItem","position":12,"url":"https://assethoard.com/tools/model-inspector","name":"3D model inspector"},{"@type":"ListItem","position":13,"url":"https://assethoard.com/tools/mesh-reducer","name":"Mesh polygon reducer"},{"@type":"ListItem","position":14,"url":"https://assethoard.com/tools/obj-to-glb","name":"OBJ to GLB converter"},{"@type":"ListItem","position":15,"url":"https://assethoard.com/tools/glb-compressor","name":"GLB compressor"},{"@type":"ListItem","position":16,"url":"https://assethoard.com/tools/turntable-generator","name":"Turntable thumbnail generator"},{"@type":"ListItem","position":17,"url":"https://assethoard.com/tools/audio-trimmer","name":"Audio waveform trimmer"},{"@type":"ListItem","position":18,"url":"https://assethoard.com/tools/sfx-generator","name":"Retro SFX generator"},{"@type":"ListItem","position":19,"url":"https://assethoard.com/tools/audio-format-converter","name":"Audio format converter"},{"@type":"ListItem","position":20,"url":"https://assethoard.com/tools/audio-sprite","name":"Audio sprite generator"},{"@type":"ListItem","position":21,"url":"https://assethoard.com/tools/loop-maker","name":"Seamless loop maker"},{"@type":"ListItem","position":22,"url":"https://assethoard.com/tools/silence-trimmer","name":"Audio silence trimmer"},{"@type":"ListItem","position":23,"url":"https://assethoard.com/tools/audio-normaliser","name":"Audio normaliser"},{"@type":"ListItem","position":24,"url":"https://assethoard.com/tools/licence-detector","name":"Licence and attribution builder"},{"@type":"ListItem","position":25,"url":"https://assethoard.com/tools/metadata-inspector","name":"Asset metadata inspector"}]}}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://assethoard.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://assethoard.com/tools"}]}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are these tools really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool on this page is free to use with no account and no sign-up. They are built and maintained by the team behind AssetHoard."}},{"@type":"Question","name":"Do my files get uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Each tool runs entirely in your browser using client-side code, so your images, models and audio never leave your machine."}},{"@type":"Question","name":"Do I need to install anything?","acceptedAnswer":{"@type":"Answer","text":"No. The tools run in any modern web browser with nothing to download or install."}},{"@type":"Question","name":"Who are these tools for?","acceptedAnswer":{"@type":"Answer","text":"They are aimed at indie game developers and digital artists working with textures, sprites, 3D models and audio, but anyone can use them."}}]}</script><!----><!--]--><!----><title>Free online game dev tools - AssetHoard</title>
 		<link href="./_app/immutable/assets/0.REK6WXPj.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/Button.B2tC0ZRw.css" rel="stylesheet">
@@ -190,16 +198,16 @@
 			
 			<script>
 				{
-					__sveltekit_lcrlsv = {
+					__sveltekit_1d97dsj = {
 						base: new URL(".", location).pathname.slice(0, -1),
-						version: "1795119080155"
+						version: "1795150402952"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("./_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_lcrlsv);
-						const app = await import("./_app/immutable/entry/app.CaKA356T.js");
+						kit.init(__sveltekit_1d97dsj);
+						const app = await import("./_app/immutable/entry/app.Dn7L8ptj.js");
 						kit.start(app, element, {
 							node_ids: [0, 70],
 							data: [null,null],

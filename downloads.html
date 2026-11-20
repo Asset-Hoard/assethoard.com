@@ -12,13 +12,20 @@
 		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<!-- Google tag (gtag.js). Loaded on the live site only, so dev and preview sessions stay out of GA4.
+		     gtag() is always defined: elsewhere its calls just queue in dataLayer and go nowhere.
+		     Keep the hostnames in step with isProductionHost() in src/lib/attribution.ts. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-3E2E3JF689');
+			if (location.hostname === 'assethoard.com' || location.hostname === 'www.assethoard.com') {
+				var gtagScript = document.createElement('script');
+				gtagScript.async = true;
+				gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689';
+				document.head.appendChild(gtagScript);
+				gtag('js', new Date());
+				gtag('config', 'G-3E2E3JF689');
+			}
 		</script>
 
 		<!-- Ahrefs Analytics -->
@@ -153,19 +160,20 @@
 		<link href="./_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="./_app/immutable/entry/app.CaKA356T.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/0.BOTk3C5N.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.Dn7L8ptj.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.DlCdvzZj.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/CCoFO5vf.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/C_-1E8HS.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/rkES0WeA.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/BwrV-6QM.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/_QbbGIvK.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CU3gMydY.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/N9cesyo8.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/D_oo8oxr.js" rel="modulepreload">
-		<link href="./_app/immutable/chunks/B53D1_ot.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
-		<link href="./_app/immutable/nodes/43.C9W0PEgM.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/43.DBF-Chx-.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/DZJw1WYa.js" rel="modulepreload">
 		<link href="./_app/immutable/chunks/NjQnBLAN.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--19lfojq--><meta name="description" content="Download AssetHoard for Windows, macOS, and Linux. Asset manager for indie game developers."/> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Do I need to buy a license to download AssetHoard?","acceptedAnswer":{"@type":"Answer","text":"No. During the open beta, AssetHoard is free to download and use on Windows, macOS, and Linux with no license key required. A license will only be required once AssetHoard reaches its full public release."}},{"@type":"Question","name":"How much does AssetHoard cost?","acceptedAnswer":{"@type":"Answer","text":"AssetHoard is a one-time purchase, currently $29 during the beta. There is no subscription and no recurring fee. The introductory beta price rises to $49 at full release, and if you buy during the beta you keep the lower price and your licence covers every 1.x update."}},{"@type":"Question","name":"Is AssetHoard a subscription?","acceptedAnswer":{"@type":"Answer","text":"No. AssetHoard is a one-time purchase. You pay once and own it forever, with no recurring charges, annual renewals, or paid tiers. All updates within the major version you buy are included."}},{"@type":"Question","name":"What do I receive after I buy a license?","acceptedAnswer":{"@type":"Answer","text":"Your license key and a download link are emailed to you instantly after purchase. Download the installer for your platform, open AssetHoard, and enter your license key to activate."}},{"@type":"Question","name":"How many devices can I use one license on?","acceptedAnswer":{"@type":"Answer","text":"Each license key can be used on up to 2 devices, with unlimited deactivations. You can move your license between machines whenever you need to, so reinstalling or switching computers is never a problem."}},{"@type":"Question","name":"Does my license work across Windows, macOS, and Linux?","acceptedAnswer":{"@type":"Answer","text":"Yes. A single license works on all supported platforms. If you buy on Windows and later move to Linux or macOS, the same key activates AssetHoard there at no extra cost."}},{"@type":"Question","name":"I lost my license key. How do I get it back?","acceptedAnswer":{"@type":"Answer","text":"Visit the license recovery page and enter the email address you used to purchase. Your license key is resent to that address straight away."}},{"@type":"Question","name":"What is the refund policy?","acceptedAnswer":{"@type":"Answer","text":"Because you can download and run AssetHoard for free during the open beta before buying, refunds are assessed against clear criteria, such as duplicate charges or a technical failure on a supported platform that support cannot resolve. See the purchase page for the full policy."}},{"@type":"Question","name":"Which operating systems are supported?","acceptedAnswer":{"@type":"Answer","text":"AssetHoard runs on Windows 10+, macOS 11+, and Linux. The Linux build is tested against Ubuntu 20.04+ but runs on most modern distributions, with .deb, .rpm, and .pkg.tar.zst packages available. It needs 4 GB of RAM and about 100 MB of disk space, plus room for your own library."}},{"@type":"Question","name":"Can I install AssetHoard through a Linux package manager?","acceptedAnswer":{"@type":"Answer","text":"Yes. On Linux you can add the AssetHoard APT, DNF, or AUR repository and install from the command line, which keeps the app updated through your normal system updates. Direct .deb, .rpm, and .pkg.tar.zst downloads are also available."}},{"@type":"Question","name":"Do I need an account to use AssetHoard?","acceptedAnswer":{"@type":"Answer","text":"No. AssetHoard is local-first, so there is no account to create and nothing is uploaded to the cloud. Your library and all its data stay on your own machine."}}]}</script><!----><!----><title>Download - AssetHoard</title>
@@ -278,16 +286,16 @@ sudo apt update &amp;&amp; sudo apt install asset-hoard</code></pre></div> <!--[
 			
 			<script>
 				{
-					__sveltekit_lcrlsv = {
+					__sveltekit_1d97dsj = {
 						base: new URL(".", location).pathname.slice(0, -1),
-						version: "1795119080155"
+						version: "1795150402952"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("./_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_lcrlsv);
-						const app = await import("./_app/immutable/entry/app.CaKA356T.js");
+						kit.init(__sveltekit_1d97dsj);
+						const app = await import("./_app/immutable/entry/app.Dn7L8ptj.js");
 						kit.start(app, element, {
 							node_ids: [0, 43],
 							data: [null,{type:"data",data:{latestRelease:{version:"0.3.2",name:"AssetHoard 0.3.2",publishedAt:"2026-11-15T09:41:59.785Z",url:"https://github.com/Asset-Hoard/assethoard.com/releases",assets:[{name:"AssetHoard_x64-setup.exe",url:"https://releases.assethoard.com/latest/windows",platform:"windows",arch:"x64",type:"exe"},{name:"AssetHoard_x64_en-US.msi",url:"https://releases.assethoard.com/latest/windows-msi",platform:"windows",arch:"x64",type:"msi"},{name:"AssetHoard_aarch64.dmg",url:"https://releases.assethoard.com/latest/mac-arm",platform:"macos",arch:"aarch64",type:"dmg"},{name:"AssetHoard_amd64.deb",url:"https://releases.assethoard.com/latest/linux-deb",platform:"linux",arch:"amd64",type:"deb"},{name:"AssetHoard_amd64.rpm",url:"https://releases.assethoard.com/latest/linux-rpm",platform:"linux",arch:"amd64",type:"rpm"},{name:"AssetHoard_amd64.pkg.tar.zst",url:"https://releases.assethoard.com/latest/linux-pacman",platform:"linux",arch:"amd64",type:"pacman"}]},pastReleases:[],error:null},uses:{}}],

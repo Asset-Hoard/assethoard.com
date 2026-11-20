@@ -12,13 +12,20 @@
 		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
 
 
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689"></script>
+		<!-- Google tag (gtag.js). Loaded on the live site only, so dev and preview sessions stay out of GA4.
+		     gtag() is always defined: elsewhere its calls just queue in dataLayer and go nowhere.
+		     Keep the hostnames in step with isProductionHost() in src/lib/attribution.ts. -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('config', 'G-3E2E3JF689');
+			if (location.hostname === 'assethoard.com' || location.hostname === 'www.assethoard.com') {
+				var gtagScript = document.createElement('script');
+				gtagScript.async = true;
+				gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689';
+				document.head.appendChild(gtagScript);
+				gtag('js', new Date());
+				gtag('config', 'G-3E2E3JF689');
+			}
 		</script>
 
 		<!-- Ahrefs Analytics -->
@@ -153,21 +160,22 @@
 		<link href="../../_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="../../_app/immutable/entry/app.CaKA356T.js" rel="modulepreload">
-		<link href="../../_app/immutable/nodes/0.BOTk3C5N.js" rel="modulepreload">
+		<link href="../../_app/immutable/entry/app.Dn7L8ptj.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/0.DlCdvzZj.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/CCoFO5vf.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/C_-1E8HS.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/rkES0WeA.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/BwrV-6QM.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/_QbbGIvK.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/CU3gMydY.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/N9cesyo8.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/D_oo8oxr.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/B53D1_ot.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
-		<link href="../../_app/immutable/nodes/10.C9z_wWam.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/Drk-GiTC.js" rel="modulepreload">
-		<link href="../../_app/immutable/chunks/8F_r4nCW.js" rel="modulepreload">
+		<link href="../../_app/immutable/nodes/10.fa1DJR6K.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/B-hOOmn7.js" rel="modulepreload">
+		<link href="../../_app/immutable/chunks/fGM4D9iw.js" rel="modulepreload">
 		<link href="../../_app/immutable/chunks/KfR50ONp.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--10ff13b--><meta name="description" content="Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets."/> <link rel="canonical" href="https://assethoard.com/blog/category/artist-spotlight"/> <meta property="og:type" content="website"/> <meta property="og:site_name" content="AssetHoard"/> <meta property="og:title" content="Indie game artist interviews and spotlights - AssetHoard"/> <meta property="og:description" content="Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets."/> <meta property="og:url" content="https://assethoard.com/blog/category/artist-spotlight"/> <meta property="og:image" content="https://assethoard.com/blog/2026/artist-spotlight/life-altered-hero.jpg"/> <meta property="og:image:alt" content="A Life Altered battle in a rainy mangrove swamp: three heroes face a mutated Mangrove Root Crab while a Gorilla card is played from their dice"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="Indie game artist interviews and spotlights - AssetHoard"/> <meta name="twitter:description" content="Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets."/> <meta name="twitter:image" content="https://assethoard.com/blog/2026/artist-spotlight/life-altered-hero.jpg"/> <meta name="twitter:image:alt" content="A Life Altered battle in a rainy mangrove swamp: three heroes face a mutated Mangrove Root Crab while a Gorilla card is played from their dice"/> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Artist spotlight","description":"Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets.","url":"https://assethoard.com/blog/category/artist-spotlight","isPartOf":{"@type":"Blog","name":"AssetHoard Blog","url":"https://assethoard.com/blog"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://assethoard.com/blog/artist-spotlight-life-altered","name":"Artist spotlight: Christoph Kühl on building Life Altered"},{"@type":"ListItem","position":2,"url":"https://assethoard.com/blog/artist-spotlight-james-rommel-lobaton","name":"Artist spotlight: James Rommel Lobaton, Spine 2D animator"},{"@type":"ListItem","position":3,"url":"https://assethoard.com/blog/artist-spotlight-tesseract-assets","name":"Artist Spotlight: Tesseract Assets"}]}}</script><!----><!----><title>Indie game artist interviews and spotlights - AssetHoard</title>
 		<link href="../../_app/immutable/assets/0.REK6WXPj.css" rel="stylesheet">
@@ -181,16 +189,16 @@
 			
 			<script>
 				{
-					__sveltekit_lcrlsv = {
+					__sveltekit_1d97dsj = {
 						base: new URL("../..", location).pathname.slice(0, -1),
-						version: "1795119080155"
+						version: "1795150402952"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_lcrlsv);
-						const app = await import("../../_app/immutable/entry/app.CaKA356T.js");
+						kit.init(__sveltekit_1d97dsj);
+						const app = await import("../../_app/immutable/entry/app.Dn7L8ptj.js");
 						kit.start(app, element, {
 							node_ids: [0, 10],
 							data: [null,{type:"data",data:{category:{slug:"artist-spotlight",name:"Artist spotlight",desc:"Meet the artists behind the assets",subtitle:"Interviews with the indie game artists and animators who make the assets you build with",seoTitle:"Indie game artist interviews and spotlights",invite:{title:"Are you an artist? Get featured",description:"We're always looking for game artists and animators to spotlight. If you make assets for games, tell us about your work and we'll be in touch.",placeholder:"Tell us what you make, with a link to your portfolio or store page"},description:"Interviews with indie game artists and animators: how they work, what they make, and what devs should know before buying or commissioning game assets.",icon:"m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08 M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"},posts:[{slug:"artist-spotlight-life-altered",title:"Artist spotlight: Christoph Kühl on building Life Altered",date:"2026-11-14T00:00:00.000Z",teaser:"Solo developer Christoph Kühl on Life Altered, a dice-driven nature deckbuilder, and how he mixes commissions, asset packs and public domain scientific art on an indie budget.",image:"/blog/2026/artist-spotlight/life-altered-hero.jpg"},{slug:"artist-spotlight-james-rommel-lobaton",title:"Artist spotlight: James Rommel Lobaton, Spine 2D animator",date:"2026-10-03T00:00:00.000Z",teaser:"2D/3D game animator James Rommel Lobaton on rigging other artists' work in Spine, his commission process, and what indie devs should know before hiring one.",image:"/blog/2026/artist-spotlight/james-lobaton-hero.jpg"},{slug:"artist-spotlight-tesseract-assets",title:"Artist Spotlight: Tesseract Assets",date:"2026-02-17T00:00:00.000Z",teaser:"We chat with Shaoul from Tesseract Assets about 3D props, weapons, stylised environments, and the invisible work that makes game assets actually work in-engine.",image:"/blog/2026/artist-spotlight/tesseract-assets-hero.jpg"}],shareImage:{src:"/blog/2026/artist-spotlight/life-altered-hero.jpg",alt:"A Life Altered battle in a rainy mangrove swamp: three heroes face a mutated Mangrove Root Crab while a Gorilla card is played from their dice"}},uses:{params:["category"]}}],
