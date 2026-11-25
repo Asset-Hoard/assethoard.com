@@ -112,6 +112,17 @@
 				// Drop errors from bots, browser extensions and Google's Subscribe with Google script
 				checkIgnore: function (isUncaught, args, payload) {
 					try {
+						// Browsers too old to parse the build (or bots faking a modern user agent) fail with
+						// SyntaxErrors we cannot act on: skip everything they report
+						if (window.__ahLegacy === undefined) {
+							window.__ahLegacy = typeof globalThis === "undefined";
+							try {
+								new Function("class A { static {} } var a; a ??= a?.b;");
+							} catch (e) {
+								window.__ahLegacy = true;
+							}
+						}
+						if (window.__ahLegacy) return true;
 						var botPattern = /bot|crawler|spider|headless|lightpanda|webindexer/i;
 						if (botPattern.test(navigator.userAgent)) return true;
 						// Some headless crawlers spoof a mobile user agent but still list HeadlessChrome in the client hints
@@ -128,6 +139,9 @@
 							text += " " + (ex.message || "") + " " + (ex.description || "");
 						}
 						if (window.__ahStaleReload && window.__ahStaleReload(text)) return true;
+						// Browser page translation (Chrome, Google app) wraps text in <font>, which the site never uses,
+						// and its injected script can overflow the stack walking the DOM
+						if (/Maximum call stack size exceeded/.test(text) && document.querySelector("font")) return true;
 						var noisy = /^(chrome|moz|safari(-web)?)-extension:\/\/|news\.google\.com\/swg\/|apis\.google\.com\/js\//;
 						for (var i = 0; i < traces.length; i++) {
 							var frames = traces[i].frames || [];
@@ -160,7 +174,7 @@
 		<link href="../_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.CRR7yv3p.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.DsUAy3xy.js" rel="modulepreload">
 		<link href="../_app/immutable/nodes/0.DL2q0a1a.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
@@ -173,13 +187,13 @@
 		<link href="../_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/83.D7JOvrty.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/83.Cv8dtiPi.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/By6NIhRp.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BslgmPtU.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DZJw1WYa.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BZ8HUJEV.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BY__RUjw.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/eSi23eEX.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CBBLV_Q_.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ChSjpKcu.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CpxHKW1Q.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--1sc0xds--><meta name="description" content="Reduce the polygon count of a GLB, glTF or OBJ model and download a GLB. UVs, materials and animations are kept. Runs in your browser."/> <link rel="canonical" href="https://assethoard.com/tools/mesh-reducer"/> <meta property="og:type" content="website"/> <meta property="og:url" content="https://assethoard.com/tools/mesh-reducer"/> <meta property="og:title" content="Mesh polygon reducer - free browser tool"/> <meta property="og:description" content="Cut the triangle count of a 3D model and keep its shape."/> <meta property="og:image" content="https://assethoard.com/assethoard-og.png"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="Mesh polygon reducer - free browser tool"/> <meta name="twitter:description" content="Cut the triangle count of a 3D model and keep its shape."/> <meta name="twitter:image" content="https://assethoard.com/assethoard-og.png"/> <!--[--><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Mesh polygon reducer","description":"Reduce the polygon count of a GLB, glTF or OBJ model and download a GLB. UVs, materials and animations are kept. Runs in your browser.","url":"https://assethoard.com/tools/mesh-reducer","applicationCategory":"MultimediaApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AssetHoard","url":"https://assethoard.com"}}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://assethoard.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://assethoard.com/tools"},{"@type":"ListItem","position":3,"name":"Mesh polygon reducer","item":"https://assethoard.com/tools/mesh-reducer"}]}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I reduce the polygon count of a model?","acceptedAnswer":{"@type":"Answer","text":"Drop a GLB, glTF or OBJ model, choose the percentage of triangles to keep, and download the simplified model as a GLB. The reducer preserves UVs, materials and animations."}},{"@type":"Question","name":"What is mesh decimation?","acceptedAnswer":{"@type":"Answer","text":"Decimation is the process of collapsing edges and removing triangles from a mesh while keeping its silhouette as close as possible to the original, producing a lighter model or an LOD."}},{"@type":"Question","name":"Will it keep my textures and rigging?","acceptedAnswer":{"@type":"Answer","text":"Yes. The reducer keeps UV coordinates, material assignments and animations, so the lighter model still textures and animates."}},{"@type":"Question","name":"Is my model uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The reduction runs in your browser and the model is not sent to a server."}}]}</script><!----><!--]--><!----><title>Free polygon reducer online (GLB, glTF, OBJ) - AssetHoard</title>
@@ -199,16 +213,16 @@
 			
 			<script>
 				{
-					__sveltekit_5f31xv = {
+					__sveltekit_1yaqmcf = {
 						base: new URL("..", location).pathname.slice(0, -1),
-						version: "1795462471358"
+						version: "1795587937304"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_5f31xv);
-						const app = await import("../_app/immutable/entry/app.CRR7yv3p.js");
+						kit.init(__sveltekit_1yaqmcf);
+						const app = await import("../_app/immutable/entry/app.DsUAy3xy.js");
 						kit.start(app, element, {
 							node_ids: [0, 83],
 							data: [null,null],

@@ -112,6 +112,17 @@
 				// Drop errors from bots, browser extensions and Google's Subscribe with Google script
 				checkIgnore: function (isUncaught, args, payload) {
 					try {
+						// Browsers too old to parse the build (or bots faking a modern user agent) fail with
+						// SyntaxErrors we cannot act on: skip everything they report
+						if (window.__ahLegacy === undefined) {
+							window.__ahLegacy = typeof globalThis === "undefined";
+							try {
+								new Function("class A { static {} } var a; a ??= a?.b;");
+							} catch (e) {
+								window.__ahLegacy = true;
+							}
+						}
+						if (window.__ahLegacy) return true;
 						var botPattern = /bot|crawler|spider|headless|lightpanda|webindexer/i;
 						if (botPattern.test(navigator.userAgent)) return true;
 						// Some headless crawlers spoof a mobile user agent but still list HeadlessChrome in the client hints
@@ -128,6 +139,9 @@
 							text += " " + (ex.message || "") + " " + (ex.description || "");
 						}
 						if (window.__ahStaleReload && window.__ahStaleReload(text)) return true;
+						// Browser page translation (Chrome, Google app) wraps text in <font>, which the site never uses,
+						// and its injected script can overflow the stack walking the DOM
+						if (/Maximum call stack size exceeded/.test(text) && document.querySelector("font")) return true;
 						var noisy = /^(chrome|moz|safari(-web)?)-extension:\/\/|news\.google\.com\/swg\/|apis\.google\.com\/js\//;
 						for (var i = 0; i < traces.length; i++) {
 							var frames = traces[i].frames || [];
@@ -160,7 +174,7 @@
 		<link href="../_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.CRR7yv3p.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.DsUAy3xy.js" rel="modulepreload">
 		<link href="../_app/immutable/nodes/0.DL2q0a1a.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
@@ -205,16 +219,16 @@
 			
 			<script>
 				{
-					__sveltekit_5f31xv = {
+					__sveltekit_1yaqmcf = {
 						base: new URL("..", location).pathname.slice(0, -1),
-						version: "1795462471358"
+						version: "1795587937304"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_5f31xv);
-						const app = await import("../_app/immutable/entry/app.CRR7yv3p.js");
+						kit.init(__sveltekit_1yaqmcf);
+						const app = await import("../_app/immutable/entry/app.DsUAy3xy.js");
 						kit.start(app, element, {
 							node_ids: [0, 2, 40],
 							data: [null,null,null],

@@ -112,6 +112,17 @@
 				// Drop errors from bots, browser extensions and Google's Subscribe with Google script
 				checkIgnore: function (isUncaught, args, payload) {
 					try {
+						// Browsers too old to parse the build (or bots faking a modern user agent) fail with
+						// SyntaxErrors we cannot act on: skip everything they report
+						if (window.__ahLegacy === undefined) {
+							window.__ahLegacy = typeof globalThis === "undefined";
+							try {
+								new Function("class A { static {} } var a; a ??= a?.b;");
+							} catch (e) {
+								window.__ahLegacy = true;
+							}
+						}
+						if (window.__ahLegacy) return true;
 						var botPattern = /bot|crawler|spider|headless|lightpanda|webindexer/i;
 						if (botPattern.test(navigator.userAgent)) return true;
 						// Some headless crawlers spoof a mobile user agent but still list HeadlessChrome in the client hints
@@ -128,6 +139,9 @@
 							text += " " + (ex.message || "") + " " + (ex.description || "");
 						}
 						if (window.__ahStaleReload && window.__ahStaleReload(text)) return true;
+						// Browser page translation (Chrome, Google app) wraps text in <font>, which the site never uses,
+						// and its injected script can overflow the stack walking the DOM
+						if (/Maximum call stack size exceeded/.test(text) && document.querySelector("font")) return true;
 						var noisy = /^(chrome|moz|safari(-web)?)-extension:\/\/|news\.google\.com\/swg\/|apis\.google\.com\/js\//;
 						for (var i = 0; i < traces.length; i++) {
 							var frames = traces[i].frames || [];
@@ -160,7 +174,7 @@
 		<link href="../_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
-		<link href="../_app/immutable/entry/app.CRR7yv3p.js" rel="modulepreload">
+		<link href="../_app/immutable/entry/app.DsUAy3xy.js" rel="modulepreload">
 		<link href="../_app/immutable/nodes/0.DL2q0a1a.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
@@ -173,13 +187,13 @@
 		<link href="../_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
-		<link href="../_app/immutable/nodes/87.B8WTG95U.js" rel="modulepreload">
+		<link href="../_app/immutable/nodes/87.DdRtaZYl.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/By6NIhRp.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BslgmPtU.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/DZJw1WYa.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BZ8HUJEV.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/BY__RUjw.js" rel="modulepreload">
-		<link href="../_app/immutable/chunks/eSi23eEX.js" rel="modulepreload">
+		<link href="../_app/immutable/chunks/CBBLV_Q_.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/ChSjpKcu.js" rel="modulepreload">
 		<link href="../_app/immutable/chunks/CpxHKW1Q.js" rel="modulepreload">
 		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--1sc0xds--><meta name="description" content="Convert an OBJ with its .mtl materials and textures into a single self-contained GLB or glTF. Drop the files or folder, preview, then download."/> <link rel="canonical" href="https://assethoard.com/tools/obj-to-glb"/> <meta property="og:type" content="website"/> <meta property="og:url" content="https://assethoard.com/tools/obj-to-glb"/> <meta property="og:title" content="OBJ to GLB converter - free browser tool"/> <meta property="og:description" content="Convert an OBJ with its MTL and textures into a single GLB."/> <meta property="og:image" content="https://assethoard.com/assethoard-og.png"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="OBJ to GLB converter - free browser tool"/> <meta name="twitter:description" content="Convert an OBJ with its MTL and textures into a single GLB."/> <meta name="twitter:image" content="https://assethoard.com/assethoard-og.png"/> <!--[--><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"OBJ to GLB converter","description":"Convert an OBJ with its .mtl materials and textures into a single self-contained GLB or glTF. Drop the files or folder, preview, then download.","url":"https://assethoard.com/tools/obj-to-glb","applicationCategory":"MultimediaApplication","operatingSystem":"Any (web browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"AssetHoard","url":"https://assethoard.com"}}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://assethoard.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://assethoard.com/tools"},{"@type":"ListItem","position":3,"name":"OBJ to GLB converter","item":"https://assethoard.com/tools/obj-to-glb"}]}</script><!----><!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert OBJ to GLB?","acceptedAnswer":{"@type":"Answer","text":"Drop the OBJ file along with its .mtl and textures, or drop the whole folder. The tool loads them, previews the model, and lets you download a single self-contained GLB or a glTF."}},{"@type":"Question","name":"Do I need the .mtl and texture files?","acceptedAnswer":{"@type":"Answer","text":"Only if you want materials and textures in the result. Without the .mtl the geometry still converts, but it comes through untextured, so include the .mtl and its images to keep the look."}},{"@type":"Question","name":"What is the difference between GLB and glTF output?","acceptedAnswer":{"@type":"Answer","text":"GLB is one binary file with textures embedded, which is easiest to move around. The glTF option gives a .gltf with separate .bin and texture files, zipped, which is easier to edit."}},{"@type":"Question","name":"Is my model uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The conversion runs entirely in your browser and nothing is uploaded."}}]}</script><!----><!--]--><!----><title>Free OBJ to GLB &amp; glTF converter online - AssetHoard</title>
@@ -199,16 +213,16 @@
 			
 			<script>
 				{
-					__sveltekit_5f31xv = {
+					__sveltekit_1yaqmcf = {
 						base: new URL("..", location).pathname.slice(0, -1),
-						version: "1795462471358"
+						version: "1795587937304"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
-						kit.init(__sveltekit_5f31xv);
-						const app = await import("../_app/immutable/entry/app.CRR7yv3p.js");
+						kit.init(__sveltekit_1yaqmcf);
+						const app = await import("../_app/immutable/entry/app.DsUAy3xy.js");
 						kit.start(app, element, {
 							node_ids: [0, 87],
 							data: [null,null],
