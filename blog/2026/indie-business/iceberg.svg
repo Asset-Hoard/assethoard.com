@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 590" role="img" aria-labelledby="t d">
+  <title id="t">The part of the job players never see</title>
+  <desc id="d">An iceberg. Above the water is the game, the part players see. Below the water is the larger part that keeps it selling: marketing, community, store page, trailer, press, tax, contracts, refunds, invoices and bookkeeping.</desc>
+  <style>
+    text { font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    .title { font-size: 24px; font-weight: 600; fill: #f5f5f7; }
+    .label { font-size: 20px; font-weight: 600; fill: #f5f5f7; }
+    .item { font-size: 19px; font-weight: 500; fill: #f5f5f7; }
+    .muted { font-size: 17px; fill: #a1a1aa; }
+  </style>
+  <defs>
+    <clipPath id="card"><rect x="1" y="1" width="718" height="588" rx="14"/></clipPath>
+  </defs>
+  <rect x="1" y="1" width="718" height="588" rx="14" fill="#111118"/>
+  <g clip-path="url(#card)">
+    <rect x="0" y="210" width="720" height="380" fill="#0d1726"/>
+    <line x1="0" y1="210" x2="720" y2="210" stroke="#38bdf8" stroke-opacity="0.5" stroke-width="2"/>
+  </g>
+  <rect x="1" y="1" width="718" height="588" rx="14" fill="none" stroke="#27272a" stroke-width="2"/>
+  <text class="title" x="32" y="50">The part of the job players never see</text>
+
+  <polygon points="290,210 322,150 357,100 397,130 417,170 437,210" fill="#fbbf24" fill-opacity="0.85"/>
+  <polygon points="290,210 437,210 560,260 610,360 560,470 380,520 200,490 120,400 130,310 200,250" fill="#a855f7" fill-opacity="0.28" stroke="#a855f7" stroke-width="2"/>
+
+  <line x1="318" y1="160" x2="262" y2="144" stroke="#fbbf24" stroke-width="1.5"/>
+  <text class="label" x="254" y="138" text-anchor="end">The game</text>
+  <text class="muted" x="254" y="162" text-anchor="end">what players see</text>
+
+  <g class="item" text-anchor="middle">
+    <text x="290" y="285">Marketing</text>
+    <text x="290" y="327">Community</text>
+    <text x="290" y="369">Store page</text>
+    <text x="290" y="411">Trailer</text>
+    <text x="290" y="453">Press</text>
+    <text x="460" y="285">Tax</text>
+    <text x="460" y="327">Contracts</text>
+    <text x="460" y="369">Refunds</text>
+    <text x="460" y="411">Invoices</text>
+    <text x="460" y="453">Bookkeeping</text>
+  </g>
+
+  <text class="muted" x="360" y="562" text-anchor="middle">Below the line: what keeps it selling, and keeps you out of trouble</text>
+</svg>

@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 340" role="img" aria-labelledby="t d">
+  <title id="t">The price tag adds a second job</title>
+  <desc id="d">A timeline. Before the price tag the game has one job, satisfying you. After the price tag that job continues and a second job starts: convincing a stranger to pay.</desc>
+  <style>
+    text { font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    .title { font-size: 24px; font-weight: 600; fill: #f5f5f7; }
+    .lane { font-size: 18px; font-weight: 500; fill: #f5f5f7; }
+    .marker { font-size: 18px; font-weight: 600; fill: #fbbf24; }
+  </style>
+  <rect x="1" y="1" width="718" height="338" rx="14" fill="#111118" stroke="#27272a" stroke-width="2"/>
+  <text class="title" x="32" y="50">The price tag adds a second job</text>
+
+  <line x1="40" y1="170" x2="672" y2="170" stroke="#3f3f46" stroke-width="3" stroke-linecap="round"/>
+  <polygon points="672,162 688,170 672,178" fill="#3f3f46"/>
+
+  <line x1="300" y1="130" x2="300" y2="320" stroke="#fbbf24" stroke-width="2" stroke-dasharray="6 6"/>
+  <g transform="translate(260 82)">
+    <path d="M18 0 H84 V46 H18 L0 23 Z" fill="#fbbf24"/>
+    <circle cx="17" cy="23" r="5" fill="#111118"/>
+    <text x="54" y="33" text-anchor="middle" style="font-size: 28px; font-weight: 800; fill: #111118;">$$</text>
+  </g>
+  <text class="marker" x="360" y="111">You add a price</text>
+
+  <rect x="40" y="194" width="640" height="50" rx="10" fill="#111118"/>
+  <rect x="40" y="194" width="640" height="50" rx="10" fill="#fbbf24" fill-opacity="0.16" stroke="#fbbf24" stroke-width="2"/>
+  <text class="lane" x="58" y="225">Job 1: satisfy you, your taste and your vision</text>
+
+  <rect x="300" y="260" width="380" height="50" rx="10" fill="#a855f7" fill-opacity="0.2" stroke="#a855f7" stroke-width="2"/>
+  <text class="lane" x="318" y="291">Job 2: convince a stranger to pay</text>
+</svg>

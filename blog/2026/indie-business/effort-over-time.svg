@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 810" role="img" aria-labelledby="t d">
+  <title id="t">Where the hours go, from prototype to launch</title>
+  <desc id="d">Two charts of how a developer's week is spent from the start of a project to launch. In the first, the whole project is spent making the game and everything else is squeezed into the final two weeks. In the second, every week is split 70 percent making the game, 20 percent marketing and community, and 10 percent admin, from day one.</desc>
+  <style>
+    text { font-family: Inter, 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    .title { font-size: 24px; font-weight: 600; fill: #f5f5f7; }
+    .panel { font-size: 20px; font-weight: 600; fill: #f5f5f7; }
+    .axis { font-size: 16px; fill: #a1a1aa; }
+    .dark { font-size: 20px; font-weight: 600; fill: #0a0a0f; }
+    .light { font-size: 17px; font-weight: 600; fill: #f5f5f7; }
+    .foot { font-size: 16px; fill: #a1a1aa; }
+  </style>
+  <rect x="1" y="1" width="718" height="808" rx="14" fill="#111118" stroke="#27272a" stroke-width="2"/>
+  <text class="title" x="32" y="50">Where the hours go, from prototype to launch</text>
+
+  <!-- Panel A -->
+  <text class="panel" x="40" y="104">Marketing left to the end</text>
+  <rect x="40" y="125" width="592" height="240" fill="#fbbf24" fill-opacity="0.85"/>
+  <text class="dark" x="336" y="252" text-anchor="middle">Making the game</text>
+  <rect x="632" y="125" width="48" height="240" fill="#a855f7"/>
+  <text class="light" transform="translate(652 245) rotate(-90)" text-anchor="middle">Everything else,</text>
+  <text class="light" transform="translate(673 245) rotate(-90)" text-anchor="middle">in the last two weeks</text>
+  <line x1="40" y1="365" x2="680" y2="365" stroke="#3f3f46" stroke-width="2"/>
+  <text class="axis" x="40" y="390">Start</text>
+  <text class="axis" x="680" y="390" text-anchor="end">Launch</text>
+
+  <!-- Panel B -->
+  <text class="panel" x="40" y="454">Marketing from day one</text>
+  <rect x="40" y="475" width="640" height="26" fill="#3f3f46"/>
+  <text class="light" x="360" y="494" text-anchor="middle">Admin 10%</text>
+  <rect x="40" y="501" width="640" height="50" fill="#a855f7"/>
+  <text class="light" x="360" y="532" text-anchor="middle">Marketing and community 20%</text>
+  <rect x="40" y="551" width="640" height="164" fill="#fbbf24" fill-opacity="0.85"/>
+  <text class="dark" x="360" y="640" text-anchor="middle">Making the game 70%</text>
+  <line x1="40" y1="715" x2="680" y2="715" stroke="#3f3f46" stroke-width="2"/>
+  <text class="axis" x="40" y="740">Start</text>
+  <text class="axis" x="680" y="740" text-anchor="end">Launch</text>
+
+  <text class="foot" x="360" y="785" text-anchor="middle">Height shows the share of each week</text>
+</svg>
