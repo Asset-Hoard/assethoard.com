@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="en-AU">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#1a1a2e" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+		<link rel="icon" href="/favicon.ico" sizes="256x256" />
+		<link rel="icon" href="/favicon.png" type="image/png" />
+		<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+
+		<!-- Google tag (gtag.js). Loaded on the live site only, so dev and preview sessions stay out of GA4.
+		     gtag() is always defined: elsewhere its calls just queue in dataLayer and go nowhere.
+		     Keep the hostnames in step with isProductionHost() in src/lib/attribution.ts. -->
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			if (location.hostname === 'assethoard.com' || location.hostname === 'www.assethoard.com') {
+				var gtagScript = document.createElement('script');
+				gtagScript.async = true;
+				gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-3E2E3JF689';
+				document.head.appendChild(gtagScript);
+				gtag('js', new Date());
+				gtag('config', 'G-3E2E3JF689');
+			}
+		</script>
+
+		<!-- Ahrefs Analytics -->
+		<script src="https://analytics.ahrefs.com/analytics.js" data-key="RmCYWnuBmbXJpxQp+yaLQA" async></script>
+
+		<!-- Metricool tracking -->
+		<script>function loadScript(a){var b=document.getElementsByTagName("head")[0],c=document.createElement("script");c.type="text/javascript",c.src="https://tracker.metricool.com/resources/be.js",c.onreadystatechange=a,c.onload=a,b.appendChild(c)}loadScript(function(){beTracker.t({hash:"1922197c2aca92055b2917a11194ef01"})});</script>
+
+		<!-- Google Reader Revenue Manager (Subscribe with Google) -->
+		<script async type="application/javascript" src="https://news.google.com/swg/js/v1/swg-basic.js"></script>
+		<script>
+			(self.SWG_BASIC = self.SWG_BASIC || []).push( basicSubscriptions => {
+				basicSubscriptions.init({
+					type: "NewsArticle",
+					isPartOfType: ["Product"],
+					isPartOfProductId: "CAowt4XIDA:openaccess",
+					clientOptions: { theme: "light", lang: "en" },
+				});
+			});
+		</script>
+
+		<!-- Array.prototype.at for Chrome < 92 (old Samsung Internet): Amplitude's web-vitals code calls it -->
+		<script>
+			if (!Array.prototype.at) {
+				Object.defineProperty(Array.prototype, "at", {
+					configurable: true,
+					writable: true,
+					value: function (n) {
+						n = Math.trunc(n) || 0;
+						if (n < 0) n += this.length;
+						return n < 0 || n >= this.length ? undefined : this[n];
+					}
+				});
+			}
+		</script>
+
+		<!-- Recover from a deploy: each deploy deletes the previous build's _app files, so a page
+		     whose HTML predates it fails to load its JS or CSS. Reload once to fetch the new build. -->
+		<script>
+			(function () {
+				var STALE = /Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS/i;
+				var KEY = "ah-stale-reload";
+				var reloading = false;
+				// Returns true when the message is a stale-build error and a reload is under way.
+				window.__ahStaleReload = function (message) {
+					if (!STALE.test(String(message || ""))) return false;
+					if (reloading) return true;
+					try {
+						// Already reloaded in the last 30 seconds: give up and let Rollbar report it.
+						if (Date.now() - (Number(sessionStorage.getItem(KEY)) || 0) < 30000) return false;
+						sessionStorage.setItem(KEY, String(Date.now()));
+					} catch (e) {
+						return false;
+					}
+					reloading = true;
+					location.reload();
+					return true;
+				};
+				window.addEventListener("vite:preloadError", function (event) {
+					if (window.__ahStaleReload(event.payload && event.payload.message)) event.preventDefault();
+				});
+				window.addEventListener("unhandledrejection", function (event) {
+					window.__ahStaleReload(event.reason && event.reason.message);
+				});
+			})();
+		</script>
+
+		<!-- Rollbar error tracking -->
+		<script>
+			var _rollbarConfig = {
+				accessToken: "76f2886182904e9d91d687a80d1e843f399be8f82aa7896d080e8721bea886bd75b2ac5ed16a4c15d76f409533aa7310",
+				captureUncaught: true,
+				captureUnhandledRejections: true,
+				// Noise we cannot act on: browser quirks and storage blocked by privacy settings
+				ignoredMessages: [
+					"ResizeObserver loop",
+					"^Script error\\.?$",
+					"Cannot redefine property: ethereum",
+					"Access is denied for this document",
+					// Amplitude session replay touches a focused cross-origin iframe (e.g. a YouTube embed) on window blur
+					"Blocked a frame with origin",
+					"Permission denied to access property \"addEventListener\" on cross-origin object"
+				],
+				// Drop errors from bots, browser extensions and Google's Subscribe with Google script
+				checkIgnore: function (isUncaught, args, payload) {
+					try {
+						// Browsers too old to parse the build (or bots faking a modern user agent) fail with
+						// SyntaxErrors we cannot act on: skip everything they report
+						if (window.__ahLegacy === undefined) {
+							window.__ahLegacy = typeof globalThis === "undefined";
+							try {
+								new Function("class A { static {} } var a; a ??= a?.b;");
+							} catch (e) {
+								window.__ahLegacy = true;
+							}
+						}
+						if (window.__ahLegacy) return true;
+						var botPattern = /bot|crawler|spider|headless|lightpanda|webindexer/i;
+						if (botPattern.test(navigator.userAgent)) return true;
+						// Some headless crawlers spoof a mobile user agent but still list HeadlessChrome in the client hints
+						var brands = (navigator.userAgentData && navigator.userAgentData.brands) || [];
+						for (var b = 0; b < brands.length; b++) {
+							if (botPattern.test(brands[b].brand || "")) return true;
+						}
+						var body = (payload && payload.body) || {};
+						var traces = body.trace_chain || (body.trace ? [body.trace] : []);
+						// A stale-build error that triggered a reload (see the script above) is not worth reporting
+						var text = body.message ? String(body.message.body) : "";
+						for (var k = 0; k < traces.length; k++) {
+							var ex = traces[k].exception || {};
+							text += " " + (ex.message || "") + " " + (ex.description || "");
+						}
+						if (window.__ahStaleReload && window.__ahStaleReload(text)) return true;
+						// Browser page translation (Chrome, Google app) wraps text in <font>, which the site never uses,
+						// and its injected script can overflow the stack walking the DOM
+						if (/Maximum call stack size exceeded/.test(text) && document.querySelector("font")) return true;
+						var noisy = /^(chrome|moz|safari(-web)?)-extension:\/\/|news\.google\.com\/swg\/|apis\.google\.com\/js\//;
+						for (var i = 0; i < traces.length; i++) {
+							var frames = traces[i].frames || [];
+							for (var j = 0; j < frames.length; j++) {
+								if (noisy.test(frames[j].filename || "")) return true;
+							}
+						}
+					} catch (e) {}
+					return false;
+				},
+				payload: {
+					environment: (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") ? "development" : "production",
+					client: {
+						javascript: {
+							code_version: "1.0.0"
+						}
+					}
+				}
+			};
+			!function(){"use strict";var r=function(r){var n=Object.getOwnPropertyDescriptor(r,"name");(!n||!n.writable&&n.configurable)&&Object.defineProperty(r,"name",{value:"default",configurable:!0})},n=function(){},o={debug:0,info:1,warn:2,error:3,disable:4},e={error:function(){for(var r=arguments.length,o=new Array(r),e=0;e<r;e++)o[e]=arguments[e];return n("error",o)},warn:function(){for(var r=arguments.length,o=new Array(r),e=0;e<r;e++)o[e]=arguments[e];return n("warn",o)},info:function(){for(var r=arguments.length,o=new Array(r),e=0;e<r;e++)o[e]=arguments[e];return n("info",o)},debug:function(){for(var r=arguments.length,o=new Array(r),e=0;e<r;e++)o[e]=arguments[e];return n("debug",o)},log:function(){for(var r=arguments.length,o=new Array(r),e=0;e<r;e++)o[e]=arguments[e];return n("info",o)},init:function(r){var e=r.logLevel;n=function(r,n){o[r]<o[e]||(n.unshift("Rollbar:"),console[r].apply(console,n))}}},t=e;function a(r,n){return null!=r&&(Object.hasOwn?Object.hasOwn(r,n):Object.prototype.hasOwnProperty.call(r,n))}function l(r,n){(null==n||n>r.length)&&(n=r.length);for(var o=0,e=Array(n);o<n;o++)e[o]=r[o];return e}function i(r,n){this.impl=r(n,this),this.options=n,function(r){var n,o=function(r){return function(){var n=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,n)}},e=function(r,n){var o="undefined"!=typeof Symbol&&r[Symbol.iterator]||r["@@iterator"];if(!o){if(Array.isArray(r)||(o=function(r,n){if(r){if("string"==typeof r)return l(r,n);var o={}.toString.call(r).slice(8,-1);return"Object"===o&&r.constructor&&(o=r.constructor.name),"Map"===o||"Set"===o?Array.from(r):"Arguments"===o||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o)?l(r,n):void 0}}(r))||n&&r&&"number"==typeof r.length){o&&(r=o);var e=0,t=function(){};return{s:t,n:function(){return e>=r.length?{done:!0}:{done:!1,value:r[e++]}},e:function(r){throw r},f:t}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var a,i=!0,c=!1;return{s:function(){o=o.call(r)},n:function(){var r=o.next();return i=r.done,r},e:function(r){c=!0,a=r},f:function(){try{i||null==o.return||o.return()}finally{if(c)throw a}}}}("log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,wait,captureDomContentLoaded,captureLoad".split(","));try{for(e.s();!(n=e.n()).done;){var t=n.value;r[t]=o(t)}}catch(r){e.e(r)}finally{e.f()}}(i.prototype)}i.prototype._swapAndProcessMessages=function(r,n){var o,e,t;for(this.impl=r(this.options);o=n.shift();)e=o.method,t=o.args,this[e]&&"function"==typeof this[e]&&("captureDomContentLoaded"===e||"captureLoad"===e?this[e].apply(this,[t[0],o.ts]):this[e].apply(this,t));return this};var c=i;function u(r,n,o){if(a(n,"addEventListener")){for(var e=n.addEventListener;e._rollbarOldAdd&&e.belongsToShim;)e=e._rollbarOldAdd;var t=function(n,o,t){e.call(this,n,r.wrap(o),t)};t._rollbarOldAdd=e,t.belongsToShim=o,n.addEventListener=t;for(var l=n.removeEventListener;l._rollbarOldRemove&&l.belongsToShim;)l=l._rollbarOldRemove;var i=function(r,n,o){l.call(this,r,n&&n._rollbar_wrapped||n,o)};i._rollbarOldRemove=l,i.belongsToShim=o,n.removeEventListener=i}}function s(r,n){(null==n||n>r.length)&&(n=r.length);for(var o=0,e=Array(n);o<n;o++)e[o]=r[o];return e}function f(r){return f="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(r){return typeof r}:function(r){return r&&"function"==typeof Symbol&&r.constructor===Symbol&&r!==Symbol.prototype?"symbol":typeof r},f(r)}function d(r){return function(){try{return r.apply(this,arguments)}catch(r){try{t.error("[Rollbar]: Internal error",r)}catch(r){}}}}var p=0;function b(r,n){this.options=r,this._rollbarOldOnError=null;var o=p++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:n,messages:[]})}var h=function(r,n){return new b(r,n)},y=function(r){return new c(h,r)};function v(r){return d(function(){var n=Array.prototype.slice.call(arguments,0),o={shim:this,method:r,args:n,ts:new Date};window._rollbarShims[this.shimId()].messages.push(o)})}b.prototype.loadFull=function(r,n,o,e,t){var a=!1,l=n.createElement("script"),i=n.getElementsByTagName("script")[0],c=i.parentNode;l.crossOrigin="",l.src=e.rollbarJsUrl,o||(l.async=!0),l.onload=l.onreadystatechange=d(function(){if(!(a||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){l.onload=l.onreadystatechange=null;try{c.removeChild(l)}catch(r){}a=!0,function(){var n;if(void 0===r._rollbarDidLoad){n=new Error("rollbar.js did not load");for(var o,e,a,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];e=o.shift();)for(a=e.args||[],i=0;i<a.length;++i)if("function"==typeof(l=a[i])){l(n);break}}"function"==typeof t&&t(n)}()}}),c.insertBefore(l,i)},b.prototype.wrap=function(r,n,o){try{var e;if(e="function"==typeof n?n:function(){return n||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped)for(var t in r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var n=o;throw n&&("string"==typeof n&&(n=new String(n)),n._rollbarContext=e()||{},n._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=n),n}},r._rollbar_wrapped._isWrap=!0,r)a(r,t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(n){return r}};var g,m=function(r){var n="undefined"!=typeof Symbol&&r[Symbol.iterator]||r["@@iterator"];if(!n){if(Array.isArray(r)||(n=function(r,n){if(r){if("string"==typeof r)return s(r,n);var o={}.toString.call(r).slice(8,-1);return"Object"===o&&r.constructor&&(o=r.constructor.name),"Map"===o||"Set"===o?Array.from(r):"Arguments"===o||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(o)?s(r,n):void 0}}(r))){n&&(r=n);var o=0,e=function(){};return{s:e,n:function(){return o>=r.length?{done:!0}:{done:!1,value:r[o++]}},e:function(r){throw r},f:e}}throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}var t,a=!0,l=!1;return{s:function(){n=n.call(r)},n:function(){var r=n.next();return a=r.done,r},e:function(r){l=!0,t=r},f:function(){try{a||null==n.return||n.return()}finally{if(l)throw t}}}}("log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleAnonymousErrors,handleUnhandledRejection,captureEvent,wait,captureDomContentLoaded,captureLoad".split(","));try{for(m.s();!(g=m.n()).done;){var w=g.value;b.prototype[w]=v(w)}}catch(r){m.e(r)}finally{m.f()}function _(r){return function(n){if(!n&&!window._rollbarInitialized){for(var o,e,t=(r=r||{}).globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)e||(e=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=e,window._rollbarInitialized=!0}}}r(_);var E="https://cdn.rollbar.com/rollbarjs/refs/tags/v4.2.1/rollbar.min.js";if(_rollbarConfig=_rollbarConfig||{},!_rollbarConfig.rollbarJsUrl){var S="replay"in _rollbarConfig;_rollbarConfig.rollbarJsUrl=S?E.replace("rollbar.min.js","rollbar.replay.min.js"):E}_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var O=function(r,n){if(r){var o=n.globalAlias||"Rollbar";if("object"===f(r[o]))return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var e=new y(n);return d(function(){n.captureUncaught&&(e._rollbarOldOnError=r.onerror,function(r,n){if(r){var o;if("function"==typeof n._rollbarOldOnError)o=n._rollbarOldOnError;else if(r.onerror){for(o=r.onerror;o._rollbarOldOnError;)o=o._rollbarOldOnError;n._rollbarOldOnError=o}n.handleAnonymousErrors();var e=function(){var e=Array.prototype.slice.call(arguments,0);!function(r,n,o,e){r._rollbarWrappedError&&(e[4]||(e[4]=r._rollbarWrappedError),e[5]||(e[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null);var t=n.handleUncaughtException.apply(n,e);o&&o.apply(r,e),"anonymous"===t&&(n.anonymousErrorsPending+=1)}(r,n,o,e)};e._rollbarOldOnError=o,r.onerror=e}}(r,e),n.wrapGlobalEventHandlers&&function(r,n,o){if(r){var e,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(e=0;e<a.length;++e)r[t=a[e]]&&r[t].prototype&&u(n,r[t].prototype,o)}}(r,e,!0)),n.captureUnhandledRejections&&function(r,n){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var o=function(r){var o,e,t;try{o=r.reason}catch(r){o=void 0}try{e=r.promise}catch(r){e="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,e=t.promise)}catch(r){}o||(o="[unhandledrejection] error getting `reason` from event"),n&&n.handleUnhandledRejection&&n.handleUnhandledRejection(o,e)};o.belongsToShim=!0,r._rollbarURH=o,r.addEventListener("unhandledrejection",o)}}(r,e);var t=n.autoInstrument;return!1!==n.enabled&&(void 0===t||!0===t||function(r){return!("object"!==f(r)||void 0!==r.page&&!r.page)}(t))&&r.addEventListener&&(r.addEventListener("load",e.captureLoad.bind(e)),r.addEventListener("DOMContentLoaded",e.captureDomContentLoaded.bind(e))),r[o]=e,e})()}}(window,_rollbarConfig),A=_(_rollbarConfig);window.rollbar=y,O.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,A)}();
+		</script>
+
+		<link href="./_app/immutable/entry/start.VHbiYsbr.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/payload.DSmR2FwN.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DclECHGd.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/Dqy7O6Yr.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ehR6XJh_.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DyQQASrv.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/D9zWX4_P.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/C1bUlYA6.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DYrviY11.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BASMYO2t.js" rel="modulepreload">
+		<link href="./_app/immutable/entry/app.n334YvaH.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/0.DeZI89oW.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/XKyaHtl9.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/ZoU_NrO3.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/CCoFO5vf.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/C_-1E8HS.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/rkES0WeA.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/VF34OVna.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/N9cesyo8.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/D_oo8oxr.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/DblPu1e_.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/I3z2MoZc.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/4QVuLwzZ.js" rel="modulepreload">
+		<link href="./_app/immutable/nodes/71.5FL3o4tU.js" rel="modulepreload">
+		<link href="./_app/immutable/chunks/BslgmPtU.js" rel="modulepreload">
+		<!--12qhfyh--><meta property="og:site_name" content="AssetHoard"/> <meta name="author" content="AssetHoard"/> <meta name="publisher" content="AssetHoard"/> <link rel="alternate" type="application/rss+xml" title="AssetHoard blog" href="https://assethoard.com/rss.xml"/><!----><!--l06e47--><meta name="description" content="Free colour themes for AssetHoard, the game asset manager. Preview each one, see its palette, and copy the JSON to import it in the theme editor."/> <link rel="canonical" href="https://assethoard.com/themes"/> <meta name="keywords" content="AssetHoard themes, custom theme, theme JSON, dark theme, colour theme, theme editor"/> <meta property="og:type" content="website"/> <meta property="og:url" content="https://assethoard.com/themes"/> <meta property="og:title" content="AssetHoard themes"/> <meta property="og:description" content="Free colour themes for AssetHoard, the game asset manager. Preview each one, see its palette, and copy the JSON to import it in the theme editor."/> <meta property="og:image" content="https://assethoard.com/themes/og-themes.jpg"/> <meta property="og:image:type" content="image/jpeg"/> <meta property="og:image:width" content="1200"/> <meta property="og:image:height" content="630"/> <meta property="og:image:alt" content="AssetHoard asset library shown in five colour themes side by side"/> <meta property="og:locale" content="en_GB"/> <meta name="twitter:card" content="summary_large_image"/> <meta name="twitter:title" content="AssetHoard themes"/> <meta name="twitter:description" content="Free colour themes for AssetHoard, the game asset manager. Preview each one, see its palette, and copy the JSON to import it in the theme editor."/> <meta name="twitter:image" content="https://assethoard.com/themes/og-themes.jpg"/> <meta name="twitter:image:alt" content="AssetHoard asset library shown in five colour themes side by side"/> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"AssetHoard themes","description":"Free colour themes for AssetHoard, the game asset manager. Preview each one, see its palette, and copy the JSON to import it in the theme editor.","url":"https://assethoard.com/themes","image":"https://assethoard.com/themes/og-themes.jpg","mainEntity":{"@type":"ItemList","numberOfItems":5,"itemListElement":[{"@type":"ListItem","position":1,"name":"Black Mesa","url":"https://assethoard.com/themes#black-mesa","image":"https://assethoard.com/themes/black-mesa.webp"},{"@type":"ListItem","position":2,"name":"Azure Glow","url":"https://assethoard.com/themes#azure-glow","image":"https://assethoard.com/themes/azure-glow.webp"},{"@type":"ListItem","position":3,"name":"Blueridge Dark","url":"https://assethoard.com/themes#blueridge-dark","image":"https://assethoard.com/themes/blueridge-dark.webp"},{"@type":"ListItem","position":4,"name":"Bright Future","url":"https://assethoard.com/themes#bright-future","image":"https://assethoard.com/themes/bright-future.webp"},{"@type":"ListItem","position":5,"name":"Asphalt Legends","url":"https://assethoard.com/themes#asphalt-legends","image":"https://assethoard.com/themes/asphalt-legends.webp"}]}}</script><!----> <!----><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://assethoard.com"},{"@type":"ListItem","position":2,"name":"Themes","item":"https://assethoard.com/themes"}]}</script><!----><!----><title>Themes: free colour themes to import - AssetHoard</title>
+		<link href="./_app/immutable/assets/0.REK6WXPj.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/Button.B2tC0ZRw.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/71.B5FDO5OM.css" rel="stylesheet">
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents"><!--[--><!--[--><!--[0--><!--[--><div class="app svelte-12qhfyh"><nav class="nav svelte-1h32yp1"><div class="nav-container svelte-1h32yp1"><a href="/" class="logo svelte-1h32yp1" title="AssetHoard home"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-1h32yp1"/> <span class="logo-text svelte-1h32yp1">AssetHoard</span></a> <button class="mobile-menu-btn svelte-1h32yp1" aria-label="Toggle menu"><span class="hamburger svelte-1h32yp1"></span></button> <div class="nav-links svelte-1h32yp1"><div class="nav-primary svelte-1h32yp1"><!--[--><a href="/roadmap" title="Roadmap" class="nav-link svelte-1h32yp1">Roadmap</a><a href="/releases" title="Releases" class="nav-link svelte-1h32yp1">Releases</a><!--]--> <div class="nav-dropdown svelte-1h32yp1"><div class="nav-dropdown-split svelte-1h32yp1"><a href="/blog" title="Blog" class="nav-link svelte-1h32yp1">Blog</a> <button type="button" class="nav-link nav-dropdown-trigger nav-dropdown-toggle svelte-1h32yp1" aria-label="Blog categories" aria-haspopup="true" aria-expanded="false"><svg class="nav-dropdown-caret svelte-1h32yp1" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="svelte-1h32yp1"></path></svg><!----></button></div> <div class="nav-dropdown-menu svelte-1h32yp1" role="menu"><span class="nav-dropdown-heading svelte-1h32yp1">Blog categories</span> <!--[--><a href="/blog/category/guides" title="Guides" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Guides</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Engines, formats, licences and free assets</span></span></a><a href="/blog/category/artist-spotlight" title="Artist spotlight" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="m9.06 11.9 8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08 M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Artist spotlight</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Meet the artists behind the assets</span></span></a><a href="/blog/category/indie-life" title="Indie life" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="M10 2v2 M14 2v2 M6 2v2 M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Indie life</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">The business and reality of going indie</span></span></a><a href="/blog/category/news" title="AssetHoard news" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="m3 11 18-5v12L3 14v-3z M11.6 16.8a3 3 0 1 1-5.8-1.6" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">AssetHoard news</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Announcements, new features and how we built them</span></span></a><!--]--><!----></div></div> <div class="nav-dropdown svelte-1h32yp1"><button type="button" class="nav-link nav-dropdown-trigger svelte-1h32yp1 active" aria-haspopup="true" aria-expanded="false">Resources <svg class="nav-dropdown-caret svelte-1h32yp1" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="svelte-1h32yp1"></path></svg><!----></button> <div class="nav-dropdown-menu svelte-1h32yp1" role="menu"><span class="nav-dropdown-heading svelte-1h32yp1">Resources</span> <!--[--><a href="/themes" title="Themes" role="menuitem" class="nav-dropdown-item svelte-1h32yp1 active"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z M13.5 6.5h.01 M17.5 10.5h.01 M8.5 7.5h.01 M6.5 12.5h.01" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Themes</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Colour themes to import into AssetHoard</span></span></a><a href="/tools" title="Tools" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Tools</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Free browser utilities for game devs</span></span></a><a href="/free-game-assets" title="Free game assets" role="menuitem" class="nav-dropdown-item svelte-1h32yp1"><span class="nav-dropdown-icon svelte-1h32yp1"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="svelte-1h32yp1"><path d="m7.5 4.27 9 5.15 M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z M3.3 7 12 12l8.7-5 M12 22V12" class="svelte-1h32yp1"></path></svg></span> <span class="nav-dropdown-text svelte-1h32yp1"><span class="nav-dropdown-item-title svelte-1h32yp1">Free game assets</span> <span class="nav-dropdown-item-desc svelte-1h32yp1">Curated packs you can ship in commercial games</span></span></a><!--]--><!----></div></div> <!--[--><a href="/docs" title="Docs" class="nav-link svelte-1h32yp1">Docs</a><!--]--></div> <div class="nav-actions svelte-1h32yp1"><!--[--><a href="/downloads" title="Download" class="nav-link svelte-1h32yp1">Download</a><a href="/purchase" title="Buy" class="nav-download-btn svelte-1h32yp1">Buy</a><!--]--></div></div></div></nav><!----> <main class="main-content svelte-12qhfyh"><!--[--><!--[-1--><!--[--><div class="page-header svelte-l06e47"><div class="container"><h1>AssetHoard themes</h1> <p class="page-subtitle svelte-l06e47">Free colour themes for AssetHoard, the local-first asset manager for game developers and
+			artists. Pick one you like, copy its JSON and import it in the theme editor. Every colour can
+			be tweaked once it's in.</p></div></div> <section class="section"><div class="container"><h2 class="install-title svelte-l06e47">Install a theme in four steps</h2> <ol class="install svelte-l06e47"><li class="step svelte-l06e47"><span class="step-num svelte-l06e47" aria-hidden="true">1</span> <span class="step-title svelte-l06e47">Copy</span> <span class="step-detail svelte-l06e47">Pick a theme below and click <strong class="svelte-l06e47">Copy JSON</strong>.</span></li> <li class="step svelte-l06e47"><span class="step-num svelte-l06e47" aria-hidden="true">2</span> <span class="step-title svelte-l06e47">Open themes</span> <span class="step-detail svelte-l06e47">In AssetHoard, go to <strong class="svelte-l06e47">Settings > UI</strong> and click <strong class="svelte-l06e47">Change theme</strong>.</span></li> <li class="step svelte-l06e47"><span class="step-num svelte-l06e47" aria-hidden="true">3</span> <span class="step-title svelte-l06e47">Import</span> <span class="step-detail svelte-l06e47">Click <strong class="svelte-l06e47">New theme</strong>, then <strong class="svelte-l06e47">Import from JSON</strong>.</span></li> <li class="step svelte-l06e47"><span class="step-num svelte-l06e47" aria-hidden="true">4</span> <span class="step-title svelte-l06e47">Create</span> <span class="step-detail svelte-l06e47">Paste the JSON and click <strong class="svelte-l06e47">Create</strong>.</span></li></ol> <p class="install-more svelte-l06e47">More on making and editing themes in the <a href="/docs/themes" title="Themes documentation" class="svelte-l06e47">themes docs</a>.</p> <h2 class="sr-only svelte-l06e47">Theme catalogue</h2> <div class="grid svelte-l06e47"><!--[--><article class="theme svelte-l06e47" id="black-mesa" style="--t-bg-primary: #141410; --t-bg-secondary: #1c1c16; --t-bg-tertiary: #0a0a08; --t-bg-hover: #26261e; --t-bg-active: #3a3628; --t-text-primary: #f2efe4; --t-text-secondary: #bdb9a8; --t-text-muted: #6e6a5c; --t-accent: #f2a900; --t-accent-hover: #f4b31f; --t-accent-muted: #62480a; --t-success: #9fc25c; --t-warning: #f4c430; --t-error: #ff4133; --t-border: #26261e; --t-border-light: #4a4636; --t-accent-text: #0a0a08"><button type="button" class="shot svelte-l06e47" aria-label="View full size: AssetHoard in the Black Mesa theme"><img src="/themes/black-mesa-thumb.webp" alt="AssetHoard's asset library in the Black Mesa theme: warm charcoal with a hazard-amber accent" title="AssetHoard's asset library in the Black Mesa theme: warm charcoal with a hazard-amber accent" width="960" height="539" loading="lazy" class="svelte-l06e47"/></button> <div class="body svelte-l06e47"><div class="title-row svelte-l06e47"><div><h3 class="svelte-l06e47">Black Mesa</h3> <p class="note svelte-l06e47">Warm charcoal with a hazard-amber accent</p></div> <button type="button" class="copy-btn svelte-l06e47" title="Copy the Black Mesa theme JSON">Copy JSON</button></div> <div class="palette svelte-l06e47" role="img" aria-label="Black Mesa palette"><!--[--><div class="group svelte-l06e47" style="--count: 5"><span class="group-label svelte-l06e47">Background</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #141410" title="bg-primary #141410"></span><span class="swatch svelte-l06e47" style="background: #1c1c16" title="bg-secondary #1c1c16"></span><span class="swatch svelte-l06e47" style="background: #0a0a08" title="bg-tertiary #0a0a08"></span><span class="swatch svelte-l06e47" style="background: #26261e" title="bg-hover #26261e"></span><span class="swatch svelte-l06e47" style="background: #3a3628" title="bg-active #3a3628"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Text</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #f2efe4" title="text-primary #f2efe4"></span><span class="swatch svelte-l06e47" style="background: #bdb9a8" title="text-secondary #bdb9a8"></span><span class="swatch svelte-l06e47" style="background: #6e6a5c" title="text-muted #6e6a5c"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 4"><span class="group-label svelte-l06e47">Accent</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #f2a900" title="accent #f2a900"></span><span class="swatch svelte-l06e47" style="background: #f4b31f" title="accent-hover #f4b31f"></span><span class="swatch svelte-l06e47" style="background: #62480a" title="accent-muted #62480a"></span><span class="swatch svelte-l06e47" style="background: #0a0a08" title="accent-text #0a0a08"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Status</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #9fc25c" title="success #9fc25c"></span><span class="swatch svelte-l06e47" style="background: #f4c430" title="warning #f4c430"></span><span class="swatch svelte-l06e47" style="background: #ff4133" title="error #ff4133"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 2"><span class="group-label svelte-l06e47">Border</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #26261e" title="border #26261e"></span><span class="swatch svelte-l06e47" style="background: #4a4636" title="border-light #4a4636"></span><!--]--></div></div><!--]--></div> <details class="json svelte-l06e47"><summary class="svelte-l06e47">Show JSON</summary> <pre class="svelte-l06e47"><code class="svelte-l06e47">{
+  "name": "Black Mesa",
+  "based_on": "classic",
+  "colors": {
+    "bg-primary": "#141410",
+    "bg-secondary": "#1c1c16",
+    "bg-tertiary": "#0a0a08",
+    "bg-hover": "#26261e",
+    "bg-active": "#3a3628",
+    "text-primary": "#f2efe4",
+    "text-secondary": "#bdb9a8",
+    "text-muted": "#6e6a5c",
+    "accent": "#f2a900",
+    "accent-hover": "#f4b31f",
+    "accent-muted": "#62480a",
+    "success": "#9fc25c",
+    "warning": "#f4c430",
+    "error": "#ff4133",
+    "border": "#26261e",
+    "border-light": "#4a4636",
+    "accent-text": "#0a0a08"
+  }
+}</code></pre></details></div></article><article class="theme svelte-l06e47" id="azure-glow" style="--t-bg-primary: #0a0f1a; --t-bg-secondary: #0d1b26; --t-bg-tertiary: #060a12; --t-bg-hover: #10202f; --t-bg-active: #123247; --t-text-primary: #cceeff; --t-text-secondary: #8cc4e6; --t-text-muted: #4f7a96; --t-accent: #00ccff; --t-accent-hover: #1fd2ff; --t-accent-muted: #07516a; --t-success: #00e0b8; --t-warning: #ffc857; --t-error: #ff5c7a; --t-border: #10263a; --t-border-light: #00334d; --t-accent-text: #060a12"><button type="button" class="shot svelte-l06e47" aria-label="View full size: AssetHoard in the Azure Glow theme"><img src="/themes/azure-glow-thumb.webp" alt="AssetHoard's asset library in the Azure Glow theme: deep navy with an electric cyan accent" title="AssetHoard's asset library in the Azure Glow theme: deep navy with an electric cyan accent" width="960" height="539" loading="lazy" class="svelte-l06e47"/></button> <div class="body svelte-l06e47"><div class="title-row svelte-l06e47"><div><h3 class="svelte-l06e47">Azure Glow</h3> <p class="note svelte-l06e47">Deep navy with an electric cyan accent</p></div> <button type="button" class="copy-btn svelte-l06e47" title="Copy the Azure Glow theme JSON">Copy JSON</button></div> <div class="palette svelte-l06e47" role="img" aria-label="Azure Glow palette"><!--[--><div class="group svelte-l06e47" style="--count: 5"><span class="group-label svelte-l06e47">Background</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #0a0f1a" title="bg-primary #0a0f1a"></span><span class="swatch svelte-l06e47" style="background: #0d1b26" title="bg-secondary #0d1b26"></span><span class="swatch svelte-l06e47" style="background: #060a12" title="bg-tertiary #060a12"></span><span class="swatch svelte-l06e47" style="background: #10202f" title="bg-hover #10202f"></span><span class="swatch svelte-l06e47" style="background: #123247" title="bg-active #123247"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Text</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #cceeff" title="text-primary #cceeff"></span><span class="swatch svelte-l06e47" style="background: #8cc4e6" title="text-secondary #8cc4e6"></span><span class="swatch svelte-l06e47" style="background: #4f7a96" title="text-muted #4f7a96"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 4"><span class="group-label svelte-l06e47">Accent</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #00ccff" title="accent #00ccff"></span><span class="swatch svelte-l06e47" style="background: #1fd2ff" title="accent-hover #1fd2ff"></span><span class="swatch svelte-l06e47" style="background: #07516a" title="accent-muted #07516a"></span><span class="swatch svelte-l06e47" style="background: #060a12" title="accent-text #060a12"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Status</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #00e0b8" title="success #00e0b8"></span><span class="swatch svelte-l06e47" style="background: #ffc857" title="warning #ffc857"></span><span class="swatch svelte-l06e47" style="background: #ff5c7a" title="error #ff5c7a"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 2"><span class="group-label svelte-l06e47">Border</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #10263a" title="border #10263a"></span><span class="swatch svelte-l06e47" style="background: #00334d" title="border-light #00334d"></span><!--]--></div></div><!--]--></div> <details class="json svelte-l06e47"><summary class="svelte-l06e47">Show JSON</summary> <pre class="svelte-l06e47"><code class="svelte-l06e47">{
+  "name": "Azure Glow",
+  "based_on": "classic",
+  "colors": {
+    "bg-primary": "#0a0f1a",
+    "bg-secondary": "#0d1b26",
+    "bg-tertiary": "#060a12",
+    "bg-hover": "#10202f",
+    "bg-active": "#123247",
+    "text-primary": "#cceeff",
+    "text-secondary": "#8cc4e6",
+    "text-muted": "#4f7a96",
+    "accent": "#00ccff",
+    "accent-hover": "#1fd2ff",
+    "accent-muted": "#07516a",
+    "success": "#00e0b8",
+    "warning": "#ffc857",
+    "error": "#ff5c7a",
+    "border": "#10263a",
+    "border-light": "#00334d",
+    "accent-text": "#060a12"
+  }
+}</code></pre></details></div></article><article class="theme svelte-l06e47" id="blueridge-dark" style="--t-bg-primary: #1c2128; --t-bg-secondary: #222831; --t-bg-tertiary: #161a20; --t-bg-hover: #2c3640; --t-bg-active: #3a4552; --t-text-primary: #e8e6e3; --t-text-secondary: #c4b5a0; --t-text-muted: #8a8f98; --t-accent: #7ec8c8; --t-accent-hover: #8dcfcf; --t-accent-muted: #3e5b60; --t-success: #7ea67c; --t-warning: #d4af37; --t-error: #cd9575; --t-border: #2c3640; --t-border-light: #3e4452; --t-accent-text: #161a20"><button type="button" class="shot svelte-l06e47" aria-label="View full size: AssetHoard in the Blueridge Dark theme"><img src="/themes/blueridge-dark-thumb.webp" alt="AssetHoard's asset library in the Blueridge Dark theme: slate blue-grey with soft teal and sandstone" title="AssetHoard's asset library in the Blueridge Dark theme: slate blue-grey with soft teal and sandstone" width="960" height="539" loading="lazy" class="svelte-l06e47"/></button> <div class="body svelte-l06e47"><div class="title-row svelte-l06e47"><div><h3 class="svelte-l06e47">Blueridge Dark</h3> <p class="note svelte-l06e47">Slate blue-grey with soft teal and sandstone</p></div> <button type="button" class="copy-btn svelte-l06e47" title="Copy the Blueridge Dark theme JSON">Copy JSON</button></div> <div class="palette svelte-l06e47" role="img" aria-label="Blueridge Dark palette"><!--[--><div class="group svelte-l06e47" style="--count: 5"><span class="group-label svelte-l06e47">Background</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #1c2128" title="bg-primary #1c2128"></span><span class="swatch svelte-l06e47" style="background: #222831" title="bg-secondary #222831"></span><span class="swatch svelte-l06e47" style="background: #161a20" title="bg-tertiary #161a20"></span><span class="swatch svelte-l06e47" style="background: #2c3640" title="bg-hover #2c3640"></span><span class="swatch svelte-l06e47" style="background: #3a4552" title="bg-active #3a4552"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Text</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #e8e6e3" title="text-primary #e8e6e3"></span><span class="swatch svelte-l06e47" style="background: #c4b5a0" title="text-secondary #c4b5a0"></span><span class="swatch svelte-l06e47" style="background: #8a8f98" title="text-muted #8a8f98"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 4"><span class="group-label svelte-l06e47">Accent</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #7ec8c8" title="accent #7ec8c8"></span><span class="swatch svelte-l06e47" style="background: #8dcfcf" title="accent-hover #8dcfcf"></span><span class="swatch svelte-l06e47" style="background: #3e5b60" title="accent-muted #3e5b60"></span><span class="swatch svelte-l06e47" style="background: #161a20" title="accent-text #161a20"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Status</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #7ea67c" title="success #7ea67c"></span><span class="swatch svelte-l06e47" style="background: #d4af37" title="warning #d4af37"></span><span class="swatch svelte-l06e47" style="background: #cd9575" title="error #cd9575"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 2"><span class="group-label svelte-l06e47">Border</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #2c3640" title="border #2c3640"></span><span class="swatch svelte-l06e47" style="background: #3e4452" title="border-light #3e4452"></span><!--]--></div></div><!--]--></div> <details class="json svelte-l06e47"><summary class="svelte-l06e47">Show JSON</summary> <pre class="svelte-l06e47"><code class="svelte-l06e47">{
+  "name": "Blueridge Dark",
+  "based_on": "classic",
+  "colors": {
+    "bg-primary": "#1c2128",
+    "bg-secondary": "#222831",
+    "bg-tertiary": "#161a20",
+    "bg-hover": "#2c3640",
+    "bg-active": "#3a4552",
+    "text-primary": "#e8e6e3",
+    "text-secondary": "#c4b5a0",
+    "text-muted": "#8a8f98",
+    "accent": "#7ec8c8",
+    "accent-hover": "#8dcfcf",
+    "accent-muted": "#3e5b60",
+    "success": "#7ea67c",
+    "warning": "#d4af37",
+    "error": "#cd9575",
+    "border": "#2c3640",
+    "border-light": "#3e4452",
+    "accent-text": "#161a20"
+  }
+}</code></pre></details></div></article><article class="theme svelte-l06e47" id="bright-future" style="--t-bg-primary: #131637; --t-bg-secondary: #181c44; --t-bg-tertiary: #0b0c19; --t-bg-hover: #221f4e; --t-bg-active: #2a2d63; --t-text-primary: #e6dcf0; --t-text-secondary: #a29dc6; --t-text-muted: #6b74a8; --t-accent: #ff4fd1; --t-accent-hover: #ff64d6; --t-accent-muted: #662a6d; --t-success: #55cfa2; --t-warning: #e8c77a; --t-error: #ef637e; --t-border: #262a5c; --t-border-light: #414780; --t-accent-text: #0b0c19"><button type="button" class="shot svelte-l06e47" aria-label="View full size: AssetHoard in the Bright Future theme"><img src="/themes/bright-future-thumb.webp" alt="AssetHoard's asset library in the Bright Future theme: indigo night with a hot pink accent" title="AssetHoard's asset library in the Bright Future theme: indigo night with a hot pink accent" width="960" height="539" loading="lazy" class="svelte-l06e47"/></button> <div class="body svelte-l06e47"><div class="title-row svelte-l06e47"><div><h3 class="svelte-l06e47">Bright Future</h3> <p class="note svelte-l06e47">Indigo night with a hot pink accent</p></div> <button type="button" class="copy-btn svelte-l06e47" title="Copy the Bright Future theme JSON">Copy JSON</button></div> <div class="palette svelte-l06e47" role="img" aria-label="Bright Future palette"><!--[--><div class="group svelte-l06e47" style="--count: 5"><span class="group-label svelte-l06e47">Background</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #131637" title="bg-primary #131637"></span><span class="swatch svelte-l06e47" style="background: #181c44" title="bg-secondary #181c44"></span><span class="swatch svelte-l06e47" style="background: #0b0c19" title="bg-tertiary #0b0c19"></span><span class="swatch svelte-l06e47" style="background: #221f4e" title="bg-hover #221f4e"></span><span class="swatch svelte-l06e47" style="background: #2a2d63" title="bg-active #2a2d63"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Text</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #e6dcf0" title="text-primary #e6dcf0"></span><span class="swatch svelte-l06e47" style="background: #a29dc6" title="text-secondary #a29dc6"></span><span class="swatch svelte-l06e47" style="background: #6b74a8" title="text-muted #6b74a8"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 4"><span class="group-label svelte-l06e47">Accent</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #ff4fd1" title="accent #ff4fd1"></span><span class="swatch svelte-l06e47" style="background: #ff64d6" title="accent-hover #ff64d6"></span><span class="swatch svelte-l06e47" style="background: #662a6d" title="accent-muted #662a6d"></span><span class="swatch svelte-l06e47" style="background: #0b0c19" title="accent-text #0b0c19"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Status</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #55cfa2" title="success #55cfa2"></span><span class="swatch svelte-l06e47" style="background: #e8c77a" title="warning #e8c77a"></span><span class="swatch svelte-l06e47" style="background: #ef637e" title="error #ef637e"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 2"><span class="group-label svelte-l06e47">Border</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #262a5c" title="border #262a5c"></span><span class="swatch svelte-l06e47" style="background: #414780" title="border-light #414780"></span><!--]--></div></div><!--]--></div> <details class="json svelte-l06e47"><summary class="svelte-l06e47">Show JSON</summary> <pre class="svelte-l06e47"><code class="svelte-l06e47">{
+  "name": "Bright Future",
+  "based_on": "classic",
+  "colors": {
+    "bg-primary": "#131637",
+    "bg-secondary": "#181c44",
+    "bg-tertiary": "#0b0c19",
+    "bg-hover": "#221f4e",
+    "bg-active": "#2a2d63",
+    "text-primary": "#e6dcf0",
+    "text-secondary": "#a29dc6",
+    "text-muted": "#6b74a8",
+    "accent": "#ff4fd1",
+    "accent-hover": "#ff64d6",
+    "accent-muted": "#662a6d",
+    "success": "#55cfa2",
+    "warning": "#e8c77a",
+    "error": "#ef637e",
+    "border": "#262a5c",
+    "border-light": "#414780",
+    "accent-text": "#0b0c19"
+  }
+}</code></pre></details></div></article><article class="theme svelte-l06e47" id="asphalt-legends" style="--t-bg-primary: #14081f; --t-bg-secondary: #1b0e33; --t-bg-tertiary: #0a0514; --t-bg-hover: #241448; --t-bg-active: #2e1a5c; --t-text-primary: #f2e8ff; --t-text-secondary: #b4a4d4; --t-text-muted: #8a7aaa; --t-accent: #9246ff; --t-accent-hover: #9f5cff; --t-accent-muted: #401e6d; --t-success: #6affb0; --t-warning: #ffd400; --t-error: #ff6b88; --t-border: #2a1450; --t-border-light: #3d2270; --t-accent-text: #ffffff"><button type="button" class="shot svelte-l06e47" aria-label="View full size: AssetHoard in the Asphalt Legends theme"><img src="/themes/asphalt-legends-thumb.webp" alt="AssetHoard's asset library in the Asphalt Legends theme: midnight purple with a neon violet accent" title="AssetHoard's asset library in the Asphalt Legends theme: midnight purple with a neon violet accent" width="960" height="539" loading="lazy" class="svelte-l06e47"/></button> <div class="body svelte-l06e47"><div class="title-row svelte-l06e47"><div><h3 class="svelte-l06e47">Asphalt Legends</h3> <p class="note svelte-l06e47">Midnight purple with a neon violet accent</p></div> <button type="button" class="copy-btn svelte-l06e47" title="Copy the Asphalt Legends theme JSON">Copy JSON</button></div> <div class="palette svelte-l06e47" role="img" aria-label="Asphalt Legends palette"><!--[--><div class="group svelte-l06e47" style="--count: 5"><span class="group-label svelte-l06e47">Background</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #14081f" title="bg-primary #14081f"></span><span class="swatch svelte-l06e47" style="background: #1b0e33" title="bg-secondary #1b0e33"></span><span class="swatch svelte-l06e47" style="background: #0a0514" title="bg-tertiary #0a0514"></span><span class="swatch svelte-l06e47" style="background: #241448" title="bg-hover #241448"></span><span class="swatch svelte-l06e47" style="background: #2e1a5c" title="bg-active #2e1a5c"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Text</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #f2e8ff" title="text-primary #f2e8ff"></span><span class="swatch svelte-l06e47" style="background: #b4a4d4" title="text-secondary #b4a4d4"></span><span class="swatch svelte-l06e47" style="background: #8a7aaa" title="text-muted #8a7aaa"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 4"><span class="group-label svelte-l06e47">Accent</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #9246ff" title="accent #9246ff"></span><span class="swatch svelte-l06e47" style="background: #9f5cff" title="accent-hover #9f5cff"></span><span class="swatch svelte-l06e47" style="background: #401e6d" title="accent-muted #401e6d"></span><span class="swatch svelte-l06e47" style="background: #ffffff" title="accent-text #ffffff"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 3"><span class="group-label svelte-l06e47">Status</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #6affb0" title="success #6affb0"></span><span class="swatch svelte-l06e47" style="background: #ffd400" title="warning #ffd400"></span><span class="swatch svelte-l06e47" style="background: #ff6b88" title="error #ff6b88"></span><!--]--></div></div><div class="group svelte-l06e47" style="--count: 2"><span class="group-label svelte-l06e47">Border</span> <span class="bracket svelte-l06e47" aria-hidden="true"></span> <div class="swatches svelte-l06e47"><!--[--><span class="swatch svelte-l06e47" style="background: #2a1450" title="border #2a1450"></span><span class="swatch svelte-l06e47" style="background: #3d2270" title="border-light #3d2270"></span><!--]--></div></div><!--]--></div> <details class="json svelte-l06e47"><summary class="svelte-l06e47">Show JSON</summary> <pre class="svelte-l06e47"><code class="svelte-l06e47">{
+  "name": "Asphalt Legends",
+  "based_on": "classic",
+  "colors": {
+    "bg-primary": "#14081f",
+    "bg-secondary": "#1b0e33",
+    "bg-tertiary": "#0a0514",
+    "bg-hover": "#241448",
+    "bg-active": "#2e1a5c",
+    "text-primary": "#f2e8ff",
+    "text-secondary": "#b4a4d4",
+    "text-muted": "#8a7aaa",
+    "accent": "#9246ff",
+    "accent-hover": "#9f5cff",
+    "accent-muted": "#401e6d",
+    "success": "#6affb0",
+    "warning": "#ffd400",
+    "error": "#ff6b88",
+    "border": "#2a1450",
+    "border-light": "#3d2270",
+    "accent-text": "#ffffff"
+  }
+}</code></pre></details></div></article><!--]--></div> <p class="share svelte-l06e47">Made a theme you're proud of? Click <strong class="svelte-l06e47">Copy as JSON</strong> in the editor and share it on <a href="https://assethoard.com/discord" target="_blank" rel="noopener" title="Join our Discord server" class="svelte-l06e47">Discord</a>.</p></div></section> <section class="section cta-section svelte-l06e47"><div class="container cta svelte-l06e47"><h2 class="svelte-l06e47">Make AssetHoard yours</h2> <p class="svelte-l06e47">AssetHoard is a local-first asset manager for game developers. Nine themes are built in, and
+			the theme editor lets you build your own with a live preview. Free while in beta.</p> <div class="cta-actions svelte-l06e47"><!--[0--><a href="/download" title="Download AssetHoard" class="btn btn-primary btn-md  svelte-18sv61c"><!---->Download AssetHoard<!----></a><!--]--><!----> <!--[0--><a href="/docs/themes" title="Themes documentation" class="btn btn-secondary btn-md  svelte-18sv61c"><!---->Read the themes docs<!----></a><!--]--><!----></div></div></section> <!--[-1--><!--]--><!--]--><!--]--><!--]--><!----></main> <footer class="footer svelte-jz8lnl"><div class="footer-container svelte-jz8lnl"><div class="footer-main svelte-jz8lnl"><div class="footer-brand svelte-jz8lnl"><div class="logo svelte-jz8lnl"><img src="/_app/immutable/assets/assethoard-logo.CwJilSta.svg" alt="AssetHoard" title="AssetHoard" class="logo-icon svelte-jz8lnl"/> <span class="logo-text svelte-jz8lnl">AssetHoard</span></div> <p class="tagline svelte-jz8lnl">The asset manager for indie game devs and artists</p></div> <div class="footer-links svelte-jz8lnl"><div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Product</p> <a href="/purchase" title="Buy AssetHoard" class="svelte-jz8lnl">Buy AssetHoard</a> <a href="/game-asset-management" title="Game asset management software" class="svelte-jz8lnl">Game asset management</a> <a href="/local-first" title="Local-first and offline" class="svelte-jz8lnl">Local-first</a> <a href="/compare/eagle" title="Eagle vs AssetHoard" class="svelte-jz8lnl">Eagle vs AssetHoard</a> <a href="/docs" title="Documentation" class="svelte-jz8lnl">Documentation</a> <a href="/docs/getting-started" title="Quick Start Guide" class="svelte-jz8lnl">Quick Start Guide</a> <a href="/roadmap" title="Roadmap" class="svelte-jz8lnl">Roadmap</a> <a href="/releases" title="Release Notes" class="svelte-jz8lnl">Release Notes</a> <a href="/forgot-license" title="Forgot License?" class="svelte-jz8lnl">Forgot License?</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Platforms</p> <a href="/godot-asset-manager" title="Godot asset manager" class="svelte-jz8lnl">Godot</a> <a href="/unity-asset-manager" title="Unity asset manager" class="svelte-jz8lnl">Unity</a> <a href="/unreal-asset-manager" title="Unreal asset manager" class="svelte-jz8lnl">Unreal</a> <a href="/gamemaker-asset-manager" title="GameMaker asset manager" class="svelte-jz8lnl">GameMaker</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Community</p> <a href="/free-game-assets" title="Free game assets for commercial use" class="svelte-jz8lnl">Free game assets</a> <a href="https://assethoard.com/discord" target="_blank" rel="noopener" title="Join our Discord server" class="svelte-jz8lnl">Discord</a> <a rel="me" href="https://mastodon.gamedev.place/@assethoard" target="_blank" title="Follow us on Mastodon" class="svelte-jz8lnl">Mastodon</a> <a href="https://bsky.app/profile/assethoard.bsky.social" target="_blank" rel="noopener" title="Follow us on Bluesky" class="svelte-jz8lnl">Bluesky</a> <a href="https://www.youtube.com/@assethoard" target="_blank" rel="noopener" title="Watch us on YouTube" class="svelte-jz8lnl">YouTube</a> <a href="/game-jam-sponsorship" title="Game jam sponsorship" class="svelte-jz8lnl">Game jam sponsorship</a> <a href="/creators" title="Creator program" class="svelte-jz8lnl">Creator program</a> <a href="/docs#newsletter" title="Subscribe to updates" class="svelte-jz8lnl">Subscribe to updates</a></div> <div class="footer-section svelte-jz8lnl"><p class="footer-heading svelte-jz8lnl">Company</p> <a href="/about" title="About" class="svelte-jz8lnl">About</a> <a href="/contact" title="Contact" class="svelte-jz8lnl">Contact</a> <a href="/press-kit" title="Press Kit" class="svelte-jz8lnl">Press Kit</a> <a href="/privacy" title="Privacy Policy" class="svelte-jz8lnl">Privacy Policy</a> <a href="/terms" title="Terms of Service" class="svelte-jz8lnl">Terms of Service</a> <a href="/open-source-licenses" title="Open-source licences" class="svelte-jz8lnl">Open-source licences</a></div></div></div> <div class="footer-bottom svelte-jz8lnl"><p class="copyright svelte-jz8lnl">© 2026 AssetHoard. All rights reserved. <span class="made-in svelte-jz8lnl">Made in Melbourne 🇦🇺</span></p></div></div></footer><!----></div><!--]--><!--]--><!--]--><!----> <!--[-1--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_ygxby6 = {
+						base: new URL(".", location).pathname.slice(0, -1),
+						version: "1795808845181"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					import("./_app/immutable/entry/start.VHbiYsbr.js").then(async (kit) => {
+						kit.init(__sveltekit_ygxby6);
+						const app = await import("./_app/immutable/entry/app.n334YvaH.js");
+						kit.start(app, element, {
+							node_ids: [0, 71],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+	</body>
+</html>

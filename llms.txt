@@ -27,6 +27,7 @@
 - [/press-kit](https://assethoard.com/press-kit): Logos, screenshots, and brand assets for press and reviewers.
 - [/about](https://assethoard.com/about): About AssetHoard and the people building it.
 - [/contact](https://assethoard.com/contact): Get in touch with the AssetHoard team.
+- [/themes](https://assethoard.com/themes): Free colour themes for AssetHoard, each with a screenshot, its palette and JSON to import in the theme editor.
 
 ## Free game assets
 - [/free-game-assets](https://assethoard.com/free-game-assets): A curated, filterable catalogue of free game assets for commercial use (CC0 and CC BY), with every licence checked and credit requirements marked.
