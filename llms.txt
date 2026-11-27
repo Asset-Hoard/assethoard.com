@@ -61,6 +61,7 @@
 - [/docs/mcp](https://assethoard.com/docs/mcp): Set up the local MCP server and connect an AI client: settings, client configs, importing with approval, security model, worked examples and troubleshooting.
 - [/docs/mcp-tools](https://assethoard.com/docs/mcp-tools): Reference for every MCP tool (search, browse, inspect, export, plus optional bundle, tag, category, project and import tools), with arguments and response shapes.
 - [/docs/linux](https://assethoard.com/docs/linux): Running AssetHoard on Linux.
+- [/docs/themes](https://assethoard.com/docs/themes): The nine built-in colour themes, and making, editing and sharing your own in the theme editor (live preview, contrast warnings, JSON copy and paste).
 - [/docs/keyboard](https://assethoard.com/docs/keyboard): Keyboard shortcuts.
 - [/docs/license](https://assethoard.com/docs/license): How your AssetHoard licence works: buying, activating, and managing it across up to 2 devices.
 - [/docs/license-detection](https://assethoard.com/docs/license-detection): Automatic licence detection and per-asset attribution tracking on import.
