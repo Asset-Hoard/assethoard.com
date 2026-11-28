@@ -73,6 +73,13 @@
 - [/plugins/godot](https://assethoard.com/plugins/godot): Godot plugin: Browse and import your AssetHoard library from inside the Godot editor.
 - [/plugins/heic](https://assethoard.com/plugins/heic): HEIC plugin: Thumbnails and previews for HEIC and HEIF photos.
 
+## Themes
+- [/themes/black-mesa](https://assethoard.com/themes/black-mesa): Black Mesa theme for AssetHoard: Warm charcoal with a hazard-amber accent. Palette and JSON to import.
+- [/themes/azure-glow](https://assethoard.com/themes/azure-glow): Azure Glow theme for AssetHoard: Deep navy with an electric cyan accent. Palette and JSON to import.
+- [/themes/blueridge-dark](https://assethoard.com/themes/blueridge-dark): Blueridge Dark theme for AssetHoard: Slate blue-grey with soft teal and sandstone. Palette and JSON to import.
+- [/themes/bright-future](https://assethoard.com/themes/bright-future): Bright Future theme for AssetHoard: Indigo night with a hot pink accent. Palette and JSON to import.
+- [/themes/asphalt-legends](https://assethoard.com/themes/asphalt-legends): Asphalt Legends theme for AssetHoard: Midnight purple with a neon violet accent. Palette and JSON to import.
+
 ## Free browser tools
 - [/tools/texture-atlas-packer](https://assethoard.com/tools/texture-atlas-packer): Pack many images into one sprite sheet with a coordinates file.
 - [/tools/sprite-sheet-slicer](https://assethoard.com/tools/sprite-sheet-slicer): Cut a sprite sheet into individual frames and export a zip.
