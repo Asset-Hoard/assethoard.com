@@ -79,6 +79,7 @@
 - [/themes/blueridge-dark](https://assethoard.com/themes/blueridge-dark): Blueridge Dark theme for AssetHoard: Slate blue-grey with soft teal and sandstone. Palette and JSON to import.
 - [/themes/bright-future](https://assethoard.com/themes/bright-future): Bright Future theme for AssetHoard: Indigo night with a hot pink accent. Palette and JSON to import.
 - [/themes/asphalt-legends](https://assethoard.com/themes/asphalt-legends): Asphalt Legends theme for AssetHoard: Midnight purple with a neon violet accent. Palette and JSON to import.
+- [/themes/mono](https://assethoard.com/themes/mono): Mono theme for AssetHoard: Pure black and white, no colour at all. Palette and JSON to import.
 
 ## Free browser tools
 - [/tools/texture-atlas-packer](https://assethoard.com/tools/texture-atlas-packer): Pack many images into one sprite sheet with a coordinates file.
